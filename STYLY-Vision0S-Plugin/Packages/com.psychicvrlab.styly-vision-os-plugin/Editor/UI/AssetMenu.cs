@@ -12,7 +12,7 @@ namespace Styly.VisionOs.Plugin
 
         [MenuItem(@"Assets/STYLY/Test Variable Utility", false, 10001)]
         private static void TestVariableUtility(){
-            VisualScriptingVariableUtility.GetParameterDefinition(Selection.objects[0] as GameObject); 
+            VisualScriptingParameterUtility.GetParameterDefinitionJson(Selection.objects[0] as GameObject); 
         }
 
 
