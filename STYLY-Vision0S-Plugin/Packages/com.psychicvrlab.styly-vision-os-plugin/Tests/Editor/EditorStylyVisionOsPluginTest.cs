@@ -34,6 +34,17 @@ namespace Styly.VisionOs.Plugin
 
             Assert.That(File.Exists(outputPath), Is.True );
         }
+
+        [Test]
+        public void ExportUnitypackage()
+        {
+            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Editor/TestData/Prefab/Cube.prefab";
+            var filename = "backup";
+            var outputPath = Path.Combine(Config.OutputPath,"packages", $"{filename}.unitypackage");
+            ExportPackageUtility.Export(assetPath, outputPath );
+
+            Assert.That(File.Exists(outputPath), Is.True );
+            
         }
         
         //
