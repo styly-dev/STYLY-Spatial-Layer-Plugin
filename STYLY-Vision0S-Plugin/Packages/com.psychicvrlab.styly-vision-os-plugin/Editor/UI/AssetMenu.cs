@@ -46,7 +46,7 @@ namespace Styly.VisionOs.Plugin
             
             CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, "thumbnail.png"));
             
-            // Todo:Export Unitypackage
+            ExportPackageUtility.Export(assetPath, Path.Combine(outputPath, "backup.unitypackage"));
             
             SetPlatformRequiresReadableAssets(true);
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
