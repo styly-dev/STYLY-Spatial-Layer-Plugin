@@ -20,43 +20,14 @@ namespace Styly.VisionOs.Plugin
             return false;
         }
 
-//         public int CreatePrefab(GameObject gameObject, string path)
-//         {
-//             if (!AssetDatabase.IsValidFolder(path))
-//             {
-//                 AssetDatabase.CreateFolder("Assets", path);
-//             }
-//             var createPath = "Assets/" + path + "/" + gameObject.name + ".prefab";
-//             // var movePath = path + gameObject.name + ".prefab";
-//             PrefabUtility.CreatePrefab(createPath, gameObject);
-//
-//             AssetDatabase.SaveAssets();
-//
-//             return 0;
-//         }
-//
-//         public int ClearAssetsFolder(string path)
-//         {
-//             if (!AssetDatabase.IsValidFolder("Assets/" + path))
-//             {
-//                 return -1;
-//             }
-//             AssetDatabase.DeleteAsset("Assets/" + path);
-//
-//             AssetDatabase.SaveAssets();
-//             return 0;
-//         }
-//
-         public AssetBundleManifest Build(string id, string path, string outputPath, BuildTarget buildTarget)
+         public AssetBundleManifest Build(string filename, string sourcePath, string destDirectory, BuildTarget buildTarget)
          {
-             Debug.Log("guid:" + id + " path:" + path + " outputPath:" + outputPath);
-             
-             if (!Directory.Exists(outputPath))
+             if (!Directory.Exists(destDirectory))
              {
-                 Directory.CreateDirectory(outputPath);
+                 Directory.CreateDirectory(destDirectory);
              }
 
-             var outputFilePath = Path.Combine(outputPath, id);
+             var outputFilePath = Path.Combine(destDirectory, filename);
              if (File.Exists( outputFilePath))
              {
                  File.Delete(outputFilePath);
@@ -68,43 +39,13 @@ namespace Styly.VisionOs.Plugin
              }
 
              AssetBundleBuild[] buildMap = new AssetBundleBuild[1];
-             buildMap[0].assetBundleName = id;
-             buildMap[0].assetNames = new string[] { path };
-             var buildResult = BuildPipeline.BuildAssetBundles(outputPath, buildMap, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
+             buildMap[0].assetBundleName = filename;
+             buildMap[0].assetNames = new string[] { sourcePath };
+             var buildResult = BuildPipeline.BuildAssetBundles(destDirectory, buildMap, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
 
              return buildResult;
          }
-//
-//         public void ClearOutputDirectory()
-//         {
-//             Delete(OutputPath);
-//         }
-//
-//         /// 指定したディレクトリとその中身を全て削除する
-//         public static void Delete(string targetDirectoryPath)
-//         {
-//             Debug.Log("Delete");
-//
-//             if (!Directory.Exists(targetDirectoryPath))
-//             {
-//                 return;
-//             }
-//
-//             string[] filePaths = Directory.GetFiles(targetDirectoryPath);
-//             foreach (string filePath in filePaths)
-//             {
-//                 File.SetAttributes(filePath, FileAttributes.Normal);
-//                 File.Delete(filePath);
-//             }
-//
-//             string[] directoryPaths = Directory.GetDirectories(targetDirectoryPath);
-//             foreach (string directoryPath in directoryPaths)
-//             {
-//                 Delete(directoryPath);
-//             }
-//
-//             Directory.Delete(targetDirectoryPath, false);
-//         }
+
 //
 //         /// <summary>
 //         /// ビルドターゲットからプラットフォーム名を取得する

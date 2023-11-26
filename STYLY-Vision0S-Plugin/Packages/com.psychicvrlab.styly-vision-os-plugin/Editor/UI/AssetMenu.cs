@@ -50,8 +50,10 @@ namespace Styly.VisionOs.Plugin
             
             SetPlatformRequiresReadableAssets(true);
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
-            
-            // Todo:Build Asset Bundle
+            var assetbundleOutputPath = Path.Combine(outputPath, "VisionOS");
+            assetBundleUtility.Build("assetbundle", assetPath, assetbundleOutputPath, BuildTarget.VisionOS);
+            File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS"));
+            File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS.manifest"));
             
             // Todo:Create meta.json
             
