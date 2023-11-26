@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "com.psychicvrlab.styly-vision-os-plugin.Editor"
     ],
     "includePlatforms": [
         "Editor"
