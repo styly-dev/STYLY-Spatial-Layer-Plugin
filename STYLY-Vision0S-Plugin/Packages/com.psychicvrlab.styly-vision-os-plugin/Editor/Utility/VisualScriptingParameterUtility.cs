@@ -37,7 +37,7 @@ namespace Styly.VisionOs.Plugin
         /// <param name="gameObject"></param>
         /// <returns>ParameterDefinition JSON</returns>
 
-        public static string GetParameterDefinition(GameObject gameObject)
+        public static string GetParameterDefinitionJson(GameObject gameObject)
         {
             List<VariableClass> variables = new List<VariableClass>();
             if (gameObject.TryGetComponent<Variables>(out var VariableComponent))
