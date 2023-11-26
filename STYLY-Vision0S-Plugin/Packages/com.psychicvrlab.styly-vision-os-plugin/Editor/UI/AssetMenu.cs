@@ -58,7 +58,7 @@ namespace Styly.VisionOs.Plugin
             
             var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
             var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
-            var metadataOutputPath = Path.Combine(outputPath, "metadata.json");
+            var metadataOutputPath = Path.Combine(outputPath, "meta.json");
             File.WriteAllText(metadataOutputPath, metadata);
             
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
