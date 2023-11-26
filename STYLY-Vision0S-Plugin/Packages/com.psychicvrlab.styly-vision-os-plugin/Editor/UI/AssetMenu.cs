@@ -55,7 +55,10 @@ namespace Styly.VisionOs.Plugin
             File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS"));
             File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS.manifest"));
             
-            // Todo:Create meta.json
+            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
+            var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
+            var metadataOutputPath = Path.Combine(outputPath, "metadata.json");
+            File.WriteAllText(metadataOutputPath, metadata);
             
             // Todo:Compress to Zip file
             

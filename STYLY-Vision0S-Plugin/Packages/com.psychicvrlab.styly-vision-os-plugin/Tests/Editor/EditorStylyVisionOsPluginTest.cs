@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -72,6 +73,17 @@ namespace Styly.VisionOs.Plugin
             Assert.That(File.Exists( Path.Combine(outputPath, filename)), Is.True );
         }
 
+        [Test]
+        public void CreateMetadata()
+        {
+            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
+            var json = MetadataUtility.CreateMetadataJson(assetPath, date);
+            Debug.Log(json);
+            
+            Assert.That(json, Is.Not.Empty);
+        }
+        
         //
         // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // // `yield return null;` to skip a frame.
