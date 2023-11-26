@@ -67,8 +67,6 @@ namespace Styly.VisionOs.Plugin
             
             Directory.Delete(outputPath, true);
             
-            // Todo:Open Browser
-            
             var uri = new Uri(Config.UploadPage);
             Application.OpenURL(uri.AbsoluteUri);
             
