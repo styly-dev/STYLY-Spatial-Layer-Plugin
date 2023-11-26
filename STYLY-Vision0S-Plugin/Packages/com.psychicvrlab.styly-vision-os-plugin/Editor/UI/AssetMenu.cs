@@ -1,6 +1,6 @@
+using System;
 using System.IO;
 using System.Linq;
-using PlasticPipe.PlasticProtocol.Messages.Serialization;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,15 +23,23 @@ namespace Styly.VisionOs.Plugin
                 Debug.LogError("Selected asset is not prefab");
                 return;
             }
-
-            SetPlatformRequiresReadableAssets(true);
             
-            // Todo:Change Platform to Vision OS
+            if (Directory.Exists(Config.OutputPath))
+            {
+                Directory.Delete(Config.OutputPath,true);
+            }
+            var outputPath = Path.Combine(Config.OutputPath,DateTime.Now.ToString("yyyyMMddHHmmss"));
+            Debug.Log(outputPath);
+            if (!Directory.Exists(outputPath))
+            {
+                Directory.CreateDirectory(outputPath);
+            }
             
             // Todo:Create Thumbnail
             
             // Todo:Export Unitypackage
             
+            SetPlatformRequiresReadableAssets(true);
             // Todo:Build Asset Bundle
             
             // Todo:Create meta.json
