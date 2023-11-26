@@ -39,6 +39,8 @@ namespace Styly.VisionOs.Plugin
             
             // Todo:Open Export Folder
             
+            // Todo:Open Browser
+            
             isProcessing = false;
         }
 
