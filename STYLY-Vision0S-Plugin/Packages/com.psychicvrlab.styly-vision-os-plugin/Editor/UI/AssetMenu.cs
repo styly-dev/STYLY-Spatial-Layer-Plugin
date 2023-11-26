@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using PlasticPipe.PlasticProtocol.Messages.Serialization;
 using UnityEditor;
@@ -46,7 +47,7 @@ namespace Styly.VisionOs.Plugin
 
         private static bool IsBuildTargetType(string path)
         {
-            return false;
+            return Path.GetExtension(path).ToLower() == ".prefab";
         }
 
         private static void SetPlatformRequiresReadableAssets(bool val)
