@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 namespace Styly.VisionOs.Plugin
 {
@@ -46,197 +45,6 @@ namespace Styly.VisionOs.Plugin
              return buildResult;
          }
 
-//
-//         /// <summary>
-//         /// ビルドターゲットからプラットフォーム名を取得する
-//         /// </summary>
-//         /// <param name="platform">ビルドターゲット</param>
-//         /// <returns>プラットフォーム名</returns>
-//         public string GetPlatformName(BuildTarget platform)
-//         {
-//             switch (platform)
-//             {
-//                 case BuildTarget.Android:
-//                     return "Android";
-//                 case BuildTarget.iOS:
-//                     return "iOS";
-//                 case BuildTarget.WebGL:
-//                     return "WebGL";
-//                 case BuildTarget.WSAPlayer:
-//                     return "UWP";
-//                 case BuildTarget.StandaloneWindows64:
-//                     return "Windows";
-//                 case BuildTarget.StandaloneOSX:
-//                     return "OSX";
-//                 case BuildTarget.VisionOS:
-//                     return "VOS";
-//                 default:
-//                     return null;
-//             }
-//         }
-//
-//         /// <summary>
-//         /// ランタイムプラットフォームからビルドターゲットを取得する
-//         /// </summary>
-//         /// <param name="platform">ランタイムプラットフォーム</param>
-//         /// <returns>ビルドターゲット</returns>
-//         public BuildTarget GetBuildTarget(RuntimePlatform platform)
-//         {
-//             Debug.Log("GetBuildTarget");
-//
-//             switch (platform)
-//             {
-//                 case RuntimePlatform.Android:
-//                     return BuildTarget.Android;
-//                 case RuntimePlatform.IPhonePlayer:
-//                     return BuildTarget.iOS;
-//                 case RuntimePlatform.WebGLPlayer:
-//                     return BuildTarget.WebGL;
-//                 case RuntimePlatform.WSAPlayerX86:
-//                     return BuildTarget.WSAPlayer;
-//                 case RuntimePlatform.WindowsPlayer:
-//                 case RuntimePlatform.WindowsEditor:
-//                     return BuildTarget.StandaloneWindows64;
-//                 case RuntimePlatform.OSXPlayer:
-//                 case RuntimePlatform.OSXEditor:
-//                     return BuildTarget.StandaloneOSX;
-//                 default:
-//                     return BuildTarget.StandaloneWindows64;
-//             }
-//         }
-//
-//         /// <summary>
-//         /// ビルドターゲットからランタイムプラットフォームを取得する
-//         /// </summary>
-//         /// <param name="buildTarget">ビルドターゲット</param>
-//         /// <returns>ランタイムプラットフォーム</returns>
-//         public RuntimePlatform GetRuntimePlatform(BuildTarget buildTarget)
-//         {
-//             RuntimePlatform platform = RuntimePlatform.WindowsPlayer;
-//             switch (buildTarget)
-//             {
-//                 case BuildTarget.Android:
-//                     platform = RuntimePlatform.Android;
-//                     break;
-//                 case BuildTarget.StandaloneWindows64:
-//                     platform = RuntimePlatform.WindowsPlayer;
-//                     break;
-//                 case BuildTarget.iOS:
-//                     platform = RuntimePlatform.IPhonePlayer;
-//                     break;
-//
-//                 case BuildTarget.StandaloneOSX:
-//                     platform = RuntimePlatform.OSXPlayer;
-//                     break;
-//                 case BuildTarget.WebGL:
-//                     platform = RuntimePlatform.WebGLPlayer;
-//                     break;
-//             }
-//
-//             return platform;
-//         }
-//
-//         private const string STYLY_BUILDED_ASSET_PATH_DATA = "Assets/styly_temp/BuildedAssetPathData.asset";
-//         // public BuildedAssetPathData GetBuildedAssetData()
-//         // {
-//         //     var buildedAssetPathData = AssetDatabase.LoadAssetAtPath<BuildedAssetPathData>(STYLY_BUILDED_ASSET_PATH_DATA);
-//         //     if (buildedAssetPathData == null)
-//         //     {
-//         //         buildedAssetPathData = ClearBuildedAssetPathData();
-//         //     }
-//         //
-//         //     return buildedAssetPathData;
-//         // }
-//         //
-//         // public void SaveBuildedAssetPathData(BuildedAssetPathData _buildedAssetPathData)
-//         // {
-//         //     var buildedAssetPathData = AssetDatabase.LoadAssetAtPath<BuildedAssetPathData>(STYLY_BUILDED_ASSET_PATH_DATA);
-//         //     buildedAssetPathData = _buildedAssetPathData;
-//         //     EditorUtility.SetDirty(buildedAssetPathData);
-//         //     //保存する
-//         //     AssetDatabase.SaveAssets();
-//         //     AssetDatabase.Refresh();
-//         // }
-//         //
-//         // public BuildedAssetPathData ClearBuildedAssetPathData()
-//         // {
-//         //     Debug.Log("new");
-//         //     var buildedAssetPathData = ScriptableObject.CreateInstance<BuildedAssetPathData>();
-//         //
-//         //     if (!Directory.Exists(Path.GetDirectoryName(STYLY_BUILDED_ASSET_PATH_DATA)))
-//         //     {
-//         //         Directory.CreateDirectory(Path.GetDirectoryName(STYLY_BUILDED_ASSET_PATH_DATA));
-//         //     }
-//         //     AssetDatabase.CreateAsset(buildedAssetPathData, STYLY_BUILDED_ASSET_PATH_DATA);
-//         //     AssetDatabase.SaveAssets();
-//         //     AssetDatabase.Refresh();
-//         //
-//         //     return buildedAssetPathData;
-//         // }
-//         //
-//         // /// <summary>
-//         // /// Prefabがビルド済みかどうかBuildedAssetPathDataから判定する。
-//         // /// </summary>
-//         // /// <param name="prefabPath"></param>
-//         // /// <param name="buildTarget"></param>
-//         // /// <returns>true: Already builded. false:Need to build.</returns>
-//         // public bool CheckPrefabAlreadyBuilded(string prefabPath, BuildTarget buildTarget)
-//         // {
-//         //     Debug.Log("CheckPrefabAlreadyBuilded:" + prefabPath);
-//         //
-//         //     // AssetBundleのパスが記録されていなければビルド必要
-//         //     var assetBundlePath = GetAssetBundlePath(prefabPath, buildTarget);
-//         //     if (assetBundlePath == null)
-//         //     {
-//         //         Debug.Log("Need to build.");
-//         //         return false;
-//         //     }
-//         //
-//         //     // ファイルの存在チェック
-//         //     // 存在しなければビルド必要
-//         //     Debug.Log("Exist is:" + File.Exists(assetBundlePath) + " path:" + assetBundlePath);
-//         //     if (!File.Exists(assetBundlePath))
-//         //     {
-//         //         Debug.Log("need build:assetBundle is not Exitsts");
-//         //         return false;
-//         //     }
-//         //
-//         //     return true;
-//         // }
-//         //
-//         // public string GetAssetBundlePath(string prefabPath, BuildTarget buildTarget)
-//         // {
-//         //     var buildedAssetData = GetBuildedAssetData();
-//         //     var buildedData = buildedAssetData.GetData(prefabPath);
-//         //
-//         //     // 対象プラットフォームのビルドがあるか確認する。
-//         //     string assetBundlePath = Path.Combine(OutputPath, "STYLY_ASSET", GetPlatformName(buildTarget));
-//         //     string val;
-//         //     if (!buildedData.TryGetValue(BuildedAssetPathData.GUID_KEY, out val))
-//         //     {
-//         //         return null;
-//         //     }
-//         //     assetBundlePath = Path.Combine(assetBundlePath, val);
-//         //
-//         //     return assetBundlePath;
-//         // }
-//         //
-//         // public string GetGuidFromBuildedAssetData(string prefabPath)
-//         // {
-//         //     var buildedAssetData = GetBuildedAssetData();
-//         //     var buildedData = buildedAssetData.GetData(prefabPath);
-//         //
-//         //     string guidString;
-//         //     if (buildedData.TryGetValue(BuildedAssetPathData.GUID_KEY, out guidString))
-//         //     {
-//         //         return guidString;
-//         //     }
-//         //     else
-//         //     {
-//         //         return null;
-//         //     }
-//         // }
-//
 //         public GameObject LoadFromAssetBundle(string path, out bool isSceneAsset)
 //         {
 //             isSceneAsset = false;
@@ -278,13 +86,8 @@ namespace Styly.VisionOs.Plugin
 //         }
 //         
 //         
-//         /// <summary>
-//         /// GameObject配下（子、孫を含む）の各MaterialおよびTerrainのシェーダーを更新する。
-//         /// </summary>
-//         /// <param name="obj"></param>
 //         public void Migrate(GameObject obj)
 //         {
-//             // 通常アセットのRenderer処理
 //             var renderers = obj.GetComponentsInChildren<Renderer>(true);
 //             foreach (var renderer in renderers)
 //             {
@@ -302,7 +105,6 @@ namespace Styly.VisionOs.Plugin
 //             }
 //         }
 //
-//         // マテリアル内のシェーダーを置換
 //         private void MigrateShaderInMaterial(Material mat)
 //         {
 //             if (mat.shader == null)
