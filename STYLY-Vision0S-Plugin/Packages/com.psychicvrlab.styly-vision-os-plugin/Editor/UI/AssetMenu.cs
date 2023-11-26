@@ -9,6 +9,13 @@ namespace Styly.VisionOs.Plugin
     public class AssetMenu
     {
         private static bool isProcessing;
+
+        [MenuItem(@"Assets/STYLY/Test Variable Utility", false, 10001)]
+        private static void TestVariableUtility(){
+            VisualScriptingVariableUtility.GetParameterDefinition(Selection.objects[0] as GameObject); 
+        }
+
+
         
         [MenuItem(@"Assets/STYLY/Build Content File", false, 10000)]
         private static void BuildContent()
