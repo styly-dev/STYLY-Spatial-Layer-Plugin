@@ -15,6 +15,8 @@ namespace Styly.VisionOs.Plugin
         {
             isProcessing = true;
 
+            var assetBundleUtility = new AssetBundleUtility();
+            
             var path = AssetDatabase.GetAssetPath(Selection.objects[0]);
             Debug.Log($"Selected asset:{path}");
 
@@ -40,6 +42,8 @@ namespace Styly.VisionOs.Plugin
             // Todo:Export Unitypackage
             
             SetPlatformRequiresReadableAssets(true);
+            assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
+            
             // Todo:Build Asset Bundle
             
             // Todo:Create meta.json
