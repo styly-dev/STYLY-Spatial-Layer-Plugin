@@ -19,18 +19,7 @@ namespace Styly.VisionOs.Plugin
             }
             return false;
         }
-//
-//         public bool SwitchPlatformAndPlayerSettings(RuntimePlatform platform)
-//         {
-//             bool switchResult = false;
-//             if (platform == RuntimePlatform.VisionOS)
-//             {
-//                 switchResult = EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.VisionOS, BuildTarget.VisionOS);
-//             }
-//
-//             return switchResult;
-//         }
-//         
+
 //         public int CreatePrefab(GameObject gameObject, string path)
 //         {
 //             if (!AssetDatabase.IsValidFolder(path))
@@ -58,52 +47,33 @@ namespace Styly.VisionOs.Plugin
 //             return 0;
 //         }
 //
-//         /// <summary>
-//         /// AssetBundleをビルドする
-//         /// </summary>
-//         /// <param name="id">AssetBundleのGUID</param>
-//         /// <param name="path">シーンのパス</param>
-//         /// <param name="outputPath">出力ファイルパス</param>
-//         /// <param name="buildTarget">ビルドターゲット</param>
-//         /// <returns>ビルド結果</returns>
-//         public AssetBundleManifest Build(string id, string path, string outputPath, BuildTarget buildTarget)
-//         {
-//             Debug.Log("guid:" + id + " path:" + path + " outputPath:" + outputPath);
-//             
-//             if (!Directory.Exists(outputPath))
-//             {
-//                 Directory.CreateDirectory(outputPath);
-//             }
-//
-//             var outputFilePath = Path.Combine(outputPath, id);
-//             if (File.Exists( outputFilePath))
-//             {
-//                 File.Delete(outputFilePath);
-//             }
-//             var outputManifestFilePath = $"{outputFilePath}.manifest";
-//             if (File.Exists( outputManifestFilePath))
-//             {
-//                 File.Delete(outputManifestFilePath);
-//             }
-//
-//             // pathをGUID名にリネームする。
-//             // var guidPath = GetAssetGUIDName(path, guid);
-//             // RenameAsset(path, guidPath);
-//
-//             AssetBundleBuild[] buildMap = new AssetBundleBuild[1];
-//             buildMap[0].assetBundleName = id;
-//             buildMap[0].assetNames = new string[] { path };
-//             var buildResult = BuildPipeline.BuildAssetBundles(outputPath, buildMap, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
-//
-//             // リネームしたPathを戻す。
-//             // RenameAsset(guidPath, path);
-//
-//             // ビルド結果保存
-//             // var builded = GetBuildedAssetData();
-//             // builded.AddData(path, id);
-//
-//             return buildResult;
-//         }
+         public AssetBundleManifest Build(string id, string path, string outputPath, BuildTarget buildTarget)
+         {
+             Debug.Log("guid:" + id + " path:" + path + " outputPath:" + outputPath);
+             
+             if (!Directory.Exists(outputPath))
+             {
+                 Directory.CreateDirectory(outputPath);
+             }
+
+             var outputFilePath = Path.Combine(outputPath, id);
+             if (File.Exists( outputFilePath))
+             {
+                 File.Delete(outputFilePath);
+             }
+             var outputManifestFilePath = $"{outputFilePath}.manifest";
+             if (File.Exists( outputManifestFilePath))
+             {
+                 File.Delete(outputManifestFilePath);
+             }
+
+             AssetBundleBuild[] buildMap = new AssetBundleBuild[1];
+             buildMap[0].assetBundleName = id;
+             buildMap[0].assetNames = new string[] { path };
+             var buildResult = BuildPipeline.BuildAssetBundles(outputPath, buildMap, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
+
+             return buildResult;
+         }
 //
 //         public void ClearOutputDirectory()
 //         {

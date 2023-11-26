@@ -11,14 +11,23 @@ namespace Styly.VisionOs.Plugin
 {
     public class EditorStylyVisionOsPluginTest
     {
+        [SetUp]
+        public void Setup()
+        {
+            if (Directory.Exists(Config.OutputPath))
+            {
+                Directory.Delete(Config.OutputPath,true);
+            }
+        }
+        
         [Test]
         public void SwitchPlatformToVisionOs()
         {
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX);
             Assert.That(EditorUserBuildSettings.activeBuildTarget, Is.EqualTo(BuildTarget.StandaloneOSX));
             
-            var abUtility = new AssetBundleUtility();
-            var result = abUtility.SwitchPlatform(BuildTarget.VisionOS);
+            var assetBundleUtility = new AssetBundleUtility();
+            var result = assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
             
             Assert.That(result, Is.True);
             Assert.That(EditorUserBuildSettings.activeBuildTarget, Is.EqualTo(BuildTarget.VisionOS));
@@ -46,7 +55,23 @@ namespace Styly.VisionOs.Plugin
             Assert.That(File.Exists(outputPath), Is.True );
             
         }
-        
+
+        [Test]
+        public void BuildAssetBundle()
+        {
+            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var assetBundleUtility = new AssetBundleUtility();
+            var result = assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
+            Assert.That(result, Is.True);
+
+            var filename = "assetbundle";
+            var outputPath = Path.Combine(Config.OutputPath,"VisionOS");
+            result = assetBundleUtility.Build(filename, assetPath, outputPath, BuildTarget.VisionOS);
+            
+            Assert.That(result, Is.True);
+            Assert.That(File.Exists( Path.Combine(outputPath, filename)), Is.True );
+        }
+
         //
         // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // // `yield return null;` to skip a frame.
