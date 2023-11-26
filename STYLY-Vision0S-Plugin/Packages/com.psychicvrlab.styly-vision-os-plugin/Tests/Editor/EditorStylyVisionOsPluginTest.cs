@@ -29,10 +29,11 @@ namespace Styly.VisionOs.Plugin
         {
             var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Editor/TestData/Prefab/Cube.prefab";
             var filename = "thumbnail";
-            var path = Path.Combine(Config.OutputPath,"thumbnail", $"{filename}.png");
-            CreateThumbnailUtility.MakeThumbnail(path, assetPath);
+            var outputPath = Path.Combine(Config.OutputPath,"thumbnail", $"{filename}.png");
+            CreateThumbnailUtility.MakeThumbnail(assetPath, outputPath );
 
-            Assert.That(File.Exists(path), Is.True );
+            Assert.That(File.Exists(outputPath), Is.True );
+        }
         }
         
         //

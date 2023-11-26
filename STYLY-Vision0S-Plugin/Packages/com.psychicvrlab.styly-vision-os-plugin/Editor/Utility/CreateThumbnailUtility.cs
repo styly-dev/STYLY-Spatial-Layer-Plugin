@@ -7,16 +7,16 @@ namespace Styly.VisionOs.Plugin
 {
     public class CreateThumbnailUtility
     {
-        public static void MakeThumbnail(string thumbnailOutputFilePath, string assetPath)
+        public static void MakeThumbnail(string sourceFilePath, string destFilePath)
         {
-            var dirPath = Path.GetDirectoryName(thumbnailOutputFilePath);
+            var dirPath = Path.GetDirectoryName(destFilePath);
             if (!Directory.Exists(dirPath))
             {
                 Directory.CreateDirectory(dirPath);
             }
             try
             {
-                MakeThumbnailForPrefab(assetPath, thumbnailOutputFilePath);
+                MakeThumbnailForPrefab(sourceFilePath, destFilePath);
             }
             catch (Exception e)
             {

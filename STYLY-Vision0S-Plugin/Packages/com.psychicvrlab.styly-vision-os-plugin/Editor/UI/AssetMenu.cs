@@ -44,7 +44,7 @@ namespace Styly.VisionOs.Plugin
                 Directory.CreateDirectory(outputPath);
             }
             
-            CreateThumbnailUtility.MakeThumbnail(Path.Combine(outputPath, "thumbnail.png") , assetPath);
+            CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, "thumbnail.png"));
             
             // Todo:Export Unitypackage
             
