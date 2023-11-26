@@ -92,6 +92,19 @@ namespace Styly.VisionOs.Plugin
             Assert.That(metadata.AssetType, Is.EqualTo("Prefab"));
             Assert.That(metadata.VisualScriptingVersion, Is.EqualTo("1.9.1"));
         }
+
+        [Test]
+        public void LoadAssetBundle()
+        {
+            System.GC.Collect();
+            Resources.UnloadUnusedAssets();
+            var bundlePath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/AssetBundle/Cube";
+            var assetBundleUtility = new AssetBundleUtility();
+            var gameObject = assetBundleUtility.LoadFromAssetBundle(bundlePath);
+            
+            Assert.That(gameObject, Is.Not.Null);
+            Assert.That(gameObject.name, Is.EqualTo("Cube"));
+        }
         
         //
         // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

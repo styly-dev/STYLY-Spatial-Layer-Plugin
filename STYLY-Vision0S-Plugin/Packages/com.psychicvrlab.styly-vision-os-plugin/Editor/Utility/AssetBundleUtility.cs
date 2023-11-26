@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace Styly.VisionOs.Plugin
@@ -45,82 +46,68 @@ namespace Styly.VisionOs.Plugin
              return buildResult;
          }
 
-//         public GameObject LoadFromAssetBundle(string path, out bool isSceneAsset)
-//         {
-//             isSceneAsset = false;
-//             Resources.UnloadUnusedAssets();
-//             AssetBundle bundle = AssetBundle.LoadFromFile(path);
-//
-//             if (!bundle.isStreamedSceneAssetBundle)
-//             {
-//                 var prefab = bundle.LoadAllAssets<GameObject>()[0];
-//                 var go = GameObject.Instantiate(prefab.gameObject);
-//                 Migrate(go);
-//                 return go;
-//             }
-//             else
-//             {
-//                 if (EditorApplication.isPlaying)
-//                 {
-//                     SceneManager.LoadScene(Path.GetFileNameWithoutExtension(path), LoadSceneMode.Additive);
-//                 }
-//                 else
-//                 {
-//                     bundle.Unload(false);
-//                     isSceneAsset = true;
-//                     return null;
-//                 }
-//             }
-//
-//             return null;
-//         }
-//
-//         GameObject LoadPrefabFromAssetBundle(AssetBundle bundle)
-//         {
-//             Debug.Log("bundle!");
-//             var prefab = bundle.LoadAllAssets<GameObject>()[0];
-//             Debug.Log("bundle2:" + prefab.name);
-//
-//             var go = GameObject.Instantiate(prefab.gameObject);
-//             return go;
-//         }
-//         
-//         
-//         public void Migrate(GameObject obj)
-//         {
-//             var renderers = obj.GetComponentsInChildren<Renderer>(true);
-//             foreach (var renderer in renderers)
-//             {
-// #if UNITY_EDITOR                
-//                 foreach (var mat in renderer.sharedMaterials)
-//                 {
-//                     MigrateShaderInMaterial(mat);
-//                 }
-// #else
-//                 foreach (var mat in renderer.materials)
-//                 {
-//                     MigrateShaderInMaterial(mat);
-//                 }
-// #endif
-//             }
-//         }
-//
-//         private void MigrateShaderInMaterial(Material mat)
-//         {
-//             if (mat.shader == null)
-//             {
-//                 return;
-//             }
-//             var shaderName = mat.shader.name;
-//
-//             Shader replaceShader = null;
-//             replaceShader = Shader.Find(shaderName);
-//         
-//             if (replaceShader != null)
-//             {
-//                 mat.shader = replaceShader;
-//             }
-         // }
+        public GameObject LoadFromAssetBundle(string path)
+        {
+            Resources.UnloadUnusedAssets();
+            AssetBundle bundle = AssetBundle.LoadFromFile(path);
+
+            if (!bundle.isStreamedSceneAssetBundle)
+            {
+                var prefab = bundle.LoadAllAssets<GameObject>()[0];
+                var go = GameObject.Instantiate(prefab.gameObject);
+                go.name = prefab.name;
+                Migrate(go);
+                bundle.Unload(false);
+                return go;
+            }
+
+            if (EditorApplication.isPlaying)
+            {
+                SceneManager.LoadScene(Path.GetFileNameWithoutExtension(path), LoadSceneMode.Additive);
+            }
+            else
+            {
+                bundle.Unload(false);
+                return null;
+            }
+            return null;
+        }
+        
+        public void Migrate(GameObject obj)
+        {
+            var renderers = obj.GetComponentsInChildren<Renderer>(true);
+            foreach (var renderer in renderers)
+            {
+#if UNITY_EDITOR                
+                foreach (var mat in renderer.sharedMaterials)
+                {
+                    MigrateShaderInMaterial(mat);
+                }
+#else
+                foreach (var mat in renderer.materials)
+                {
+                    MigrateShaderInMaterial(mat);
+                }
+#endif
+            }
+        }
+
+        private void MigrateShaderInMaterial(Material mat)
+        {
+            if (mat.shader == null)
+            {
+                return;
+            }
+            var shaderName = mat.shader.name;
+
+            Shader replaceShader = null;
+            replaceShader = Shader.Find(shaderName);
+        
+            if (replaceShader != null)
+            {
+                mat.shader = replaceShader;
+            }
+        }
     }
 }
 
