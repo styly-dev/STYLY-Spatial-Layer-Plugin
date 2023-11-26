@@ -27,7 +27,7 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void CreateThumbnail()
         {
-            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Editor/TestData/Prefab/Cube.prefab";
+            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
             var filename = "thumbnail";
             var outputPath = Path.Combine(Config.OutputPath,"thumbnail", $"{filename}.png");
             CreateThumbnailUtility.MakeThumbnail(assetPath, outputPath );
@@ -38,7 +38,7 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void ExportUnitypackage()
         {
-            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Editor/TestData/Prefab/Cube.prefab";
+            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
             var filename = "backup";
             var outputPath = Path.Combine(Config.OutputPath,"packages", $"{filename}.unitypackage");
             ExportPackageUtility.Export(assetPath, outputPath );
