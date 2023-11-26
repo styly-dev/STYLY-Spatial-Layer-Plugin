@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -44,22 +45,30 @@ namespace Styly.VisionOs.Plugin
                 Directory.CreateDirectory(outputPath);
             }
             
-            CreateThumbnailUtility.MakeThumbnail(Path.Combine(outputPath, "thumbnail.png") , assetPath);
+            CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, "thumbnail.png"));
             
-            // Todo:Export Unitypackage
+            ExportPackageUtility.Export(assetPath, Path.Combine(outputPath, "backup.unitypackage"));
             
             SetPlatformRequiresReadableAssets(true);
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
+            var assetbundleOutputPath = Path.Combine(outputPath, "VisionOS");
+            assetBundleUtility.Build("assetbundle", assetPath, assetbundleOutputPath, BuildTarget.VisionOS);
+            File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS"));
+            File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS.manifest"));
             
-            // Todo:Build Asset Bundle
+            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
+            var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
+            var metadataOutputPath = Path.Combine(outputPath, "meta.json");
+            File.WriteAllText(metadataOutputPath, metadata);
             
-            // Todo:Create meta.json
+            ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
+
+            EditorUtility.RevealInFinder( Config.OutputPath );
             
-            // Todo:Compress to Zip file
+            Directory.Delete(outputPath, true);
             
-            // Todo:Open Export Folder
-            
-            // Todo:Open Browser
+            var uri = new Uri(Config.UploadPage);
+            Application.OpenURL(uri.AbsoluteUri);
             
             isProcessing = false;
         }

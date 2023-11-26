@@ -7,16 +7,16 @@ namespace Styly.VisionOs.Plugin
 {
     public class CreateThumbnailUtility
     {
-        public static void MakeThumbnail(string thumbnailOutputFilePath, string assetPath)
+        public static void MakeThumbnail(string sourceFilePath, string destFilePath)
         {
-            var dirPath = Path.GetDirectoryName(thumbnailOutputFilePath);
+            var dirPath = Path.GetDirectoryName(destFilePath);
             if (!Directory.Exists(dirPath))
             {
                 Directory.CreateDirectory(dirPath);
             }
             try
             {
-                MakeThumbnailForPrefab(assetPath, thumbnailOutputFilePath);
+                MakeThumbnailForPrefab(sourceFilePath, destFilePath);
             }
             catch (Exception e)
             {
@@ -26,11 +26,10 @@ namespace Styly.VisionOs.Plugin
         
         private static bool MakeThumbnail(GameObject unit, string savePath, int width, int height)
         {
-            bool successMake = false;
             int layerNo;
 
             unit.transform.eulerAngles = new Vector3(-10.0f, -60.0f, 15.0f);
-            layerNo = UnityGameobjectThumbnailLayerClass.CreateLayer();
+            layerNo = UnityGameObjectThumbnailLayerClass.CreateLayer();
 
             if (layerNo == 7)
             {
@@ -109,18 +108,21 @@ namespace Styly.VisionOs.Plugin
             GameObject.DestroyImmediate(unit);
             GameObject.DestroyImmediate(secondCamera);
 
-            return successMake;
+            return true;
         }
 
-        public static void MakeThumbnailForPrefab(string assetPath, string thumbnailPath)
+        private static void MakeThumbnailForPrefab(string assetPath, string thumbnailPath)
         {
             GameObject targetObj = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
             GameObject unit =
                 UnityEngine.Object.Instantiate(targetObj, Vector3.zero, Quaternion.identity) as GameObject;
-            MakeThumbnail(unit, thumbnailPath, Config.ThumbnailWidth, Config.ThumbnailHeight);
+            if (!MakeThumbnail(unit, thumbnailPath, Config.ThumbnailWidth, Config.ThumbnailHeight))
+            {
+                throw new InvalidOperationException("MakeThumbnail is failed.");
+            }
         }
-        
-        public static void CaptureAndSaveThumbnail(Camera camera, string savePath, int width, int height)
+
+        private static void CaptureAndSaveThumbnail(Camera camera, string savePath, int width, int height)
         {
             RenderTexture renderTexture = new RenderTexture(width, height, 24);
             camera.targetTexture = renderTexture;
@@ -145,7 +147,7 @@ namespace Styly.VisionOs.Plugin
             renderTexture.Release();
         }
 
-        public static void ShowErrorDialog(string description)
+        private static void ShowErrorDialog(string description)
         {
             ShowDialog("Asset Build failed", description, "OK");
         }
@@ -157,7 +159,7 @@ namespace Styly.VisionOs.Plugin
         }
     }
     
-    public static class UnityGameobjectThumbnailLayerClass
+    public static class UnityGameObjectThumbnailLayerClass
     {
         public static void SetLayer(this GameObject gameObject, int layerNo, bool needSetChildrens = true)
         {
