@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
+using File = UnityEngine.Windows.File;
 
 namespace Styly.VisionOs.Plugin
 {
     public class EditorStylyVisionOsPluginTest
     {
-        // A Test behaves as an ordinary method
         [Test]
         public void SwitchPlatformToVisionOs()
         {
@@ -22,7 +23,17 @@ namespace Styly.VisionOs.Plugin
             Assert.That(result, Is.True);
             Assert.That(EditorUserBuildSettings.activeBuildTarget, Is.EqualTo(BuildTarget.VisionOS));
         }
-        
+
+        [Test]
+        public void CreateThumbnail()
+        {
+            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Editor/TestData/Prefab/Cube.prefab";
+            var filename = "thumbnail";
+            var path = Path.Combine(Config.OutputPath,"thumbnail", $"{filename}.png");
+            CreateThumbnailUtility.MakeThumbnail(path, assetPath);
+
+            Assert.That(File.Exists(path), Is.True );
+        }
         
         //
         // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

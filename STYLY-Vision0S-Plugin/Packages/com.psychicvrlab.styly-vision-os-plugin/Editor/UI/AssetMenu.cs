@@ -17,10 +17,10 @@ namespace Styly.VisionOs.Plugin
 
             var assetBundleUtility = new AssetBundleUtility();
             
-            var path = AssetDatabase.GetAssetPath(Selection.objects[0]);
-            Debug.Log($"Selected asset:{path}");
+            var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            Debug.Log($"Selected asset:{assetPath}");
 
-            if (!IsBuildTargetType(path))
+            if (!IsBuildTargetType(assetPath))
             {
                 Debug.LogError("Selected asset is not prefab");
                 return;
@@ -37,7 +37,7 @@ namespace Styly.VisionOs.Plugin
                 Directory.CreateDirectory(outputPath);
             }
             
-            // Todo:Create Thumbnail
+            CreateThumbnailUtility.MakeThumbnail(Path.Combine(outputPath, "thumbnail.png") , assetPath);
             
             // Todo:Export Unitypackage
             
