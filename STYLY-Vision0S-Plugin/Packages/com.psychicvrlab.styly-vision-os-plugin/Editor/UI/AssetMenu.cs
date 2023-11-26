@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -60,11 +61,16 @@ namespace Styly.VisionOs.Plugin
             var metadataOutputPath = Path.Combine(outputPath, "metadata.json");
             File.WriteAllText(metadataOutputPath, metadata);
             
-            // Todo:Compress to Zip file
+            ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
+
+            EditorUtility.RevealInFinder( Config.OutputPath );
             
-            // Todo:Open Export Folder
+            Directory.Delete(outputPath, true);
             
             // Todo:Open Browser
+            
+            var uri = new Uri(Config.UploadPage);
+            Application.OpenURL(uri.AbsoluteUri);
             
             isProcessing = false;
         }
