@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -82,6 +83,14 @@ namespace Styly.VisionOs.Plugin
             Debug.Log(json);
             
             Assert.That(json, Is.Not.Empty);
+
+            var metadata = JsonConvert.DeserializeObject<Metadata>(json);
+
+            Assert.That(metadata.PluginVersion, Is.EqualTo("0.0.1"));
+            Assert.That(metadata.AssetPath, Is.EqualTo(assetPath));
+            Assert.That(metadata.BuiltAt, Is.EqualTo(date));
+            Assert.That(metadata.AssetType, Is.EqualTo("Prefab"));
+            Assert.That(metadata.VisualScriptingVersion, Is.EqualTo("1.9.1"));
         }
         
         //
