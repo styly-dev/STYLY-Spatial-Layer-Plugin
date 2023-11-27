@@ -6,7 +6,6 @@ using System;
 using Newtonsoft.Json;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Unity.VisualScripting.IonicZip;
 
 
 namespace Styly.VisionOs.Plugin
