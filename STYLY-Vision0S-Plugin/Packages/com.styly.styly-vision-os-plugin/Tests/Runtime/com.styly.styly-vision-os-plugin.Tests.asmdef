@@ -1,20 +1,16 @@
 {
-    "name": "com.psychicvrlab.styly-vision-os-plugin.Editor.Tests",
+    "name": "com.styly.styly-vision-os-plugin.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "com.psychicvrlab.styly-vision-os-plugin.Editor"
+        "UnityEditor.TestRunner"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll",
-        "Newtonsoft.Json.dll"
+        "nunit.framework.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

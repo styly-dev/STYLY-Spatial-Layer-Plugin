@@ -38,7 +38,7 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void CreateThumbnail()
         {
-            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
             var filename = "thumbnail";
             var outputPath = Path.Combine(Config.OutputPath,"thumbnail", $"{filename}.png");
             CreateThumbnailUtility.MakeThumbnail(assetPath, outputPath );
@@ -49,7 +49,7 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void ExportUnitypackage()
         {
-            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
             var filename = "backup";
             var outputPath = Path.Combine(Config.OutputPath,"packages", $"{filename}.unitypackage");
             ExportPackageUtility.Export(assetPath, outputPath );
@@ -61,7 +61,7 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void BuildAssetBundle()
         {
-            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
             var assetBundleUtility = new AssetBundleUtility();
             var result = assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
             Assert.That(result, Is.True);
@@ -77,7 +77,7 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void CreateMetadata()
         {
-            var assetPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
             var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
             var json = MetadataUtility.CreateMetadataJson(assetPath, date);
             Debug.Log(json);
@@ -98,7 +98,7 @@ namespace Styly.VisionOs.Plugin
         {
             System.GC.Collect();
             Resources.UnloadUnusedAssets();
-            var bundlePath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Tests/Editor/TestData/AssetBundle/Cube";
+            var bundlePath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/AssetBundle/Cube";
             var assetBundleUtility = new AssetBundleUtility();
             var gameObject = assetBundleUtility.LoadFromAssetBundle(bundlePath);
             

@@ -27,12 +27,12 @@ namespace Styly.VisionOs.Plugin
             
             Metadata metadata = new Metadata
             {
-                PluginVersion = PackageManagerUtility.Instance.GetPackageVersion("com.psychicvrlab.styly-vision-os-plugin"),
+                PluginVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.PackageName),
                 UnityVersion = UnityEngine.Application.unityVersion,
                 BuiltAt = builtAt,
                 AssetPath = assetPath,
                 AssetType = assetType,
-                VisualScriptingVersion = PackageManagerUtility.Instance.GetPackageVersion("com.unity.visualscripting")
+                VisualScriptingVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.VisualScriptingName)
             };
 
             var metadataJson = JsonConvert.SerializeObject(metadata, Formatting.Indented);
