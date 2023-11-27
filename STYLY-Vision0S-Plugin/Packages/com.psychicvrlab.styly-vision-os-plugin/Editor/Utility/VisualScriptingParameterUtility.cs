@@ -4,6 +4,10 @@ using UnityEngine;
 using Unity.VisualScripting;
 using System;
 using Newtonsoft.Json;
+using System.Linq;
+using Newtonsoft.Json.Linq;
+using Unity.VisualScripting.IonicZip;
+
 
 namespace Styly.VisionOs.Plugin
 {
@@ -27,6 +31,51 @@ namespace Styly.VisionOs.Plugin
             public string Type { get; set; }
             public string Name { get; set; }
             public object Value { get; set; }
+        }
+
+        /// <summary>
+        /// Set parameters to VisualScripting.Variables by JSON.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="parameterValueJson"></param>
+        /// <returns></returns>
+        public static bool SetParameterValuesToPrefab(GameObject gameObject, string parameterValueJson)
+        {
+            ParameterDefinition parameterValue = JsonConvert.DeserializeObject<ParameterDefinition>(parameterValueJson);
+            if (parameterValue == null) return false;
+
+            if (gameObject.TryGetComponent<Variables>(out var VariableComponent))
+            {
+                foreach (var variable in parameterValue.VariableDefinition.Variables)
+                {
+                    Action<string, string, object> SetVariable = (string type, string name, object value) => Variables.Object(VariableComponent).Set(name, value);
+                    Color convertToColor(float[] rgba) => new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
+                    switch (variable.Type)
+                    {
+                        case "String":
+                        case "Float":
+                        case "Integer":
+                        case "Boolean":
+                            SetVariable(variable.Type, variable.Name, variable.Value);
+                            break;
+                        case "Color":
+                            SetVariable(variable.Type, variable.Name, convertToColor(((JArray)variable.Value).Select(jToken => jToken.ToObject<float>()).ToArray()));
+                            break;
+                        case "String[]":
+                        case "Float[]":
+                        case "Integer[]":
+                        case "Boolean[]":
+                            SetVariable(variable.Type, variable.Name, ((IList)variable.Value as IEnumerable)?.Cast<JValue>().ToArray().Select(item => item.ToObject<object>()).ToArray());
+                            break;
+                        case "Color[]":
+                            SetVariable(variable.Type, variable.Name, ((IList)variable.Value).Cast<JArray>().Select(j => new Color((float)j[0], (float)j[1], (float)j[2], (float)j[3])).ToArray());
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -55,7 +104,7 @@ namespace Styly.VisionOs.Plugin
                         var values = new List<object>();
                         foreach (var v in (IList)d.value)
                         {
-                            values.Add(SafeCastVariable(v.GetType().ToString(), v));
+                            values.Add(CastVariable_UnityToJson(v.GetType().ToString(), v));
                         }
                         value = values.ToArray();
                     }
@@ -69,7 +118,7 @@ namespace Styly.VisionOs.Plugin
                         else
                         {
                             type = GetVariableTypeString((d.value).GetType().ToString());
-                            value = SafeCastVariable((d.value).GetType().ToString(), (d.value));
+                            value = CastVariable_UnityToJson((d.value).GetType().ToString(), (d.value));
                         }
                     }
                     if (type != null) variables.Add(new VariableClass { Type = type, Name = name, Value = value });
@@ -103,9 +152,9 @@ namespace Styly.VisionOs.Plugin
             return type;
         }
 
-        private static object SafeCastVariable(string TypeFullName, object value)
+        private static object CastVariable_UnityToJson(string TypeFullNameInUnity, object value)
         {
-            object ret = TypeFullName switch
+            object ret = TypeFullNameInUnity switch
             {
                 "System.Single" => value,
                 "System.Int32" => value,
@@ -117,17 +166,14 @@ namespace Styly.VisionOs.Plugin
             return ret;
         }
 
-
-
-
-
         public static void SetParameterToVariables()
         {
 
         }
 
-
-
-
     }
 }
+
+
+
+
