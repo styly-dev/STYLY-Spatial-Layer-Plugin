@@ -1,5 +1,5 @@
 {
-    "name": "com.psychicvrlab.styly-vision-os-plugin.Editor",
+    "name": "com.styly.styly-vision-os-plugin.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:21b0c8d1703a94250bfac916590cea4f",

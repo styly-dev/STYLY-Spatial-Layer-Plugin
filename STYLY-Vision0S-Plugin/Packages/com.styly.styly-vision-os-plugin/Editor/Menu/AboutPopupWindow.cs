@@ -1,3 +1,4 @@
+using Styly.VisionOs.Plugin;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class AboutPopupWindow : EditorWindow
         linkStyle.normal.textColor = EditorGUIUtility.isProSkin ? new Color(0.6f, 0.6f, 1f) : Color.blue;
 
         // Load STYLY logo
-        string logoPath = "Packages/com.psychicvrlab.styly-vision-os-plugin/Editor/UI/STYLY.png"; // ロゴの相対パス
+        string logoPath = $"Packages/{Config.PackageName}/Editor/UI/STYLY.png"; // ロゴの相対パス
         logo = AssetDatabase.LoadAssetAtPath<Texture2D>(logoPath);
     }
 
@@ -37,12 +38,12 @@ public class AboutPopupWindow : EditorWindow
         }
         else
         {
-            EditorGUILayout.LabelField("ロゴが読み込めません。パッケージ名がcom.psychicvrlab.styly-vision-os-pluginから変更されましたか？");
+            EditorGUILayout.LabelField($"ロゴが読み込めません。パッケージ名が{Config.PackageName}から変更されましたか？");
         }
 
         EditorGUILayout.LabelField("STYLY Vision OS Plugin for Unity");
         EditorGUILayout.LabelField("Unity Version: " + Application.unityVersion);
-        EditorGUILayout.LabelField("Plugin Version: " + Styly.VisionOs.Plugin.PackageManagerUtility.Instance.GetPackageVersion("com.psychicvrlab.styly-vision-os-plugin"));
+        EditorGUILayout.LabelField("Plugin Version: " + Styly.VisionOs.Plugin.PackageManagerUtility.Instance.GetPackageVersion(Config.PackageName));
 
         // サイトへのリンク
         // ハイパーリンクのようなテキストの表示
