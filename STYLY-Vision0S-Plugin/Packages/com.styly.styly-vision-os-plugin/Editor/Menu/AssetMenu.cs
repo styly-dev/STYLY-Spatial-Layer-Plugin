@@ -60,6 +60,12 @@ namespace Styly.VisionOs.Plugin
             var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
             var metadataOutputPath = Path.Combine(outputPath, "meta.json");
             File.WriteAllText(metadataOutputPath, metadata);
+
+            GameObject targetObj = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+            
+            var parameter = VisualScriptingParameterUtility.GetParameterDefinitionJson(targetObj);
+            var parameterOutputPath = Path.Combine(outputPath, "parameter.json");
+            File.WriteAllText(parameterOutputPath, parameter);
             
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
 

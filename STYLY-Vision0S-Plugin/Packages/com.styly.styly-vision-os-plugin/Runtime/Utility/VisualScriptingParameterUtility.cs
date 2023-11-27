@@ -127,9 +127,8 @@ namespace Styly.VisionOs.Plugin
             }
 
             var variableDefinition = new VariableDefinitionClass { Variables = variables.ToArray() };
-            var parameterDefinition = new ParameterDefinition { VariableDefinition = variableDefinition };
 
-            string JsonText = JsonConvert.SerializeObject(parameterDefinition);
+            string JsonText = JsonConvert.SerializeObject(variableDefinition);
             Debug.Log(JsonText);
             return JsonText;
         }
