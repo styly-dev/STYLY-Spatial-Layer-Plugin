@@ -14,6 +14,8 @@ namespace Styly.VisionOs.Plugin
         {
             var wnd = GetWindow(typeof(AboutPopupWindow), true, "About STYLY");
             wnd.titleContent = new GUIContent("About STYLY");
+            wnd.maxSize = new Vector2(600, 200);
+            wnd.minSize = new Vector2(600, 200);
         }
 
         public void CreateGUI()
