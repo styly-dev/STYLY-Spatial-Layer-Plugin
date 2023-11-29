@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.styly.styly-vision-os-plugin/Editor/Menu/AboutPopupWindow.uss?fileID=7433441132597879392&amp;guid=d7936bbf8f54045a8b2bca7a145a5244&amp;type=3#AboutPopupWindow" />
+    <ui:VisualElement name="Logo" style="flex-grow: 1; background-image: url(&apos;project://database/Packages/com.styly.styly-vision-os-plugin/Editor/Images/STYLY.png?fileID=2800000&amp;guid=b7e3294536b0841c4a7636262802d4b9&amp;type=3#STYLY&apos;); position: relative; align-items: flex-start; justify-content: flex-start; align-self: auto; max-height: 40px; height: 40px; width: 100px; max-width: 100px; min-width: 100px; min-height: 40px;" />
+    <ui:Label text="STYLY Vision OS Plugin for Unity" name="Desription" style="-unity-text-align: upper-left; margin-top: 8px;" />
+    <ui:VisualElement name="PluginVersionVisualElement" style="flex-grow: 1; flex-direction: row; align-items: flex-start; justify-content: flex-start; margin-top: 8px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+        <ui:Label tabindex="-1" text="Plugin Version : " parse-escape-sequences="true" display-tooltip-when-elided="true" name="PluginVersionTextPluginVersionText" />
+        <ui:Label name="PluginVersionLabel" text="Unknown" style="-unity-text-align: upper-left;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="UnityVersion" style="flex-grow: 1; flex-direction: row; margin-top: 8px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+        <ui:Label tabindex="-1" text="Unity Version : " parse-escape-sequences="true" display-tooltip-when-elided="true" name="UnityVersionText" />
+        <ui:Label name="UnityVersionLabel" text="Unknown" style="-unity-text-align: upper-left;" />
+    </ui:VisualElement>
+</ui:UXML>
