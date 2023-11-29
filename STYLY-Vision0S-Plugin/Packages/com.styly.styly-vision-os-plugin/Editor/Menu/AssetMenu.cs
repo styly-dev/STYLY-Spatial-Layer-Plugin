@@ -10,21 +10,23 @@ namespace Styly.VisionOs.Plugin
     public class AssetMenu
     {
         private static bool isProcessing;
+        private static readonly string ThumbnailFileName = "thumbnail.png";
+        private static readonly string BackupUnityPackageFileName = "backup.unitypackage";
+        private static readonly string VisionOsDirectoryName = "VisionOS";
+        private static readonly string MetaFileName = "meta.json";
+        private static readonly string ParameterFileName = "parameter.json";
+        private static readonly string AssetBundleFileName = "assetbundle";
 
         [MenuItem(@"Assets/STYLY/Test Variable Utility", false, 10001)]
         private static void TestVariableUtility(){
             VisualScriptingParameterUtility.GetParameterDefinitionJson(Selection.objects[0] as GameObject); 
         }
-
-
         
         [MenuItem(@"Assets/STYLY/Build Content File", false, 10000)]
         private static void BuildContent()
         {
             isProcessing = true;
 
-            var assetBundleUtility = new AssetBundleUtility();
-            
             var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
             Debug.Log($"Selected asset:{assetPath}");
 
@@ -33,42 +35,16 @@ namespace Styly.VisionOs.Plugin
                 Debug.LogError("Selected asset is not prefab");
                 return;
             }
-            
-            if (Directory.Exists(Config.OutputPath))
-            {
-                Directory.Delete(Config.OutputPath,true);
-            }
-            var outputPath = Path.Combine(Config.OutputPath,DateTime.Now.ToString("yyyyMMddHHmmss"));
-            Debug.Log(outputPath);
-            if (!Directory.Exists(outputPath))
-            {
-                Directory.CreateDirectory(outputPath);
-            }
-            
-            CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, "thumbnail.png"));
-            
-            ExportPackageUtility.Export(assetPath, Path.Combine(outputPath, "backup.unitypackage"));
-            
-            SetPlatformRequiresReadableAssets(true);
-            assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
-            var assetbundleOutputPath = Path.Combine(outputPath, "VisionOS");
-            assetBundleUtility.Build("assetbundle", assetPath, assetbundleOutputPath, BuildTarget.VisionOS);
-            File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS"));
-            File.Delete(Path.Combine(assetbundleOutputPath, "VisionOS.manifest"));
-            
-            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
-            var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
-            var metadataOutputPath = Path.Combine(outputPath, "meta.json");
-            File.WriteAllText(metadataOutputPath, metadata);
 
-            GameObject targetObj = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+            var outputPath = PrepareOutputDirectory();
             
-            var parameter = VisualScriptingParameterUtility.GetParameterDefinitionJson(targetObj);
-            var parameterOutputPath = Path.Combine(outputPath, "parameter.json");
-            File.WriteAllText(parameterOutputPath, parameter);
+            CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, ThumbnailFileName));
+            ExportPackageUtility.Export(assetPath, Path.Combine(outputPath, BackupUnityPackageFileName));
+            BuildAssetBundle(assetPath, Path.Combine(outputPath, VisionOsDirectoryName));
+            GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName ));
+            GenerateParameter(assetPath,  Path.Combine(outputPath, ParameterFileName));
             
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
-
             EditorUtility.RevealInFinder( Config.OutputPath );
             
             Directory.Delete(outputPath, true);
@@ -79,6 +55,47 @@ namespace Styly.VisionOs.Plugin
             isProcessing = false;
         }
 
+        private static string PrepareOutputDirectory()
+        {
+            if (Directory.Exists(Config.OutputPath))
+            {
+                Directory.Delete(Config.OutputPath,true);
+            }
+            var outputPath = Path.Combine(Config.OutputPath,DateTime.Now.ToString("yyyyMMddHHmmss"));
+            Debug.Log(outputPath);
+            if (!Directory.Exists(outputPath))
+            {
+                Directory.CreateDirectory(outputPath);
+            }
+
+            return outputPath;
+        }
+        
+        private static void BuildAssetBundle(string assetPath, string outputPath)
+        {
+            SetPlatformRequiresReadableAssets(true);
+            var assetBundleUtility = new AssetBundleUtility();
+            assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
+            assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, BuildTarget.VisionOS);
+            File.Delete(Path.Combine(outputPath, VisionOsDirectoryName));
+            File.Delete(Path.Combine(outputPath, $"{VisionOsDirectoryName}.manifest"));
+        }
+
+        private static void GenerateMetadata(string assetPath, string outputPath)
+        {
+            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
+            var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
+            File.WriteAllText(outputPath, metadata);
+        }
+        
+        private static void GenerateParameter(string assetPath, string outputPath)
+        {
+            GameObject targetObj = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+            
+            var parameter = VisualScriptingParameterUtility.GetParameterDefinitionJson(targetObj);
+            File.WriteAllText(outputPath, parameter);
+        }
+        
         private static bool IsBuildTargetType(string path)
         {
             return Path.GetExtension(path).ToLower() == ".prefab";
