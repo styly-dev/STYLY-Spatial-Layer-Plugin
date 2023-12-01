@@ -7,10 +7,9 @@ using Newtonsoft.Json;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 
-
 namespace Styly.VisionOs.Plugin
 {
-    public class VisualScriptingParameterUtility
+    public static class VisualScriptingParameterUtility
     {
         [Serializable]
         private class ParameterDefinition
@@ -43,23 +42,20 @@ namespace Styly.VisionOs.Plugin
         public static bool SetParameterValuesToPrefab(GameObject gameObject, string parameterValueJson)
         {
             var parameterValue = JsonConvert.DeserializeObject<VariableDefinitionClass>(parameterValueJson);
-            if (parameterValue == null) return false;
+            if (parameterValue == null) {return false;}
+            if (!gameObject.TryGetComponent<Variables>(out var VariableComponent)) { return false; }
 
-            if (!gameObject.TryGetComponent<Variables>(out var VariableComponent))
-            {
-                return false;
-            }
+            void SetVariable(string name, object value) => Variables.Object(VariableComponent).Set(name, value);
+
+            Color ConvertToColor(float[] rgba) => new (rgba[0], rgba[1], rgba[2], rgba[3]);
 
             foreach (var variable in parameterValue.Variables)
             {
-                Action<string, object> SetVariable = (string name, object value) 
-                    => Variables.Object(VariableComponent).Set(name, value);
-                
-                Color convertToColor(float[] rgba) => new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
                 
                 switch (variable.Type)
                 {
                     case "String":
+                    case "Boolean":
                         SetVariable(variable.Name, variable.Value);
                         break;
                     case "Float":
@@ -68,23 +64,26 @@ namespace Styly.VisionOs.Plugin
                     case "Integer":
                         SetVariable(variable.Name, (int)(long)variable.Value);
                         break;
-                    case "Boolean":
-                        SetVariable(variable.Name, variable.Value);
-                        break;
                     case "Color":
-                        SetVariable(variable.Name, convertToColor(((JArray)variable.Value).Select(jToken => jToken.ToObject<float>()).ToArray()));
+                        SetVariable(variable.Name, ConvertToColor(((JArray)variable.Value).Select(jToken => jToken.ToObject<float>()).ToArray()));
                         break;
                     case "String[]":
-                        SetVariable(variable.Name, ((IList)variable.Value as IEnumerable)?.Cast<JValue>().ToArray().Select(item => item.ToObject<System.String>()).ToList());
+                        var valueAsList = variable.Value as IList;
+                        if (valueAsList == null) { break; }
+                        
+                        var stringValues = valueAsList.Cast<JValue>()
+                            .Select(jValue => jValue.ToObject<string>())
+                            .ToList();
+                        SetVariable(variable.Name, stringValues);
                         break;
                     case "Float[]":
-                        SetVariable(variable.Name, ((IList)variable.Value as IEnumerable)?.Cast<JValue>().ToArray().Select(item => item.ToObject<System.Single>()).ToList());
+                        SetVariable(variable.Name, ((IList)variable.Value)?.Cast<JArray>().Select(item => item.ToObject<System.Single>()).ToList());
                         break;
                     case "Integer[]":
-                        SetVariable(variable.Name, ((IList)variable.Value as IEnumerable)?.Cast<JValue>().ToArray().Select(item => item.ToObject<System.Int32>()).ToList());
+                        SetVariable(variable.Name, ((IList)variable.Value)?.Cast<JArray>().Select(item => item.ToObject<System.Int32>()).ToList());
                         break;
                     case "Boolean[]":
-                        SetVariable(variable.Name, ((IList)variable.Value as IEnumerable)?.Cast<JValue>().ToArray().Select(item => item.ToObject<System.Boolean>()).ToList());
+                        SetVariable(variable.Name, ((IList)variable.Value)?.Cast<JArray>().Select(item => item.ToObject<System.Boolean>()).ToList());
                         break;
                     case "Color[]":
                         SetVariable(variable.Name, ((IList)variable.Value).Cast<JArray>().Select(j => new Color((float)j[0], (float)j[1], (float)j[2], (float)j[3])).ToList());
@@ -95,63 +94,66 @@ namespace Styly.VisionOs.Plugin
             }
             return true;
         }
-
+        
         /// <summary>
         /// Return ParameterDefinition as JSON format.
         /// ParameterDefinition is generated from the variables of VisualScripting.Variables attached in the GameObject.
-        /// Float, Integer, String, Boolen, Color and list of them are only supported for custom parameters. 
+        /// Float, Integer, String, Boolean, Color and list of them are only supported for custom parameters. 
         /// </summary>
         /// <param name="gameObject"></param>
         /// <returns>ParameterDefinition JSON</returns>
-
         public static string GetParameterDefinitionJson(GameObject gameObject)
         {
-            List<VariableClass> variables = new List<VariableClass>();
-            if (gameObject.TryGetComponent<Variables>(out var VariableComponent))
-            {
-                var decs = VariableComponent.declarations;
-                foreach (var d in decs)
-                {
-                    string name = d.name;
-                    string type;
-                    object value;
+            if (!gameObject.TryGetComponent<Variables>(out var variableComponent)) { return string.Empty; }
 
-                    if (d.value is IList && d.value.GetType().IsGenericType && d.value.GetType().GetGenericTypeDefinition() == typeof(List<>))
+            var variables = new List<VariableClass>();
+            
+            foreach (var d in variableComponent.declarations)
+            {
+                if(d.value == null ){continue;}
+
+                var name = d.name;
+                string type;
+                object value;
+                    
+                if (IsList(d))
+                {
+                    type = GetVariableTypeString(d);
+                    var values = new List<object>();
+                    foreach (var v in (IList)d.value)
                     {
-                        type = GetVariableTypeString(((IList)d.value).GetType().ToString());
-                        var values = new List<object>();
-                        foreach (var v in (IList)d.value)
-                        {
-                            values.Add(CastVariable_UnityToJson(v.GetType().ToString(), v));
-                        }
-                        value = values.ToArray();
+                        values.Add(CastVariableUnityToJson(v.GetType().ToString(), v));
                     }
-                    else
-                    {
-                        if (d.value == null)
-                        {
-                            type = null;
-                            value = null;
-                        }
-                        else
-                        {
-                            type = GetVariableTypeString((d.value).GetType().ToString());
-                            value = CastVariable_UnityToJson((d.value).GetType().ToString(), (d.value));
-                        }
-                    }
-                    if (type != null) variables.Add(new VariableClass { Type = type, Name = name, Value = value });
+                    value = values.ToArray();
                 }
+                else
+                {
+                    type = GetVariableTypeString(d);
+                    value = CastVariableUnityToJson((d.value).GetType().ToString(), (d.value));
+                }
+
+                if(type == null){continue;}
+                    
+                variables.Add(new VariableClass { Type = type, Name = name, Value = value });
             }
 
             var variableDefinition = new VariableDefinitionClass { Variables = variables.ToArray() };
 
-            string JsonText = JsonConvert.SerializeObject(variableDefinition);
-            Debug.Log(JsonText);
-            return JsonText;
+            string jsonText = JsonConvert.SerializeObject(variableDefinition);
+            Debug.Log(jsonText);
+            return jsonText;
         }
 
-        private static string GetVariableTypeString(string TypeFullName)
+        private static bool IsList(VariableDeclaration d)
         {
+            return d.value is IList && d.value.GetType().IsGenericType &&
+                   d.value.GetType().GetGenericTypeDefinition() == typeof(List<>);
+        }
+
+        private static string GetVariableTypeString(VariableDeclaration d)
+        {
+            string TypeFullName = (d.value).GetType().ToString();
+            
             string type = TypeFullName switch
             {
                 "System.Single" => "Float",
@@ -169,9 +171,9 @@ namespace Styly.VisionOs.Plugin
             return type;
         }
 
-        private static object CastVariable_UnityToJson(string TypeFullNameInUnity, object value)
+        private static object CastVariableUnityToJson(string typeFullNameInUnity, object value)
         {
-            object ret = TypeFullNameInUnity switch
+            var ret = typeFullNameInUnity switch
             {
                 "System.Single" => value,
                 "System.Int32" => value,
