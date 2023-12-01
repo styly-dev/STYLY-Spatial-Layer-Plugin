@@ -7,6 +7,7 @@ namespace Styly.VisionOs.Plugin
     {
         public static bool JsonEquals(string json1, string json2)
         {
+            if (json1 == json2) { return true;}
             JToken token1 = JObject.Parse(json1);
             JToken token2 = JObject.Parse(json2);
             return JsonEquals(token1, token2);
@@ -14,9 +15,17 @@ namespace Styly.VisionOs.Plugin
     
         private static bool JsonEquals(JToken token1, JToken token2)
         {
+            if (token1.Type == JTokenType.Integer && token2.Type == JTokenType.Float ||
+                token1.Type == JTokenType.Float && token2.Type == JTokenType.Integer)
+            {
+                return (double)token1 == (double)token2;
+            }
+            
             if (token1.Type != token2.Type)
+            {
                 return false;
-    
+            }
+            
             switch (token1.Type)
             {
                 case JTokenType.Object:

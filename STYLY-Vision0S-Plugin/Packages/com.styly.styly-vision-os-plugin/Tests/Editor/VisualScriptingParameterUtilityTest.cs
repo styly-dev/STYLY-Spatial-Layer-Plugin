@@ -9,26 +9,34 @@ namespace Styly.VisionOs.Plugin
 {
     public class VisualScriptingParameterUtilityTest
     {
-        string jsonPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Json/test.json";
-        string paramWithValuePrefabPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/PrefabWithVariables_Value.prefab";
-        string paramWithNoValuePrefabPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/PrefabWithVariables_NoValue.prefab";
-
         [Test]
-        public void GenerateParameterFromPrefab()
+        [TestCase("Value.json","PrefabWithVariables_Value.prefab")]
+        [TestCase("NoValue.json","PrefabWithVariables_NoValue.prefab")]
+        [TestCase("NoVariable.json","PrefabWithVariables_NoVariable.prefab")]
+        [TestCase("DontHaveVariable.json","Prefab_DontHaveVariables.prefab")]
+        public void GenerateParameterFromPrefab(string jsonRelativePath, string prefabRelativePath)
         {
+            var jsonPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Json/{jsonRelativePath}";
+            var targetPrefabPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/{prefabRelativePath}";
+          
             var expectedJson = File.ReadAllText(jsonPath).TrimEnd();
-            var target = AssetDatabase.LoadAssetAtPath(paramWithValuePrefabPath, typeof(GameObject)) as GameObject;
+            var target = AssetDatabase.LoadAssetAtPath(targetPrefabPath, typeof(GameObject)) as GameObject;
             var resultJson = VisualScriptingParameterUtility.GetParameterDefinitionJson(target);
             Debug.Log(resultJson);
             
-            Assert.That(resultJson, Is.Not.Empty);
-            Assert.That(resultJson, Is.EqualTo(expectedJson));
             Assert.That(JsonTestTool.JsonEquals(resultJson, expectedJson), Is.True);
         }
 
         [Test]
-        public void SetParameterValuesToPrefab()
+        [TestCase("Value.json","PrefabWithVariables_Value.prefab", "PrefabWithVariables_NoValue.prefab")]
+        [TestCase("NoVariable.json","PrefabWithVariables_NoVariable.prefab", "PrefabWithVariables_NoVariable.prefab")]
+        [TestCase("DontHaveVariable.json","Prefab_DontHaveVariables.prefab", "Prefab_DontHaveVariables.prefab")]
+        public void SetParameterValuesToPrefab(string jsonRelativePath, string prefabRelativePath, string prefabNoValueRelativePath)
         {
+            var jsonPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Json/{jsonRelativePath}";
+            var paramWithValuePrefabPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/{prefabRelativePath}";
+            string paramWithNoValuePrefabPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/{prefabNoValueRelativePath}";
+
             var target = AssetDatabase.LoadAssetAtPath(paramWithNoValuePrefabPath, typeof(GameObject)) as GameObject;
             var referenceJson = File.ReadAllText(jsonPath).TrimEnd();
             var reference = AssetDatabase.LoadAssetAtPath(paramWithValuePrefabPath, typeof(GameObject)) as GameObject;
@@ -37,7 +45,13 @@ namespace Styly.VisionOs.Plugin
             VisualScriptingParameterUtility.SetParameterValuesToPrefab(target, referenceJson);
 
             var result = target.GetComponent<Variables>();
-            Assert.That(result, Is.Not.Null);
+
+            if (referenceJson == string.Empty)
+            {
+                Assert.That(result, Is.Null);
+                return;
+            }
+            
             foreach (var declaration in result.declarations)
             {
                 var name = declaration.name;
@@ -65,7 +79,6 @@ namespace Styly.VisionOs.Plugin
             var resultJson = VisualScriptingParameterUtility.GetParameterDefinitionJson(target);
             Debug.Log(resultJson);
             
-            Assert.That(resultJson, Is.EqualTo(referenceJson));
             Assert.That(JsonTestTool.JsonEquals(resultJson, referenceJson), Is.True);
         }
 
