@@ -1,6 +1,5 @@
 using System.Collections;
 using System.IO;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -24,6 +23,7 @@ namespace Styly.VisionOs.Plugin
             
             Assert.That(resultJson, Is.Not.Empty);
             Assert.That(resultJson, Is.EqualTo(expectedJson));
+            Assert.That(JsonTestTool.JsonEquals(resultJson, expectedJson), Is.True);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Styly.VisionOs.Plugin
             Debug.Log(resultJson);
             
             Assert.That(resultJson, Is.EqualTo(referenceJson));
-
+            Assert.That(JsonTestTool.JsonEquals(resultJson, referenceJson), Is.True);
         }
 
     }
