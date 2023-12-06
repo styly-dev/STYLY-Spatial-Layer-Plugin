@@ -5,11 +5,17 @@ namespace Styly.VisionOs.Plugin
 {
     public class Metadata
     {
+        [JsonProperty("plugin_version")]
         public string PluginVersion { get; set; }
+        [JsonProperty("unity_version")]
         public string UnityVersion { get; set; }
+        [JsonProperty("build_at")]
         public string BuiltAt { get; set; }
+        [JsonProperty("asset_path")]
         public string AssetPath { get; set; }
+        [JsonProperty("asset_type")]
         public string AssetType { get; set; }
+        [JsonProperty("visual_scripting_version")]
         public string VisualScriptingVersion { get; set; }
 
     }
