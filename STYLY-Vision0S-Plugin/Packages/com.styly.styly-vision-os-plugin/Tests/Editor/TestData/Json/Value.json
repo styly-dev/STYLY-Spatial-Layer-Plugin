@@ -1,23 +1,23 @@
 {
-  "Parameters": [
+  "parameters": [
     {
-      "Type": "String",
-      "Name": "Image URL",
-      "Value": "https://goetheweb.jp/wp-content/uploads/2023/02/00-1_neko.jpg"
+      "type": "String",
+      "name": "Image URL",
+      "value": "https://goetheweb.jp/wp-content/uploads/2023/02/00-1_neko.jpg"
     },
     {
-      "Type": "String[]",
-      "Name": "Names of the 3 cats",
-      "Value": [
+      "type": "String[]",
+      "name": "Names of the 3 cats",
+      "value": [
         "Mike",
         "Taro",
         "にゃーこ"
       ]
     },
     {
-      "Type": "Color",
-      "Name": "ColorVal",
-      "Value": [
+      "type": "Color",
+      "name": "ColorVal",
+      "value": [
         0.09011213,
         0.2081009,
         0.764151,
@@ -25,9 +25,9 @@
       ]
     },
     {
-      "Type": "Color[]",
-      "Name": "Colors for 3 cats",
-      "Value": [
+      "type": "Color[]",
+      "name": "Colors for 3 cats",
+      "value": [
         [
           0.8396226,
           0.06732824,
@@ -49,19 +49,19 @@
       ]
     },
     {
-      "Type": "Integer",
-      "Name": "Your age",
-      "Value": 46
+      "type": "Integer",
+      "name": "Your age",
+      "value": 46
     },
     {
-      "Type": "Float",
-      "Name": "Scaling Factor",
-      "Value": 1.25
+      "type": "Float",
+      "name": "Scaling Factor",
+      "value": 1.25
     },
     {
-      "Type": "Boolean",
-      "Name": "Jump Flag",
-      "Value": true
+      "type": "Boolean",
+      "name": "Jump Flag",
+      "value": true
     }
   ]
 }

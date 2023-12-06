@@ -1,23 +1,23 @@
 {
-	"Parameters": [
+	"parameters": [
 		{
-			"Type": "String",
-			"Name": "Image URL",
-			"Value": ""
+			"type": "String",
+			"name": "Image URL",
+			"value": ""
 		},
 		{
-			"Type": "String[]",
-			"Name": "Names of the 3 cats",
-			"Value": [
+			"type": "String[]",
+			"name": "Names of the 3 cats",
+			"value": [
 				"",
 				"",
 				""
 			]
 		},
 		{
-			"Type": "Color",
-			"Name": "ColorVal",
-			"Value": [
+			"type": "Color",
+			"name": "ColorVal",
+			"value": [
 				0,
 				0,
 				0,
@@ -25,9 +25,9 @@
 			]
 		},
 		{
-			"Type": "Color[]",
-			"Name": "Colors for 3 cats",
-			"Value": [
+			"type": "Color[]",
+			"name": "Colors for 3 cats",
+			"value": [
 				[
 					0,
 					0,
@@ -49,19 +49,19 @@
 			]
 		},
 		{
-			"Type": "Integer",
-			"Name": "Your age",
-			"Value": 0
+			"type": "Integer",
+			"name": "Your age",
+			"value": 0
 		},
 		{
-			"Type": "Float",
-			"Name": "Scaling Factor",
-			"Value": 0
+			"type": "Float",
+			"name": "Scaling Factor",
+			"value": 0
 		},
 		{
-			"Type": "Boolean",
-			"Name": "Jump Flag",
-			"Value": false
+			"type": "Boolean",
+			"name": "Jump Flag",
+			"value": false
 		}
 	]
 }

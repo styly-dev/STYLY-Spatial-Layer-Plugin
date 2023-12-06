@@ -14,22 +14,25 @@ namespace Styly.VisionOs.Plugin
         [Serializable]
         private class ParameterDefinition
         {
-            [JsonProperty("ParameterDefinition")]
+            [JsonProperty("parameter_definition")]
             public VariableDefinitionClass VariableDefinition { get; set; }
         }
 
         [Serializable]
         private class VariableDefinitionClass
         {
-            [JsonProperty("Parameters")]
+            [JsonProperty("parameters")]
             public VariableClass[] Variables { get; set; }
         }
 
         [Serializable]
         private class VariableClass
         {
+            [JsonProperty("type")]
             public string Type { get; set; }
+            [JsonProperty("name")]
             public string Name { get; set; }
+            [JsonProperty("value")]
             public object Value { get; set; }
         }
 
