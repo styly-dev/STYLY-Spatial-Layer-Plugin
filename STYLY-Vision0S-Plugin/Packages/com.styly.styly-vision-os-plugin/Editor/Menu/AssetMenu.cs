@@ -17,11 +17,6 @@ namespace Styly.VisionOs.Plugin
         private static readonly string ParameterFileName = "parameter.json";
         private static readonly string AssetBundleFileName = "assetbundle";
 
-        [MenuItem(@"Assets/STYLY/Test Variable Utility", false, 10001)]
-        private static void TestVariableUtility(){
-            VisualScriptingParameterUtility.GetParameterDefinitionJson(Selection.objects[0] as GameObject); 
-        }
-        
         [MenuItem(@"Assets/STYLY/Build Content File", false, 10000)]
         private static void BuildContent()
         {
