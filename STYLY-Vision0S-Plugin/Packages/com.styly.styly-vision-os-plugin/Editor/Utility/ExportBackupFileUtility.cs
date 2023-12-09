@@ -6,7 +6,8 @@ namespace Styly.VisionOs.Plugin
 {
     public class ExportBackupFileUtility
     {
-        private static readonly string ManifestFilePath = "Packages/manifest.json";
+        private static readonly string ManifestFileName = "manifest.json";
+        private static readonly string PackageDirectoryPath = "Packages";
         private static readonly string BackupUnityPackageFileName = "backup.unitypackage";
         public static void Export(string sourcePath, string destPath)
         {
@@ -19,7 +20,7 @@ namespace Styly.VisionOs.Plugin
             EditorUtility.ClearProgressBar();
 
             AssetDatabase.ExportPackage(sourcePath, Path.Combine(destPath, BackupUnityPackageFileName) , ExportPackageOptions.IncludeDependencies);
-            File.Copy(ManifestFilePath, Path.Combine(destPath, "manifest.json"));
+            File.Copy(Path.Combine(PackageDirectoryPath, ManifestFileName), Path.Combine(destPath, ManifestFileName ));
         }
     }
 }
