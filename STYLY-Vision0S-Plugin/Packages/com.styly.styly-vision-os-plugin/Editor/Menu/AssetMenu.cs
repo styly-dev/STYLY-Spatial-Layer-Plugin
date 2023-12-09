@@ -11,11 +11,11 @@ namespace Styly.VisionOs.Plugin
     {
         private static bool isProcessing;
         private static readonly string ThumbnailFileName = "thumbnail.png";
-        private static readonly string BackupUnityPackageFileName = "backup.unitypackage";
         private static readonly string VisionOsDirectoryName = "VisionOS";
         private static readonly string MetaFileName = "meta.json";
         private static readonly string ParameterFileName = "parameter.json";
         private static readonly string AssetBundleFileName = "assetbundle";
+        private static readonly string BackupDirectoryName = "Backup";
 
         [MenuItem(@"Assets/STYLY/Build Content File", false, 10000)]
         private static void BuildContent()
@@ -34,7 +34,7 @@ namespace Styly.VisionOs.Plugin
             var outputPath = PrepareOutputDirectory();
             
             CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, ThumbnailFileName));
-            ExportPackageUtility.Export(assetPath, Path.Combine(outputPath, BackupUnityPackageFileName));
+            ExportBackupFileUtility.Export(assetPath, Path.Combine(outputPath, BackupDirectoryName));
             BuildAssetBundle(assetPath, Path.Combine(outputPath, VisionOsDirectoryName));
             GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName ));
             GenerateParameter(assetPath,  Path.Combine(outputPath, ParameterFileName));
