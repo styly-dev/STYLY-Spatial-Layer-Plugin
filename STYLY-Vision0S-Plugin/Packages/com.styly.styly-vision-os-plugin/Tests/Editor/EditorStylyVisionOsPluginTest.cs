@@ -47,14 +47,14 @@ namespace Styly.VisionOs.Plugin
         }
 
         [Test]
-        public void ExportUnitypackage()
+        public void ExportBackupFile()
         {
             var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
-            var filename = "backup";
-            var outputPath = Path.Combine(Config.OutputPath,"packages", $"{filename}.unitypackage");
-            ExportPackageUtility.Export(assetPath, outputPath );
+            var outputPath = Path.Combine(Config.OutputPath);
+            ExportBackupFileUtility.Export(assetPath, outputPath );
 
-            Assert.That(File.Exists(outputPath), Is.True );
+            Assert.That(File.Exists(Path.Combine(outputPath,"backup.unitypackage")), Is.True );
+            Assert.That(File.Exists(Path.Combine(outputPath,"manifest.json")), Is.True );
             
         }
 
