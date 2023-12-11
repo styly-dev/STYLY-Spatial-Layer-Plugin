@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -111,14 +112,51 @@ namespace Styly.VisionOs.Plugin
         [Test]
         public void CreateMetaJson()
         {
+            var full_jsonPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Json/full-Value.json";
+            var expectedJson = System.IO.File.ReadAllText(full_jsonPath).TrimEnd();
             var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/PrefabWithVariables_Value.prefab";
             
             var result = MetadataUtility.CreateMetaJson(assetPath);
             
             Debug.Log(result);
             Assert.That(result, Is.Not.Empty);
+
+            Assert.That(CompareJsonStructure(result,expectedJson ), Is.True);
         }
 
+        
+        public static bool CompareJsonStructure(string json1, string json2)
+        {
+            var obj1 = JObject.Parse(json1);
+            var obj2 = JObject.Parse(json2);
+
+            return JToken.DeepEquals(
+                NormalizeJsonStructure(obj1),
+                NormalizeJsonStructure(obj2)
+            );
+        }
+
+        private static JToken NormalizeJsonStructure(JToken token)
+        {
+            if (token.Type == JTokenType.Object)
+            {
+                return new JObject(
+                    token.Children<JProperty>()
+                        .OrderBy(prop => prop.Name)
+                        .Select(prop => new JProperty(prop.Name, NormalizeJsonStructure(prop.Value)))
+                );
+            }
+            else if (token.Type == JTokenType.Array)
+            {
+                return new JArray(
+                    token.Children().Select(NormalizeJsonStructure)
+                );
+            }
+            else
+            {
+                return new JValue((string)null);
+            }
+        }
         
         //
         // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
