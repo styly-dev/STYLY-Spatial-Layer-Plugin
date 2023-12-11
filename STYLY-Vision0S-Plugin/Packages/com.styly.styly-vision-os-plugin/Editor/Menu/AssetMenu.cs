@@ -37,7 +37,6 @@ namespace Styly.VisionOs.Plugin
             ExportBackupFileUtility.Export(assetPath, Path.Combine(outputPath, BackupDirectoryName));
             BuildAssetBundle(assetPath, Path.Combine(outputPath, VisionOsDirectoryName));
             GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName ));
-            GenerateParameter(assetPath,  Path.Combine(outputPath, ParameterFileName));
             
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
             EditorUtility.RevealInFinder( Config.OutputPath );
@@ -78,8 +77,7 @@ namespace Styly.VisionOs.Plugin
 
         private static void GenerateMetadata(string assetPath, string outputPath)
         {
-            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
-            var metadata = MetadataUtility.CreateBuildInfoJson(assetPath, date);
+            var metadata = MetadataUtility.CreateMetaJson(assetPath);
             File.WriteAllText(outputPath, metadata);
         }
         
