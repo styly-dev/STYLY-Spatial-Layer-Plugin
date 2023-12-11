@@ -85,13 +85,13 @@ namespace Styly.VisionOs.Plugin
             
             Assert.That(json, Is.Not.Empty);
 
-            var metadata = JsonConvert.DeserializeObject<BuildInfo>(json);
+            var buildInfo = JsonConvert.DeserializeObject<BuildInfo>(json);
 
-            Assert.That(metadata.PluginVersion, Is.EqualTo("0.0.1"));
-            Assert.That(metadata.AssetPath, Is.EqualTo(assetPath));
-            Assert.That(metadata.BuiltAt, Is.EqualTo(date));
-            Assert.That(metadata.AssetType, Is.EqualTo("Prefab"));
-            Assert.That(metadata.VisualScriptingVersion, Is.EqualTo("1.9.1"));
+            Assert.That(buildInfo.PluginVersion, Is.EqualTo("0.0.1"));
+            Assert.That(buildInfo.AssetPath, Is.EqualTo(assetPath));
+            Assert.That(buildInfo.BuiltAt, Is.EqualTo(date));
+            Assert.That(buildInfo.AssetType, Is.EqualTo("Prefab"));
+            Assert.That(buildInfo.VisualScriptingVersion, Is.EqualTo("1.9.1"));
         }
 
         [Test]
@@ -106,6 +106,19 @@ namespace Styly.VisionOs.Plugin
             Assert.That(gameObject, Is.Not.Null);
             Assert.That(gameObject.name, Is.EqualTo("Cube"));
         }
+        
+        
+        [Test]
+        public void CreateMetaJson()
+        {
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/PrefabWithVariables_Value.prefab";
+            
+            var result = MetadataUtility.CreateMetaJson(assetPath);
+            
+            Debug.Log(result);
+            Assert.That(result, Is.Not.Empty);
+        }
+
         
         //
         // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

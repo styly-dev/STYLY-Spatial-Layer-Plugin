@@ -1,5 +1,10 @@
+using System;
 using System.IO;
 using Newtonsoft.Json;
+using UnityEditor;
+using UnityEngine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Styly.VisionOs.Plugin
 {
@@ -44,6 +49,22 @@ namespace Styly.VisionOs.Plugin
             var metadataJson = JsonConvert.SerializeObject(buildInfo, Formatting.Indented);
 
             return metadataJson;        
+        }
+
+        public static string CreateMetaJson(string assetPath)
+        {
+            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
+            var buildInfo = CreateBuildInfoJson(assetPath, date);
+            var target = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+            var graph = VisualScriptingParameterUtility.GetParameterDefinitionJson(target);
+            
+            var buildInfoJObject = JObject.Parse(buildInfo);
+            var graphJObject = JObject.Parse(graph);
+            buildInfoJObject.Merge(graphJObject, new JsonMergeSettings());
+            
+            var mergedJson = buildInfoJObject.ToString();
+            
+            return mergedJson;
         }
     }
 }

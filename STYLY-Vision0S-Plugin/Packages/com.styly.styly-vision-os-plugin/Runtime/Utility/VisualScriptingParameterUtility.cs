@@ -155,7 +155,6 @@ namespace Styly.VisionOs.Plugin
             var parameterDefinition = new ParameterDefinition { VariableDefinition = variableDefinition };
             
             string jsonText = JsonConvert.SerializeObject(parameterDefinition);
-            Debug.Log(jsonText);
             return jsonText;
         }
 
