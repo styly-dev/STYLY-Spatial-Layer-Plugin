@@ -1,4 +1,10 @@
 {
+  "plugin_version": "0.0.1",
+  "unity_version": "2022.3.13f1",
+  "built_at": "2023-12-10T03:59:21+00:00",
+  "asset_path": "Packages/com.styly.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/PrefabWithVariables_Value.prefab",
+  "asset_type": "Prefab",
+  "visual_scripting_version": "1.9.1",
   "graph": {
       "parameters": [
           {

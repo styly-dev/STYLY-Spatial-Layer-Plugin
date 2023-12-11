@@ -14,7 +14,7 @@ namespace Styly.VisionOs.Plugin
         [Serializable]
         private class ParameterDefinition
         {
-            [JsonProperty("parameter_definition")]
+            [JsonProperty("graph")]
             public VariableDefinitionClass VariableDefinition { get; set; }
         }
 
@@ -44,7 +44,7 @@ namespace Styly.VisionOs.Plugin
         /// <returns></returns>
         public static bool SetParameterValuesToPrefab(GameObject gameObject, string parameterValueJson)
         {
-            var parameterValue = JsonConvert.DeserializeObject<VariableDefinitionClass>(parameterValueJson);
+            var parameterValue = JsonConvert.DeserializeObject<ParameterDefinition>(parameterValueJson);
             if (parameterValue == null) {return false;}
             if (!gameObject.TryGetComponent<Variables>(out var VariableComponent)) { return false; }
 
@@ -52,7 +52,7 @@ namespace Styly.VisionOs.Plugin
 
             Color ConvertToColor(float[] rgba) => new (rgba[0], rgba[1], rgba[2], rgba[3]);
 
-            foreach (var variable in parameterValue.Variables)
+            foreach (var variable in parameterValue.VariableDefinition.Variables)
             {
                 
                 switch (variable.Type)
@@ -107,7 +107,17 @@ namespace Styly.VisionOs.Plugin
         /// <returns>ParameterDefinition JSON</returns>
         public static string GetParameterDefinitionJson(GameObject gameObject)
         {
-            if (!gameObject.TryGetComponent<Variables>(out var variableComponent)) { return string.Empty; }
+            var emptyJson = JsonConvert.SerializeObject(new ParameterDefinition()
+            {
+                VariableDefinition = new()
+                {
+                    Variables = new List<VariableClass>().ToArray()
+                }
+            });
+            if (!gameObject.TryGetComponent<Variables>(out var variableComponent))
+            {
+                return emptyJson;
+            }
 
             var variables = new List<VariableClass>();
             
@@ -142,8 +152,9 @@ namespace Styly.VisionOs.Plugin
 
             var variableDefinition = new VariableDefinitionClass { Variables = variables.ToArray() };
 
-            string jsonText = JsonConvert.SerializeObject(variableDefinition);
-            Debug.Log(jsonText);
+            var parameterDefinition = new ParameterDefinition { VariableDefinition = variableDefinition };
+            
+            string jsonText = JsonConvert.SerializeObject(parameterDefinition);
             return jsonText;
         }
 

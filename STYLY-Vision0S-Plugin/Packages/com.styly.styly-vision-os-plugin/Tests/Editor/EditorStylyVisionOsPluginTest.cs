@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -75,22 +77,22 @@ namespace Styly.VisionOs.Plugin
         }
 
         [Test]
-        public void CreateMetadata()
+        public void CreateBuildInfo()
         {
             var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
             var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
-            var json = MetadataUtility.CreateMetadataJson(assetPath, date);
+            var json = MetadataUtility.CreateBuildInfoJson(assetPath, date);
             Debug.Log(json);
             
             Assert.That(json, Is.Not.Empty);
 
-            var metadata = JsonConvert.DeserializeObject<Metadata>(json);
+            var buildInfo = JsonConvert.DeserializeObject<BuildInfo>(json);
 
-            Assert.That(metadata.PluginVersion, Is.EqualTo("0.0.1"));
-            Assert.That(metadata.AssetPath, Is.EqualTo(assetPath));
-            Assert.That(metadata.BuiltAt, Is.EqualTo(date));
-            Assert.That(metadata.AssetType, Is.EqualTo("Prefab"));
-            Assert.That(metadata.VisualScriptingVersion, Is.EqualTo("1.9.1"));
+            Assert.That(buildInfo.PluginVersion, Is.EqualTo("0.0.1"));
+            Assert.That(buildInfo.AssetPath, Is.EqualTo(assetPath));
+            Assert.That(buildInfo.BuiltAt, Is.EqualTo(date));
+            Assert.That(buildInfo.AssetType, Is.EqualTo("Prefab"));
+            Assert.That(buildInfo.VisualScriptingVersion, Is.EqualTo("1.9.1"));
         }
 
         [Test]
@@ -104,6 +106,56 @@ namespace Styly.VisionOs.Plugin
             
             Assert.That(gameObject, Is.Not.Null);
             Assert.That(gameObject.name, Is.EqualTo("Cube"));
+        }
+        
+        
+        [Test]
+        public void CreateMetaJson()
+        {
+            var full_jsonPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Json/full-Value.json";
+            var expectedJson = System.IO.File.ReadAllText(full_jsonPath).TrimEnd();
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/PrefabWithVariables_Value.prefab";
+            
+            var result = MetadataUtility.CreateMetaJson(assetPath);
+            
+            Debug.Log(result);
+            Assert.That(result, Is.Not.Empty);
+
+            Assert.That(CompareJsonStructure(result,expectedJson ), Is.True);
+        }
+
+        
+        public static bool CompareJsonStructure(string json1, string json2)
+        {
+            var obj1 = JObject.Parse(json1);
+            var obj2 = JObject.Parse(json2);
+
+            return JToken.DeepEquals(
+                NormalizeJsonStructure(obj1),
+                NormalizeJsonStructure(obj2)
+            );
+        }
+
+        private static JToken NormalizeJsonStructure(JToken token)
+        {
+            if (token.Type == JTokenType.Object)
+            {
+                return new JObject(
+                    token.Children<JProperty>()
+                        .OrderBy(prop => prop.Name)
+                        .Select(prop => new JProperty(prop.Name, NormalizeJsonStructure(prop.Value)))
+                );
+            }
+            else if (token.Type == JTokenType.Array)
+            {
+                return new JArray(
+                    token.Children().Select(NormalizeJsonStructure)
+                );
+            }
+            else
+            {
+                return new JValue((string)null);
+            }
         }
         
         //

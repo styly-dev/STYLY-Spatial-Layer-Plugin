@@ -1,15 +1,20 @@
+using System;
 using System.IO;
 using Newtonsoft.Json;
+using UnityEditor;
+using UnityEngine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Styly.VisionOs.Plugin
 {
-    public class Metadata
+    public class BuildInfo
     {
         [JsonProperty("plugin_version")]
         public string PluginVersion { get; set; }
         [JsonProperty("unity_version")]
         public string UnityVersion { get; set; }
-        [JsonProperty("build_at")]
+        [JsonProperty("built_at")]
         public string BuiltAt { get; set; }
         [JsonProperty("asset_path")]
         public string AssetPath { get; set; }
@@ -22,7 +27,7 @@ namespace Styly.VisionOs.Plugin
     
     public class MetadataUtility
     {
-        public static string CreateMetadataJson(string assetPath, string builtAt)
+        public static string CreateBuildInfoJson(string assetPath, string builtAt)
         {
             var ext = Path.GetExtension(assetPath);
             string assetType = "Prefab";
@@ -31,7 +36,7 @@ namespace Styly.VisionOs.Plugin
                 assetType = "Scene";
             }
             
-            Metadata metadata = new Metadata
+            BuildInfo buildInfo = new BuildInfo
             {
                 PluginVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.PackageName),
                 UnityVersion = UnityEngine.Application.unityVersion,
@@ -41,9 +46,25 @@ namespace Styly.VisionOs.Plugin
                 VisualScriptingVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.VisualScriptingName)
             };
 
-            var metadataJson = JsonConvert.SerializeObject(metadata, Formatting.Indented);
+            var metadataJson = JsonConvert.SerializeObject(buildInfo, Formatting.Indented);
 
             return metadataJson;        
+        }
+
+        public static string CreateMetaJson(string assetPath)
+        {
+            var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
+            var buildInfo = CreateBuildInfoJson(assetPath, date);
+            var target = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+            var graph = VisualScriptingParameterUtility.GetParameterDefinitionJson(target);
+            
+            var buildInfoJObject = JObject.Parse(buildInfo);
+            var graphJObject = JObject.Parse(graph);
+            buildInfoJObject.Merge(graphJObject, new JsonMergeSettings());
+            
+            var mergedJson = buildInfoJObject.ToString();
+            
+            return mergedJson;
         }
     }
 }

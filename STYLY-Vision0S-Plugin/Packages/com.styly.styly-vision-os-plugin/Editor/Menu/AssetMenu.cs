@@ -79,7 +79,7 @@ namespace Styly.VisionOs.Plugin
         private static void GenerateMetadata(string assetPath, string outputPath)
         {
             var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
-            var metadata = MetadataUtility.CreateMetadataJson(assetPath, date);
+            var metadata = MetadataUtility.CreateBuildInfoJson(assetPath, date);
             File.WriteAllText(outputPath, metadata);
         }
         
