@@ -1,0 +1,12 @@
+namespace Styly.VisionOs.Plugin
+{
+    public class Config
+    {
+        public static readonly int ThumbnailWidth = 1024;
+        public static readonly int ThumbnailHeight = 1024;
+        public static readonly string OutputPath = "_Output";
+        public static readonly string UploadPage =  "https://styly.cc";
+        public static readonly string PackageName = "com.styly.styly-vision-os-plugin";
+        public static readonly string VisualScriptingName = "com.unity.visualscripting";
+    }
+}

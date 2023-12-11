@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.psychicvrlab.styly-vision-os-plugin": {
-      "version": "file:com.psychicvrlab.styly-vision-os-plugin",
+    "com.styly.styly-vision-os-plugin": {
+      "version": "file:com.styly.styly-vision-os-plugin",
       "depth": 0,
       "source": "embedded",
       "dependencies": {

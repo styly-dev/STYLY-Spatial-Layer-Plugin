@@ -1,0 +1,75 @@
+{
+  "plugin_version": "0.0.1",
+  "unity_version": "2022.3.13f1",
+  "built_at": "2023-12-10T03:59:21+00:00",
+  "asset_path": "Packages/com.styly.styly-vision-os-plugin/Tests/Editor/TestData/Prefab/PrefabWithVariables_Value.prefab",
+  "asset_type": "Prefab",
+  "visual_scripting_version": "1.9.1",
+  "graph": {
+      "parameters": [
+          {
+              "type": "String",
+              "name": "Image URL",
+              "value": "https://goetheweb.jp/wp-content/uploads/2023/02/00-1_neko.jpg"
+          },
+          {
+              "type": "String[]",
+              "name": "Names of the 3 cats",
+              "value": [
+                  "Mike",
+                  "Taro",
+                  "にゃーこ"
+              ]
+          },
+          {
+              "type": "Color",
+              "name": "ColorVal",
+              "value": [
+                  0.09011213,
+                  0.2081009,
+                  0.764151,
+                  1
+              ]
+          },
+          {
+              "type": "Color[]",
+              "name": "Colors for 3 cats",
+              "value": [
+                  [
+                      0.8396226,
+                      0.06732824,
+                      0.06732824,
+                      1
+                  ],
+                  [
+                      0.2028302,
+                      0.8113208,
+                      0.2920873,
+                      1
+                  ],
+                  [
+                      0.2423015,
+                      0.3456977,
+                      0.5188679,
+                      1
+                  ]
+              ]
+          },
+          {
+              "type": "Integer",
+              "name": "Your age",
+              "value": 46
+          },
+          {
+              "type": "Float",
+              "name": "Scaling Factor",
+              "value": 1.25
+          },
+          {
+              "type": "Boolean",
+              "name": "Jump Flag",
+              "value": true
+          }
+      ]
+  }
+}

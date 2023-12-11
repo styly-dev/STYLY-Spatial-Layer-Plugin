@@ -1,0 +1,69 @@
+{
+	"graph": {
+		"parameters": [
+			{
+				"type": "String",
+				"name": "Image URL",
+				"value": ""
+			},
+			{
+				"type": "String[]",
+				"name": "Names of the 3 cats",
+				"value": [
+					"",
+					"",
+					""
+				]
+			},
+			{
+				"type": "Color",
+				"name": "ColorVal",
+				"value": [
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"type": "Color[]",
+				"name": "Colors for 3 cats",
+				"value": [
+					[
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"type": "Integer",
+				"name": "Your age",
+				"value": 0
+			},
+			{
+				"type": "Float",
+				"name": "Scaling Factor",
+				"value": 0
+			},
+			{
+				"type": "Boolean",
+				"name": "Jump Flag",
+				"value": false
+			}
+		]
+	}
+}
