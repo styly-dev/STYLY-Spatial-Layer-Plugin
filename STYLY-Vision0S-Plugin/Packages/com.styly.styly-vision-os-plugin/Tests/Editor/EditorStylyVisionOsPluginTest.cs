@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -75,16 +76,16 @@ namespace Styly.VisionOs.Plugin
         }
 
         [Test]
-        public void CreateMetadata()
+        public void CreateBuildInfo()
         {
             var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
             var date = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
-            var json = MetadataUtility.CreateMetadataJson(assetPath, date);
+            var json = MetadataUtility.CreateBuildInfoJson(assetPath, date);
             Debug.Log(json);
             
             Assert.That(json, Is.Not.Empty);
 
-            var metadata = JsonConvert.DeserializeObject<Metadata>(json);
+            var metadata = JsonConvert.DeserializeObject<BuildInfo>(json);
 
             Assert.That(metadata.PluginVersion, Is.EqualTo("0.0.1"));
             Assert.That(metadata.AssetPath, Is.EqualTo(assetPath));
