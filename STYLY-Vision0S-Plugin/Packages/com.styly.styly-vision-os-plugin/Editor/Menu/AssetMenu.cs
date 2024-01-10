@@ -17,7 +17,7 @@ namespace Styly.VisionOs.Plugin
         private static readonly string AssetBundleFileName = "assetbundle";
         private static readonly string BackupDirectoryName = "Backup";
 
-        [MenuItem(@"Assets/STYLY/Build Content File", false, 10000)]
+        [MenuItem(@"Assets/STYLY/Build prefab", false, 10000)]
         private static void BuildContent()
         {
             isProcessing = true;
