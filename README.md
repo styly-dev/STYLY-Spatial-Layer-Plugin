@@ -1,1 +1,101 @@
-# STYLY-VisionOS-Plugin
+# STYLY VisionOS Plugin
+
+### Notes
+* Please DO NOT share the screenshot of STYLY app.  
+User interface will be changed before its release.
+* Please give us your feedback.  
+
+#### Requirements
+
+* Unity
+  * Unity 2022.3.15 or later (Use 2022.3.XX)
+  * Modules:
+    * visionOS Build Support (experimental)
+    * iOS Build Support
+  * Render pipelines: URP
+  * Color Space: Linear
+* Xcode
+  * Xcode 15.2 beta1 or later
+* Apple Silicon Mac (M1/M2/M3)
+
+#### Files
+
+* STYLY-VisionOS-Plugin
+* STYLY app for Vision OS Simulator
+
+#### Supported features for STYLY
+
+* Mixed Reality mode: Bounded Volumes, Unbounded Volumes
+* Standard URP shaders: Lit, Simple Lit, Unlit and some shaders in supported Unity packages
+* Visual Scripting
+* Timeline, animator, animation, audioclip and other basic features. See[Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@0.7/manual/SupportedFeatures.html) page for the detail.
+
+#### **NOT** Supported features for STYLY
+
+* Fully Immersive VR, Windowed Apps
+* Your C# scripts
+* Custom shaders
+* Video player
+* Visual Effect Graph
+* Postprocessing Stack
+
+#### Supported Visual Scripting Unity packages
+
+* [PolySpatial Visual Scripting Nodes](https://openupm.com/packages/com.styly.polyspatial-visualscripting-nodes/)
+* [VRM Visual Scripting Nodes](https://openupm.com/packages/com.from2001.vrm-visualscripting-nodes/)
+* [glTFast Visual Scripting Nodes](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
+* [Spectrum Visual Scripting Nodes](https://openupm.com/packages/com.from2001.spectrum-visualscripting-nodes/)
+
+#### How to setup
+
+* Unity
+
+  * Install Unity via [Unity Hub](https://unity.com/unity-hub)
+
+    * Install Unity[2022.3.15](https://unity.com/ja/releases/editor/whats-new/2022.3.15) or later (Use 2022.3.XX)
+    * wirh modules:
+      * visionOS Build Support (experimental)
+      * iOS Build Support
+  * Fix a bug just for Unity 2022.3.15 about UnityWebRequest crashes
+    See the detail [here](https://discussions.unity.com/t/unitywebrequest-crashes-app/316641/29)
+
+    ```sh
+    cp /Applications/Unity/Hub/Editor/2022.3.15f1/PlaybackEngines/iOSSupport/Trampoline/Classes/Unity/UnityWebRequest.mm /Applications/Unity/Hub/Editor/2022.3.15f1/PlaybackEngines/VisionOSPlayer/Trampoline/Classes/Unity/UnityWebRequest.mm
+    ```
+  * Create a new project as 3D (URP)
+  * Switch platform to VisionOS (Experimental) in Build Settings
+  * XXXXXXXXX - package
+* Xcode
+
+  * Install Xcode 15.2 beta1 or later with VisionOS simulator
+  * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
+  * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`VisionOS 1.0` -`Apple Vision Pro`
+  * Install STYLY for VisionOS into the simulator
+    * Download STYLY-Vision-OS-App.app and drag the app file to the simulator window from Finder.
+![Simulator](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/0e2da2ad-f45c-4452-b71e-9339ade58fd6)
+
+### How to build and upload contents
+
+Unity prefab can be built and uploaded to STYLY. Right click a prefab in a project window and select `STYLY` - `Build Content FIle`
+
+![Right Click](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/bb5b85d5-4106-4561-aeca-cc8a5297c5cd)
+
+Built file will be created as `yyyyMMddHHmmss.styly` in `_Output` directory in your project.
+![Output file](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/555c708b-787c-48a6-ba93-13c168643f44)
+
+STYLY for VisionOS webpage will be opened in a browser. Login with your STYLY account.
+![image10](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/b82c11f0-706d-434e-9b50-c67b6eca11f9)
+![image11](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/3570cd01-34a0-46a3-b927-f8d087db330b)
+
+Upload your built contents (.styly file) with title, description and display type.
+Bounded: Your contents will be displayed in 1m x 1m x 1m size. Contents can be displayed with other apps.
+Unbounded: Your contents will be displayed exclusively in a space.
+![image12](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/cb70d668-9970-4d48-8d0d-941654e6aab1)
+![image13](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/9c3e2644-d2de-4bed-bcd4-b5e2eac3f098)
+
+### How to play the contents on STYLY
+
+* Open content page on VisionOS simulator. You can copy and paste your URL of the content from your Mac to the simulator.
+* Click `Play on device` on the page.
+* Your content will be displayed.
+
