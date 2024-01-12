@@ -6,5 +6,12 @@
   "description": "STYLY Vision OS Plugin",
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.1"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "ShaderGraph samples",
+      "description": "Portal Effect Sample",
+      "path": "Samples~/ShaderGraph"
+    }
+  ]
 }
