@@ -8,7 +8,7 @@ User interface will be changed before its release.
 #### Requirements
 
 * Unity
-  * Unity 2022.3.15 or later (Use 2022.3.XX)
+  * Unity 2022.3.18 or later (Use 2022.3.XX)
   * Modules:
     * visionOS Build Support (experimental)
     * iOS Build Support
@@ -53,19 +53,13 @@ User interface will be changed before its release.
 
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
-    * Install Unity[2022.3.15](https://unity.com/ja/releases/editor/whats-new/2022.3.15) or later (Use 2022.3.XX)
+    * Install Unity[2022.3.18](https://unity.com/ja/releases/editor/whats-new/2022.3.18) or later (Use 2022.3.XX)
     * wirh modules:
       * visionOS Build Support (experimental)
       * iOS Build Support
-  * Fix a bug just for Unity 2022.3.15 about UnityWebRequest crashes
-    See the detail [here](https://discussions.unity.com/t/unitywebrequest-crashes-app/316641/29)
-
-    ```sh
-    cp /Applications/Unity/Hub/Editor/2022.3.15f1/PlaybackEngines/iOSSupport/Trampoline/Classes/Unity/UnityWebRequest.mm /Applications/Unity/Hub/Editor/2022.3.15f1/PlaybackEngines/VisionOSPlayer/Trampoline/Classes/Unity/UnityWebRequest.mm
-    ```
   * Create a new project as 3D (URP)
   * Switch platform to VisionOS (Experimental) in Build Settings
-  * XXXXXXXXX - package
+  * Add `STYLY-VisionOS-Plugin`
 * Xcode
 
   * Install Xcode 15.2 beta1 or later with VisionOS simulator
