@@ -15,7 +15,7 @@ User interface will be changed before its release.
   * Render pipelines: URP
   * Color Space: Linear
 * Xcode
-  * Xcode 15.2 beta1 or later
+  * Xcode 15.2 or later
 * Apple Silicon Mac (M1/M2/M3)
 
 #### Files
@@ -62,7 +62,7 @@ User interface will be changed before its release.
   * Add `STYLY-VisionOS-Plugin`
 * Xcode
 
-  * Install Xcode 15.2 beta1 or later with VisionOS simulator
+  * Install Xcode 15.2 or later with VisionOS simulator. [Xcodes](https://www.xcodes.app/) is the easist way to install and manage multiple versions of Xcode.
   * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
   * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`VisionOS 1.0` -`Apple Vision Pro`
   * Install STYLY for VisionOS into the simulator
