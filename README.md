@@ -8,20 +8,20 @@ User interface will be changed before its release.
 #### Requirements
 
 * Unity
-  * Unity 2022.3.15 or later (Use 2022.3.XX)
+  * Unity 2022.3.18 or later (Use 2022.3.XX)
   * Modules:
     * visionOS Build Support (experimental)
     * iOS Build Support
   * Render pipelines: URP
   * Color Space: Linear
 * Xcode
-  * Xcode 15.2 beta1 or later
+  * Xcode 15.2 or later
 * Apple Silicon Mac (M1/M2/M3)
 
 #### Files
 
-* STYLY-VisionOS-Plugin
-* STYLY app for Vision OS Simulator
+* [STYLY-VisionOS-Plugin](https://drive.google.com/uc?export=download&id=1opDf03H5RrfYrJmeDMfXw3WCMrJ4nZWU)
+* [STYLY app for Vision OS Simulator](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 
 #### Supported features for STYLY
 
@@ -45,6 +45,7 @@ User interface will be changed before its release.
 * [VRM Visual Scripting Nodes](https://openupm.com/packages/com.from2001.vrm-visualscripting-nodes/)
 * [glTFast Visual Scripting Nodes](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
 * [Spectrum Visual Scripting Nodes](https://openupm.com/packages/com.from2001.spectrum-visualscripting-nodes/)
+* [WebRequest Visual Scripting Nodes](https://openupm.com/packages/com.styly.webrequest-visualscripting-nodes/)
 
 #### How to setup
 
@@ -52,22 +53,16 @@ User interface will be changed before its release.
 
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
-    * Install Unity[2022.3.15](https://unity.com/ja/releases/editor/whats-new/2022.3.15) or later (Use 2022.3.XX)
+    * Install Unity[2022.3.18](https://unity.com/ja/releases/editor/whats-new/2022.3.18) or later (Use 2022.3.XX)
     * wirh modules:
       * visionOS Build Support (experimental)
       * iOS Build Support
-  * Fix a bug just for Unity 2022.3.15 about UnityWebRequest crashes
-    See the detail [here](https://discussions.unity.com/t/unitywebrequest-crashes-app/316641/29)
-
-    ```sh
-    cp /Applications/Unity/Hub/Editor/2022.3.15f1/PlaybackEngines/iOSSupport/Trampoline/Classes/Unity/UnityWebRequest.mm /Applications/Unity/Hub/Editor/2022.3.15f1/PlaybackEngines/VisionOSPlayer/Trampoline/Classes/Unity/UnityWebRequest.mm
-    ```
   * Create a new project as 3D (URP)
   * Switch platform to VisionOS (Experimental) in Build Settings
-  * XXXXXXXXX - package
+  * Add `STYLY-VisionOS-Plugin`
 * Xcode
 
-  * Install Xcode 15.2 beta1 or later with VisionOS simulator
+  * Install Xcode 15.2 or later with VisionOS simulator. [Xcodes](https://www.xcodes.app/) is the easist way to install and manage multiple versions of Xcode.
   * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
   * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`VisionOS 1.0` -`Apple Vision Pro`
   * Install STYLY for VisionOS into the simulator
