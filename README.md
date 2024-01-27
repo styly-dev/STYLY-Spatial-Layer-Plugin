@@ -1,9 +1,12 @@
 # STYLY VisionOS Plugin
 
+### What is this plugin?
+* You can upload your Unity contents to [STYLY for Spatial Layer](https://spatial-layer.styly.cc/) and can distribute the contents to Vision Pro STYLY app.
+* STYLY for Spatial Layer is currently supports only VisionOS, and its code base is different from STYLY-VR or STYLY mobile. The contents are not compatible with STYLY for other devices.
+* STYLY for Spatial Layer doesn't have 3D contents creation tools for now.
+
 ### Notes
-* Please DO NOT share the screenshot of STYLY app.  
-User interface will be changed before its release.
-* Please give us your feedback.  
+* Please give us your feedback on Issues.  
 
 #### Requirements
 
@@ -28,7 +31,7 @@ User interface will be changed before its release.
 * Mixed Reality mode: Bounded Volumes, Unbounded Volumes
 * Standard URP shaders: Lit, Simple Lit, Unlit and some shaders in supported Unity packages
 * Visual Scripting
-* Timeline, animator, animation, audioclip and other basic features. See[Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@0.7/manual/SupportedFeatures.html) page for the detail.
+* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@0.7/manual/SupportedFeatures.html) page for the detail.
 
 #### **NOT** Supported features for STYLY
 
@@ -47,22 +50,41 @@ User interface will be changed before its release.
 * [Spectrum Visual Scripting Nodes](https://openupm.com/packages/com.from2001.spectrum-visualscripting-nodes/)
 * [WebRequest Visual Scripting Nodes](https://openupm.com/packages/com.styly.webrequest-visualscripting-nodes/)
 
+  You are moe than welcome to recommend new custom Visual Scripting nodes to support.
+
 #### How to setup
 
 * Unity
 
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
-    * Install Unity[2022.3.18](https://unity.com/ja/releases/editor/whats-new/2022.3.18) or later (Use 2022.3.XX)
-    * wirh modules:
+    * Install Unity [2022.3.18](https://unity.com/ja/releases/editor/whats-new/2022.3.18) or later (Use 2022.3.XX) with modules:
       * visionOS Build Support (experimental)
       * iOS Build Support
   * Create a new project as 3D (URP)
   * Switch platform to VisionOS (Experimental) in Build Settings
   * Add `STYLY-VisionOS-Plugin`
+
+* STYLY-VisionOS-Plugin
+
+  * Option A: Use [OpenUPM](https://openupm.com/packages/com.styly.styly-vision-os-plugin/) (Recommended)
+```sh
+# Install openupm-cli
+npm install -g openupm-cli
+
+# Go to your unity project directory
+cd YOUR_UNITY_PROJECT_DIR
+
+# Install package
+openupm add com.styly.styly-vision-os-plugin
+```
+
+  * Option B: Add git URL  
+https://github.com/styly-dev/STYLY-VisionOS-Plugin.git?path=Packages/com.styly.styly-vision-os-plugin
+
 * Xcode
 
-  * Install Xcode 15.2 or later with VisionOS simulator. [Xcodes](https://www.xcodes.app/) is the easist way to install and manage multiple versions of Xcode.
+  * Install Xcode 15.2 or later with VisionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
   * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
   * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`VisionOS 1.0` -`Apple Vision Pro`
   * Install STYLY for VisionOS into the simulator
