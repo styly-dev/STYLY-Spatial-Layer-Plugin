@@ -23,7 +23,6 @@
 
 #### Files
 
-* [STYLY-VisionOS-Plugin](https://drive.google.com/uc?export=download&id=1opDf03H5RrfYrJmeDMfXw3WCMrJ4nZWU)
 * [STYLY app for Vision OS Simulator](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 
 #### Supported features for STYLY
