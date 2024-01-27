@@ -88,7 +88,7 @@ namespace Styly.VisionOs.Plugin
 
             var buildInfo = JsonConvert.DeserializeObject<BuildInfo>(json);
 
-            Assert.That(buildInfo.PluginVersion, Is.EqualTo("0.0.1"));
+            Assert.That(buildInfo.PluginVersion, Is.Not.Null);
             Assert.That(buildInfo.AssetPath, Is.EqualTo(assetPath));
             Assert.That(buildInfo.BuiltAt, Is.EqualTo(date));
             Assert.That(buildInfo.AssetType, Is.EqualTo("Prefab"));

@@ -45,13 +45,13 @@ namespace Styly.VisionOs.Plugin
 
         public string GetPackageVersion(string packageId)
         {
-            IEnumerator t = GetPackageInfoCoroutine(packageId);
+            var t = GetPackageInfoCoroutine(packageId);
             while (t.MoveNext())
             {
                 Debug.Log("GetPackagePath waiting...");
             }
 
-            return targetPackageInfo.version;
+            return targetPackageInfo?.version;
         }
 
         private IEnumerator GetPackageInfoCoroutine(string targetPackage)
