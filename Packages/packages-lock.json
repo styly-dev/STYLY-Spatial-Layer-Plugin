@@ -5,6 +5,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
+        "com.unity.visualscripting": "1.9.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1"
       }
     },
