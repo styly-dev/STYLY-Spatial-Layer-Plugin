@@ -6,7 +6,7 @@
 * STYLY for Spatial Layer doesn't have 3D contents creation tools for now.
 
 ### Notes
-* Please give us your feedback on Github [Issues](https://github.com/styly-dev/STYLY-VisionOS-Plugin/issues).  
+* Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-VisionOS-Plugin/issues).  
 * Your contents will be published to the PUBLIC. Don't upload your contents which you want make private. 
 * Contents gallery on STYLY app is white list based now. STYLY team may pick up your contents display in the app.    
 
@@ -15,26 +15,28 @@
 * Unity
   * Unity 2022.3.18 or later (Use 2022.3.XX)
   * Modules:
-    * visionOS Build Support (experimental)
-    * iOS Build Support
+    * visionOS Build Support
   * Render pipelines: URP
   * Color Space: Linear
 * Xcode
   * Xcode 15.2 or later
 * Apple Silicon Mac (M1/M2/M3)
 
-#### Files
 
-* [STYLY app for Vision OS Simulator](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
+#### Links
+* [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
+* [STYLY for Spatial Layer website](https://spatial-layer.styly.cc/)
+* [Github repository](https://github.com/styly-dev/STYLY-VisionOS-Plugin)
+* [OpenUPM page](https://openupm.com/packages/com.styly.styly-vision-os-plugin/)
 
-#### Supported features for STYLY
+#### Supported features for STYLY VisionOS Plugin
 
 * Mixed Reality mode: Bounded Volumes, Unbounded Volumes
 * Standard URP shaders: Lit, Simple Lit, Unlit and some shaders in supported Unity packages
 * Visual Scripting
 * Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.0/manual/SupportedFeatures.html) page for the detail.
 
-#### **NOT** Supported features for STYLY
+#### **NOT** Supported features for STYLY VisionOS Plugin
 
 * Fully Immersive VR, Windowed Apps
 * Your C# scripts
@@ -60,10 +62,9 @@
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
     * Install Unity [2022.3.18](https://unity.com/ja/releases/editor/whats-new/2022.3.18) or later (Use 2022.3.XX) with modules:
-      * visionOS Build Support (experimental)
-      * iOS Build Support
+      * visionOS Build Support
   * Create a new project as 3D (URP)
-  * Switch platform to VisionOS (Experimental) in Build Settings
+  * Switch platform to VisionOS in Build Settings
 
 * STYLY VisionOS Plugin for Unity
 
