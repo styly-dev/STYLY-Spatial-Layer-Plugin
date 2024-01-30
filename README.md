@@ -1,7 +1,7 @@
 # STYLY VisionOS Plugin
 
 ### What is this plugin?
-* You can upload your Unity contents to [STYLY for Spatial Layer](https://spatial-layer.styly.cc/) and can distribute the contents to Vision Pro STYLY app.
+* You can upload your Unity contents to [STYLY for Spatial Layer](https://spatial-layer.styly.cc/) and can distribute the contents to the STYLY app for Apple Vision Pro.
 * STYLY for Spatial Layer is currently supports only VisionOS, and its code base is different from STYLY-VR or STYLY mobile. The contents are not compatible with STYLY for other devices.
 * STYLY for Spatial Layer doesn't have 3D contents creation tools for now.
 
