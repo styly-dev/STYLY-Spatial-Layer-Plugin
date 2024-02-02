@@ -1,9 +1,9 @@
 # STYLY VisionOS Plugin
 
 ### What is this plugin?
-* You can upload your Unity contents to [STYLY for Spatial Layer](https://spatial-layer.styly.cc/) and can distribute the contents to the STYLY app for Apple Vision Pro.
-* STYLY for Spatial Layer is currently supports only VisionOS, and its code base is different from STYLY-VR or STYLY mobile. The contents are not compatible with STYLY for other devices.
-* STYLY for Spatial Layer doesn't have 3D contents creation tools for now.
+* You can upload your Unity contents to [STYLY for Vision Pro](https://spatial-layer.styly.cc/) and can distribute the contents to the STYLY app for Apple Vision Pro.
+* Contents of STYLY for Vision Pro is not compatible with STYLY for other platforms. Its code base is different from STYLY VR or STYLY mobile. 
+* STYLY for Vision Pro doesn't have 3D contents creation tools for now.
 
 ### Notes
 * Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-VisionOS-Plugin/issues).  
@@ -25,7 +25,7 @@
 
 #### Links
 * [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
-* [STYLY for Spatial Layer website](https://spatial-layer.styly.cc/)
+* [Website of STYLY for Vision Pro](https://spatial-layer.styly.cc/)
 * [Github repository](https://github.com/styly-dev/STYLY-VisionOS-Plugin)
 * [OpenUPM page](https://openupm.com/packages/com.styly.styly-vision-os-plugin/)
 
