@@ -1,4 +1,4 @@
-# STYLY VisionOS Plugin
+# STYLY visionOS Plugin
 
 ### What is this plugin?
 * You can upload your Unity contents to [STYLY for Vision Pro](https://spatial-layer.styly.cc/) and can distribute the contents to the STYLY app for Apple Vision Pro.
