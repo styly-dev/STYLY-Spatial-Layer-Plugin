@@ -57,7 +57,7 @@
 
 #### How to setup
 
-* Unity
+##### Unity
 
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
@@ -66,7 +66,7 @@
   * Create a new project as 3D (URP)
   * Switch platform to visionOS in Build Settings
 
-* STYLY visionOS Plugin for Unity
+##### STYLY visionOS Plugin for Unity
 
   * Option A: Use [OpenUPM](https://openupm.com/packages/com.styly.styly-vision-os-plugin/) (Recommended)
     * Prerequisites : [Node.js 14.18 or above](https://nodejs.org/en/download/)
@@ -88,13 +88,15 @@ openupm add com.styly.styly-vision-os-plugin
 <img width="552" alt="AddingGitURL" src="https://github.com/styly-dev/STYLY-VisionOS-Plugin/assets/387880/7df0413d-e91c-4210-98f4-eeb6055c303e">
 
 
-* Xcode
+##### Xcode
 
   * Install Xcode 15.2 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
   * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
   * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 1.0` -`Apple Vision Pro`
+
+##### Install STYLY for Vision Pro into the visionOS simulator
   * Install STYLY for visionOS into the simulator
-    * Download STYLY-Vision-OS-App.app and drag the app file to the simulator window from Finder.
+    * Download [STYLY-Vision-OS-App.app](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz) and drag the app file to the simulator window from Finder.
 ![Simulator](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/0e2da2ad-f45c-4452-b71e-9339ade58fd6)
 
 ### How to build and upload contents
