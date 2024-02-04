@@ -75,7 +75,21 @@ namespace Styly.VisionOs.Plugin
             Assert.That(result, Is.True);
             Assert.That(File.Exists( Path.Combine(outputPath, filename)), Is.True );
         }
-
+        
+        [Test]
+        public void MakeUploadPrefabTest()
+        {
+            var assetPath = $"Packages/{Config.PackageName}/Tests/Editor/TestData/Prefab/Cube.prefab";
+            var assetBundleUtility = new AssetBundleUtility();
+            var uploadPrefabPath = assetBundleUtility.MakeUploadPrefab(assetPath);
+            
+            Assert.That(uploadPrefabPath, Is.Not.Null);
+            var gameObject = AssetDatabase.LoadAssetAtPath<GameObject>(uploadPrefabPath);
+            Assert.That(gameObject, Is.Not.Null);
+            Assert.That(gameObject.name , Is.EqualTo("root_Cube"));
+            Assert.That(gameObject.transform.GetChild(0).name, Is.EqualTo("Cube"));
+        }
+        
         [Test]
         public void CreateBuildInfo()
         {
@@ -157,16 +171,5 @@ namespace Styly.VisionOs.Plugin
                 return new JValue((string)null);
             }
         }
-        
-        //
-        // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // // `yield return null;` to skip a frame.
-        // [UnityTest]
-        // public IEnumerator EditorVisionOsPluginTestWithEnumeratorPasses()
-        // {
-        //     // Use the Assert class to test conditions.
-        //     // Use yield to skip a frame.
-        //     yield return null;
-        // }
     }
 }

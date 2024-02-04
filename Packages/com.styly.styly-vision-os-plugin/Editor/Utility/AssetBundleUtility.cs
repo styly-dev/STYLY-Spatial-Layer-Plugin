@@ -108,6 +108,42 @@ namespace Styly.VisionOs.Plugin
                 mat.shader = replaceShader;
             }
         }
+
+        public string MakeUploadPrefab(string assetPath)
+        {
+            var targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+            if (targetPrefab == null)
+            {
+                Debug.LogError("Prefab not found at: " + assetPath);
+                return null;
+            }
+
+            var tmpDirectory = Path.Combine("Assets", "styly_tmp");
+            if (!Directory.Exists(tmpDirectory))
+            {
+                Directory.CreateDirectory(tmpDirectory);
+            }
+
+            var root = new GameObject($"root_{targetPrefab.name}")
+            {
+                transform =
+                {
+                    position = Vector3.zero,
+                    rotation = Quaternion.identity,
+                    localScale = Vector3.one
+                }
+            };
+
+            var gameObject = GameObject.Instantiate(targetPrefab, root.transform);
+            gameObject.name = targetPrefab.name;
+            
+            string savePath = Path.Combine(tmpDirectory, $"{root.name}.prefab");
+            PrefabUtility.SaveAsPrefabAsset(root, savePath);
+            AssetDatabase.SaveAssets();
+
+            GameObject.DestroyImmediate(root);
+            return savePath;
+        }
     }
 }
 
