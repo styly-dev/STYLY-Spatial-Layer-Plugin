@@ -69,6 +69,7 @@ namespace Styly.VisionOs.Plugin
         {
             SetPlatformRequiresReadableAssets(true);
             var assetBundleUtility = new AssetBundleUtility();
+            assetPath = assetBundleUtility.MakeUploadPrefab(assetPath);
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
             assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, BuildTarget.VisionOS);
             File.Delete(Path.Combine(outputPath, VisionOsDirectoryName));
