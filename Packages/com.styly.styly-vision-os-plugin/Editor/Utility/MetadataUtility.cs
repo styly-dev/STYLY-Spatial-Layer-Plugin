@@ -3,7 +3,6 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Styly.VisionOs.Plugin
@@ -22,9 +21,8 @@ namespace Styly.VisionOs.Plugin
         public string AssetType { get; set; }
         [JsonProperty("visual_scripting_version")]
         public string VisualScriptingVersion { get; set; }
-
     }
-    
+
     public class MetadataUtility
     {
         public static string CreateBuildInfoJson(string assetPath, string builtAt)
@@ -35,20 +33,20 @@ namespace Styly.VisionOs.Plugin
             {
                 assetType = "Scene";
             }
-            
+
             BuildInfo buildInfo = new BuildInfo
             {
-                PluginVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.PackageName),
+                PluginVersion = PackageManagerUtility.GetPackageVersion(Config.PackageName),
                 UnityVersion = UnityEngine.Application.unityVersion,
                 BuiltAt = builtAt,
                 AssetPath = assetPath,
                 AssetType = assetType,
-                VisualScriptingVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.VisualScriptingName)
+                VisualScriptingVersion = PackageManagerUtility.GetPackageVersion(Config.VisualScriptingName)
             };
 
             var metadataJson = JsonConvert.SerializeObject(buildInfo, Formatting.Indented);
 
-            return metadataJson;        
+            return metadataJson;
         }
 
         public static string CreateMetaJson(string assetPath)
@@ -57,13 +55,13 @@ namespace Styly.VisionOs.Plugin
             var buildInfo = CreateBuildInfoJson(assetPath, date);
             var target = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
             var graph = VisualScriptingParameterUtility.GetParameterDefinitionJson(target);
-            
+
             var buildInfoJObject = JObject.Parse(buildInfo);
             var graphJObject = JObject.Parse(graph);
             buildInfoJObject.Merge(graphJObject, new JsonMergeSettings());
-            
+
             var mergedJson = buildInfoJObject.ToString();
-            
+
             return mergedJson;
         }
     }

@@ -71,7 +71,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Others
 **/.DS_Store
-
 .idea
-
+/_[Bb]uild/
+/[Aa]ssets/_temp/
+/[Aa]ssets/_temp.meta
+/_Output/*
