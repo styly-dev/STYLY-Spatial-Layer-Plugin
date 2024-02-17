@@ -11,7 +11,7 @@ namespace Styly.VisionOs.Plugin
     {
         public static string GetPackageVersion(string packageName)
         {
-            var request = Client.List(); // This requests the list of packages
+            var request = Client.List(true, true); // This requests the list of packages
             while (!request.IsCompleted) { } // Wait until the request is completed
 
             if (request.Status == StatusCode.Success)
