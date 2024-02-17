@@ -9,80 +9,27 @@ namespace Styly.VisionOs.Plugin
 {
     public class PackageManagerUtility
     {
-        private static PackageManagerUtility instance;
-
-        public static PackageManagerUtility Instance => instance ??= new PackageManagerUtility();
-
-        public string GetManifestJsonFileText()
+        public static string GetPackageVersion(string packageName)
         {
-            var result = Path.GetFullPath("Packages");
-            var manifestPath = Path.Combine(result, "manifest.json");
+            var request = Client.List(); // This requests the list of packages
+            while (!request.IsCompleted) { } // Wait until the request is completed
 
-            if (!File.Exists(manifestPath))
+            if (request.Status == StatusCode.Success)
             {
-                return null;
-            }
-
-            var manifestJsonFile = File.ReadAllText(manifestPath);
-
-            return manifestJsonFile;
-        }
-
-        private PackageInfo targetPackageInfo;
-
-        private Dictionary<string, PackageInfo> packageInfoDic = new Dictionary<string, PackageInfo>();
-
-        public String GetPackagePath(string packageId)
-        {
-            IEnumerator t = GetPackageInfoCoroutine(packageId);
-            while (t.MoveNext())
-            {
-                Debug.Log("GetPackagePath waiting...");
-            }
-
-            return targetPackageInfo.resolvedPath;
-        }
-
-        public string GetPackageVersion(string packageId)
-        {
-            var t = GetPackageInfoCoroutine(packageId);
-            while (t.MoveNext())
-            {
-                Debug.Log("GetPackagePath waiting...");
-            }
-
-            return targetPackageInfo?.version;
-        }
-
-        private IEnumerator GetPackageInfoCoroutine(string targetPackage)
-        {
-            if (packageInfoDic.TryGetValue(targetPackage, out targetPackageInfo))
-            {
-                yield break;
-            }
-
-            var listRequest = UnityEditor.PackageManager.Client.List();
-
-            while (listRequest.Status == StatusCode.InProgress)
-            {
-                yield return null;
-            }
-
-            if (listRequest.Status == StatusCode.Success)
-            {
-                foreach (var packageInfo in listRequest.Result)
+                foreach (var package in request.Result)
                 {
-                    Debug.Log(packageInfo.packageId + " : " + packageInfo.resolvedPath);
-                    string[] buff = packageInfo.packageId.Split('@');
-
-                    packageInfoDic[buff[0]] = packageInfo;
+                    if (package.name == packageName)
+                    {
+                        return package.version;
+                    }
                 }
             }
-
-            if (packageInfoDic.TryGetValue(targetPackage, out targetPackageInfo))
+            else if (request.Status >= StatusCode.Failure)
             {
-                Debug.Log("Success! :" + targetPackageInfo.name);
+                Debug.LogError("Failed to get package version.");
             }
+            // Return an empty string or null if the package is not found
+            return null;
         }
     }
 }
