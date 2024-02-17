@@ -27,7 +27,7 @@ namespace Styly.VisionOs.Plugin
             VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
             root.Add(labelFromUXML);
 
-            var packageVersion = PackageManagerUtility.Instance.GetPackageVersion(Config.PackageName);
+            var packageVersion = PackageManagerUtility.GetPackageVersion(Config.PackageName);
             var versionLabel = root.Q<Label>("PluginVersionLabel");
             versionLabel.text = packageVersion;
 
