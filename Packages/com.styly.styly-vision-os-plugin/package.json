@@ -6,7 +6,8 @@
   "description": "STYLY Vision OS Plugin",
   "dependencies": {
     "com.unity.visualscripting": "1.9.1",
-    "com.unity.nuget.newtonsoft-json": "3.2.1"
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.xr.arfoundation": "5.1.2"
   },
   "author": {
     "name": "STYLY, Inc.",
