@@ -206,7 +206,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.core-utils": {
-      "version": "2.2.3",
+      "version": "2.3.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
