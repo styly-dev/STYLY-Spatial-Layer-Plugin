@@ -1,5 +1,7 @@
 # STYLY visionOS Plugin for Unity
 
+![Kujira](https://github.com/styly-dev/STYLY-visionOS-Plugin/assets/387880/f8c5a959-ef49-4ed3-b06b-db367624766f)
+
 ### What is this plugin?
 * You can upload your Unity contents to [STYLY for Vision Pro](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
 
