@@ -70,7 +70,7 @@ namespace Styly.VisionOs.Plugin
             SetPlatformRequiresReadableAssets(true);
             var assetBundleUtility = new AssetBundleUtility();
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
-            //ARBuildPreprocess.ARBuildPreprocessBuild(BuildTarget.VisionOS);
+            ARBuildPreprocess.ARBuildPreprocessBuild(BuildTarget.VisionOS);
             assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, BuildTarget.VisionOS);
             File.Delete(Path.Combine(outputPath, VisionOsDirectoryName));
             File.Delete(Path.Combine(outputPath, $"{VisionOsDirectoryName}.manifest"));
