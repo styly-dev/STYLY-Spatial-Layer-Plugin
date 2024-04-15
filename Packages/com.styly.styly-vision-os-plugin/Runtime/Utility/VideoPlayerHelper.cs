@@ -64,7 +64,7 @@ namespace Styly
         void Update()
         {
 #if USE_POLYSPATIAL
-        if (targetRenderTexture) { MarkDirty(); }
+        if (targetRenderTexture) { MarkDirty_to_RenderTexture(); }
 #endif
         }
 
