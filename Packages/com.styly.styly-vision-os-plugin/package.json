@@ -19,6 +19,11 @@
       "displayName": "ShaderGraph samples",
       "description": "Portal Effect Sample",
       "path": "Samples~/ShaderGraph"
+    },
+    {
+      "displayName": "Video Player Sample",
+      "description": "Video Player Sample for visionOS",
+      "path": "Samples~/VideoPlayer"
     }
   ]
 }
