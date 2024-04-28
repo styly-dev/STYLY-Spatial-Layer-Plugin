@@ -70,7 +70,9 @@
 
 ##### STYLY visionOS Plugin for Unity
 
-  * Option A: Use [OpenUPM](https://openupm.com/packages/com.styly.styly-vision-os-plugin/) (Recommended)
+  * Option A (Easiest): Download [Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) including STYLY visionOS Plugin
+
+  * Option B: Use [OpenUPM](https://openupm.com/packages/com.styly.styly-vision-os-plugin/) (Recommended)
     * Prerequisites : [Node.js 14.18 or above](https://nodejs.org/en/download/)
 ```sh
 # Install openupm-cli
@@ -82,13 +84,6 @@ cd YOUR_UNITY_PROJECT_DIR
 # Install package
 openupm add com.styly.styly-vision-os-plugin
 ```
-
-  * Option B: Add git URL
-    * Add the plugin package git URL to `Window` - `Package Manager` - `+` - `Add package from git URL`  
-    * Plugin git URL: `https://github.com/styly-dev/STYLY-VisionOS-Plugin.git?path=Packages/com.styly.styly-vision-os-plugin#main`
-
-<img width="552" alt="AddingGitURL" src="https://github.com/styly-dev/STYLY-VisionOS-Plugin/assets/387880/7df0413d-e91c-4210-98f4-eeb6055c303e">
-
 
 ##### Xcode
 
