@@ -161,8 +161,9 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.UnityTechnologies.com.unity.template.urpblank
-    Standalone: com.Unity-Technologies.com.unity.template.urp-blank
+    Android: com.STYLY.STYLYVision0SPlugin
+    Standalone: com.STYLY.STYLY-Vision0S-Plugin
+    VisionOS: com.STYLY.STYLY-Vision0S-Plugin
     iPhone: com.STYLY.STYLY-Vision0S-Plugin
   buildNumber:
     Standalone: 0
@@ -812,7 +813,11 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    Standalone: UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    VisionOS: UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
+    iPhone: UNIGLTF_DISABLE_DEFAULT_GLTF_IMPORTER;UNIGLTF_DISABLE_DEFAULT_GLB_IMPORTER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -866,6 +871,7 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
     a: 1}
   metroSplashScreenUseBackgroundColor: 0
+  syncCapabilities: 0
   platformCapabilities: {}
   metroTargetDeviceFamilies: {}
   metroFTAName: 
