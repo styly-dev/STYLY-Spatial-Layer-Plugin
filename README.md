@@ -73,6 +73,7 @@
 
   * Option B: Use [OpenUPM](https://openupm.com/packages/com.styly.styly-vision-os-plugin/) (Recommended)
     * Prerequisites : [Node.js 14.18 or above](https://nodejs.org/en/download/)
+
 ```sh
 # Install openupm-cli
 npm install -g openupm-cli
