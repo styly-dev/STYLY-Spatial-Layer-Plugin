@@ -62,7 +62,7 @@
 
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
-    * Install Unity [2022.3.18](https://unity.com/ja/releases/editor/whats-new/2022.3.18) or later (Use 2022.3.XX) with modules:
+    * Install Unity [2022.3.26](https://unity.com/ja/releases/editor/whats-new/2022.3.26) or later (Use 2022.3.XX) with modules:
       * visionOS Build Support
   * Create a new project as 3D (URP)
   * Switch platform to visionOS in Build Settings
