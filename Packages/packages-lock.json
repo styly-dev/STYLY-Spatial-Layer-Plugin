@@ -63,14 +63,14 @@
       },
       "url": "https://package.openupm.com"
     },
-    "com.styly.styly-vision-os-plugin": {
-      "version": "file:com.styly.styly-vision-os-plugin",
+    "com.styly.styly-spatial-layer-plugin": {
+      "version": "file:com.styly.styly-spatial-layer-plugin",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
         "com.unity.visualscripting": "1.9.4",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
-        "com.unity.xr.arfoundation": "5.1.3",
+        "com.unity.xr.arfoundation": "5.1.4",
         "com.unity.textmeshpro": "3.0.7"
       }
     },
@@ -321,7 +321,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arfoundation": {
-      "version": "5.1.3",
+      "version": "5.1.4",
       "depth": 1,
       "source": "registry",
       "dependencies": {
