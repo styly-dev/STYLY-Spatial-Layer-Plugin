@@ -67,6 +67,7 @@ namespace Styly.VisionOs.Plugin
         
         private static void BuildAssetBundle(string assetPath, string outputPath)
         {
+            SetPreloadAudioData.SetPreloadDataOfAllAudioClips();
             SetPlatformRequiresReadableAssets(true);
             var assetBundleUtility = new AssetBundleUtility();
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
