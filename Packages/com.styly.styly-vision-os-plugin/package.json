@@ -3,11 +3,11 @@
   "version": "0.1.8",
   "displayName": "STYLY Spatial Layer Plugin",
   "unity": "2022.3",
-  "description": "STYLY Spatial Layer Plugin",
+  "description": "STYLY Spatial Layer Plugin for Vision Pro",
   "dependencies": {
     "com.unity.visualscripting": "1.9.4",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
-    "com.unity.xr.arfoundation": "5.1.3",
+    "com.unity.xr.arfoundation": "5.1.4",
     "com.unity.textmeshpro": "3.0.7"
   },
   "author": {
