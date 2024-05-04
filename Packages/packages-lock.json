@@ -64,7 +64,7 @@
       "url": "https://package.openupm.com"
     },
     "com.styly.styly-spatial-layer-plugin": {
-      "version": "file:com.styly.styly-vision-os-plugin",
+      "version": "file:com.styly.styly-spatial-layer-plugin",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
