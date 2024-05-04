@@ -1,5 +1,5 @@
 {
-    "name": "com.styly.styly-vision-os-plugin.Editor.Tests",
+    "name": "com.styly.styly-spatial-layer-plugin.Editor.Tests",
     "rootNamespace": "",
     "references": [
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
