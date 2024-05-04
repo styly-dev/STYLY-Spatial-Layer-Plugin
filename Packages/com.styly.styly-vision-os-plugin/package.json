@@ -1,9 +1,9 @@
 {
-  "name": "com.styly.styly-vision-os-plugin",
+  "name": "com.styly.styly-spatial-layer-plugin",
   "version": "0.1.8",
-  "displayName": "STYLY Vision OS Plugin",
+  "displayName": "STYLY Spatial Layer Plugin",
   "unity": "2022.3",
-  "description": "STYLY Vision OS Plugin",
+  "description": "STYLY Spatial Layer Plugin",
   "dependencies": {
     "com.unity.visualscripting": "1.9.4",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
