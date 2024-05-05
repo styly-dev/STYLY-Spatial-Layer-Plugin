@@ -15,7 +15,7 @@
 #### Requirements
 
 * Unity
-  * Unity 2022.3.26 or later (Use 2022.3.XX)
+  * Unity 2022.3.27 or later (Use 2022.3.XX)
   * Modules:
     * visionOS Build Support
   * Render pipelines: URP
@@ -28,7 +28,7 @@
 * [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 * [Website of STYLY for Vision Pro](https://spatial-layer.styly.cc/)
 * [Github repository](https://github.com/styly-dev/STYLY-VisionOS-Plugin)
-* [OpenUPM page](https://openupm.com/packages/com.styly.styly-vision-os-plugin/)
+* [OpenUPM page](https://openupm.com/packages/com.styly.styly-spatial-layer-plugin/)
 
 #### Supported features for STYLY visionOS Plugin
 
@@ -48,7 +48,6 @@
 
 #### Supported Visual Scripting Unity packages
 
-* [PolySpatial Visual Scripting Nodes](https://openupm.com/packages/com.styly.polyspatial-visualscripting-nodes/)
 * [VRM Visual Scripting Nodes](https://openupm.com/packages/com.from2001.vrm-visualscripting-nodes/)
 * [glTFast Visual Scripting Nodes](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
 * [Spectrum Visual Scripting Nodes](https://openupm.com/packages/com.from2001.spectrum-visualscripting-nodes/)
@@ -62,27 +61,27 @@
 
   * Install Unity via [Unity Hub](https://unity.com/unity-hub)
 
-    * Install Unity [2022.3.26](https://unity.com/ja/releases/editor/whats-new/2022.3.26) or later (Use 2022.3.XX) with modules:
+    * Install Unity [2022.3.27](https://unity.com/ja/releases/editor/whats-new/2022.3.27) or later (Use 2022.3.XX) with modules:
       * visionOS Build Support
-  * Create a new project as 3D (URP)
-  * Switch platform to visionOS in Build Settings
 
-##### STYLY visionOS Plugin for Unity
+##### Setup Unity project
 
-  * Option A (Easiest): Download [Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) including STYLY visionOS Plugin
+  * Option A (Easiest & recommended): Download [Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) including STYLY visionOS Plugin and supported packages
 
-  * Option B: Use [OpenUPM](https://openupm.com/packages/com.styly.styly-vision-os-plugin/) (Recommended)
+  * Option B (for existing project): Use [OpenUPM](https://openupm.com/packages/com.styly.styly-spatial-layer-plugin/) .
     * Prerequisites : [Node.js 14.18 or above](https://nodejs.org/en/download/)
 
 ```sh
-# Install openupm-cli
-npm install -g openupm-cli
+    # Install openupm-cli
+    npm install -g openupm-cli
 
-# Go to your unity project directory
-cd YOUR_UNITY_PROJECT_DIR
+    # Go to your unity project directory
+    cd YOUR_UNITY_PROJECT_DIR
 
-# Install package
-openupm add com.styly.styly-vision-os-plugin
+    # Install STYLY plugin for Unity
+    openupm add -f com.styly.styly-spatial-layer-plugin
+    # Install supported packages for STYLY
+    openupm add -f com.styly.package-collection-spatial-layer
 ```
 
 ##### Xcode
