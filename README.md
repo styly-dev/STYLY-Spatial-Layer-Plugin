@@ -1,4 +1,4 @@
-STYLY Spatial Layer Plugin for Vision Pro
+# STYLY Spatial Layer Plugin for Vision Pro
 
 ![Kujira](https://github.com/styly-dev/STYLY-visionOS-Plugin/assets/387880/f8c5a959-ef49-4ed3-b06b-db367624766f)
 
