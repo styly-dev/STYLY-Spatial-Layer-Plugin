@@ -8,7 +8,7 @@
 ### Notes
 * Contents of STYLY for Vision Pro is not compatible with STYLY for other platforms. Its code base is different from STYLY VR or STYLY mobile. 
 * STYLY for Vision Pro doesn't have 3D contents creation tools for now.
-* Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-VisionOS-Plugin/issues).  
+* Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/issues).  
 * Your contents will be published to the PUBLIC. Don't upload your contents which you want make private. 
 * Contents gallery on STYLY app is white list based now. STYLY team may pick up your contents display in the app.    
 
@@ -27,7 +27,7 @@
 #### Links
 * [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 * [Website of STYLY for Vision Pro](https://spatial-layer.styly.cc/)
-* [Github repository](https://github.com/styly-dev/STYLY-VisionOS-Plugin)
+* [Github repository](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/)
 * [OpenUPM page](https://openupm.com/packages/com.styly.styly-spatial-layer-plugin/)
 
 #### Supported features for STYLY visionOS Plugin
@@ -35,7 +35,7 @@
 * Mixed Reality mode: Bounded Volumes, Unbounded Volumes
 * Standard URP shaders: Lit, Simple Lit, Unlit and some shaders in supported Unity packages
 * Visual Scripting
-* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.0/manual/SupportedFeatures.html) page for the detail.
+* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.2/manual/SupportedFeatures.html) page for the detail.
 
 #### **NOT** Supported features for STYLY visionOS Plugin
 
