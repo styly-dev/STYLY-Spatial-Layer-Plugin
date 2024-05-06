@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "com.styly.package-collection-spatial-layer": "1.0.5",
+    "com.styly.package-collection-spatial-layer": "1.0.6",
+    "com.unity.cloud.draco.webgl-2022": "1.0.0",
+    "com.unity.cloud.ktx.webgl-2022": "1.0.1",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.ide.rider": "3.0.28",
     "com.unity.ide.visualstudio": "2.0.22",
@@ -56,7 +58,8 @@
         "com.styly.webrequest-visualscripting-nodes",
         "com.vrmc.gltf",
         "com.vrmc.vrm",
-        "com.vrmc.vrmshaders"
+        "com.vrmc.vrmshaders",
+        "org.khronos.unitygltf"
       ]
     }
   ]
