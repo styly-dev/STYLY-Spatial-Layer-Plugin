@@ -8,21 +8,20 @@
       "url": "https://package.openupm.com"
     },
     "com.from2001.gltfast-visualscripting-nodes": {
-      "version": "0.0.21",
+      "version": "0.1.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.burst": "1.8.13",
         "com.unity.visualscripting": "1.9.1",
-        "com.cysharp.unitask": "2.4.1",
+        "com.cysharp.unitask": "2.5.4",
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.styly.webrequest-visualscripting-nodes": "0.0.7",
-        "org.khronos.unitygltf": "2.10.2-rc",
+        "org.khronos.unitygltf": "2.12.0",
         "com.unity.cloud.draco": "5.0.2",
         "com.unity.cloud.ktx": "3.3.0",
-        "com.unity.meshopt.decompress": "0.1.0-preview.5",
+        "com.unity.meshopt.decompress": "0.1.0-preview.6",
         "com.unity.render-pipelines.universal": "10.10.1"
       },
       "url": "https://package.openupm.com"
@@ -51,7 +50,7 @@
       "url": "https://package.openupm.com"
     },
     "com.styly.package-collection-spatial-layer": {
-      "version": "1.0.6",
+      "version": "1.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -59,7 +58,7 @@
         "com.unity.probuilder": "5.2.2",
         "com.unity.visualscripting": "1.9.4",
         "com.from2001.vrm-visualscripting-nodes": "0.1.9",
-        "com.from2001.gltfast-visualscripting-nodes": "0.0.21",
+        "com.from2001.gltfast-visualscripting-nodes": "0.1.3",
         "com.from2001.spectrum-visualscripting-nodes": "0.0.3",
         "com.styly.webrequest-visualscripting-nodes": "0.0.7",
         "com.cysharp.unitask": "2.5.4",
@@ -209,7 +208,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.meshopt.decompress": {
-      "version": "0.1.0-preview.5",
+      "version": "0.1.0-preview.6",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -449,7 +448,7 @@
       "url": "https://package.openupm.com"
     },
     "org.khronos.unitygltf": {
-      "version": "2.10.2-rc",
+      "version": "2.12.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {

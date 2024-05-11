@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.styly.package-collection-spatial-layer": "1.0.6",
+    "com.styly.package-collection-spatial-layer": "1.0.7",
     "com.unity.cloud.draco.webgl-2022": "1.0.0",
     "com.unity.cloud.ktx.webgl-2022": "1.0.1",
     "com.unity.collab-proxy": "2.3.1",
