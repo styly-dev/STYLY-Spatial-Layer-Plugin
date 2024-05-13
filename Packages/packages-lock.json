@@ -37,29 +37,38 @@
       "url": "https://package.openupm.com"
     },
     "com.from2001.vrm-visualscripting-nodes": {
-      "version": "0.1.9",
+      "version": "0.1.11",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.visualscripting": "1.9.1",
-        "com.vrmc.vrm": "0.115.0",
+        "com.vrmc.vrm": "0.122.0",
         "com.unity.render-pipelines.universal": "10.10.1",
-        "com.cysharp.unitask": "2.4.1",
-        "com.styly.webrequest-visualscripting-nodes": "0.0.1"
+        "com.cysharp.unitask": "2.5.4",
+        "com.styly.webrequest-visualscripting-nodes": "0.0.5",
+        "com.segur.poly-spatial-environment-diffuse-shader": "0.3.0"
       },
       "url": "https://package.openupm.com"
     },
+    "com.segur.poly-spatial-environment-diffuse-shader": {
+      "version": "0.3.0",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.styly.package-collection-spatial-layer": {
-      "version": "1.0.7",
+      "version": "1.0.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.textmeshpro": "3.0.7",
         "com.unity.probuilder": "5.2.2",
         "com.unity.visualscripting": "1.9.4",
-        "com.from2001.vrm-visualscripting-nodes": "0.1.9",
+        "com.from2001.vrm-visualscripting-nodes": "0.1.11",
         "com.from2001.gltfast-visualscripting-nodes": "0.1.3",
         "com.from2001.spectrum-visualscripting-nodes": "0.0.3",
+        "jp.keijiro.osc-jack": "2.0.0",
         "com.styly.webrequest-visualscripting-nodes": "0.0.7",
         "com.cysharp.unitask": "2.5.4",
         "com.unity.inputsystem": "1.8.2",
@@ -419,32 +428,39 @@
       "url": "https://packages.unity.com"
     },
     "com.vrmc.gltf": {
-      "version": "0.115.0",
+      "version": "0.122.0",
       "depth": 3,
       "source": "registry",
       "dependencies": {
-        "com.vrmc.vrmshaders": "0.115.0",
+        "com.vrmc.vrmshaders": "0.122.0",
         "com.unity.modules.animation": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.vrmc.vrm": {
-      "version": "0.115.0",
+      "version": "0.122.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
-        "com.vrmc.vrmshaders": "0.115.0",
-        "com.vrmc.gltf": "0.115.0"
+        "com.vrmc.vrmshaders": "0.122.0",
+        "com.vrmc.gltf": "0.122.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.vrmc.vrmshaders": {
-      "version": "0.115.0",
+      "version": "0.122.0",
       "depth": 3,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.imageconversion": "1.0.0"
       },
+      "url": "https://package.openupm.com"
+    },
+    "jp.keijiro.osc-jack": {
+      "version": "2.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "org.khronos.unitygltf": {
