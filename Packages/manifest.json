@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.styly.package-collection-spatial-layer": "1.0.7",
+    "com.styly.package-collection-spatial-layer": "1.0.8",
     "com.unity.cloud.draco.webgl-2022": "1.0.0",
     "com.unity.cloud.ktx.webgl-2022": "1.0.1",
     "com.unity.collab-proxy": "2.3.1",
@@ -54,11 +54,13 @@
         "com.from2001.gltfast-visualscripting-nodes",
         "com.from2001.spectrum-visualscripting-nodes",
         "com.from2001.vrm-visualscripting-nodes",
+        "com.segur.poly-spatial-environment-diffuse-shader",
         "com.styly.package-collection-spatial-layer",
         "com.styly.webrequest-visualscripting-nodes",
         "com.vrmc.gltf",
         "com.vrmc.vrm",
         "com.vrmc.vrmshaders",
+        "jp.keijiro.osc-jack",
         "org.khronos.unitygltf"
       ]
     }
