@@ -52,21 +52,22 @@ namespace Styly.VisionOs.Plugin
         /// <param name="packageName">
         /// Example: com.company.packaganame or com.company.packaganame@0.1.1
         /// </param>
-        public static void AddUnityPackage(string packageName)
+        public static void AddUnityPackage(string packageNameWithVersion)
         {
-            var request = UnityEditor.PackageManager.Client.Add(packageName);
+            // Separate the package name and version
+            var packageName = packageNameWithVersion.Split('@')[0];
+            var version = packageNameWithVersion.Split('@').Length > 1 ? packageNameWithVersion.Split('@')[1] : null;
+
+            // If the package is not Unity official, add a scoped registry for OpenUPM
+            if (!packageName.StartsWith("com.unity."))
+            {
+                AddScopedRegistryOfOpenUpmPackage(packageName);
+            }
+
+            // Add the package
+            var request = UnityEditor.PackageManager.Client.Add(packageNameWithVersion);
             while (!request.IsCompleted) { }
             if (request.Error != null) { Debug.LogError(request.Error.message); }
-        }
-
-        /// <summary>
-        /// Install OpenUPM package
-        /// </summary>
-        /// <param name="packageName"></param>
-        public static void AddOpenUpmPackage(string packageName)
-        {
-            PackageManagerUtility.AddScopedRegistryOfOpenUpmPackage(packageName);
-            PackageManagerUtility.AddUnityPackage(packageName);
         }
 
         /// <summary>
