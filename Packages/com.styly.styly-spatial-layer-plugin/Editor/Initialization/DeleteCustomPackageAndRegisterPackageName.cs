@@ -33,9 +33,6 @@ namespace Styly
                 // Delete the package folder
                 if (Directory.Exists(MyPackagePath)) { Directory.Delete(MyPackagePath, true); }
 
-                // Add a scoped registry of the OpenUPM package
-                PackageManagerUtility.AddScopedRegistryOfOpenUpmPackage(MyPackageName);
-
                 // Add the package to the project
                 PackageManagerUtility.AddUnityPackage(MyPackageName + "@" + MyPackageVersion);
             }
