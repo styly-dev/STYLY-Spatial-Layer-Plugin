@@ -34,7 +34,18 @@ namespace Styly.VisionOs.Plugin
             // Return an empty string or null if the package is not found
             return null;
         }
-    
+
+        /// <summary>
+        /// Get package information by package name
+        /// </summary>
+        public static UnityEditor.PackageManager.PackageInfo GetPackageInfo(string packageName)
+        {
+            var request = Client.List(true, true);
+            while (!request.IsCompleted) { }
+            if (request.Status == StatusCode.Success) { return request.Result.FirstOrDefault(pkg => pkg.name == packageName); }
+            return null;
+        }
+
         /// <summary>
         /// Add a Unity package to the project
         /// </summary>
@@ -49,9 +60,19 @@ namespace Styly.VisionOs.Plugin
         }
 
         /// <summary>
+        /// Install OpenUPM package
+        /// </summary>
+        /// <param name="packageName"></param>
+        public static void AddOpenUpmPackage(string packageName)
+        {
+            PackageManagerUtility.AddScopedRegistryOfOpenUpmPackage(packageName);
+            PackageManagerUtility.AddUnityPackage(packageName);
+        }
+
+        /// <summary>
         /// Add a scoped registry of the OpenUPM package
         /// </summary>
-        public static void AddScopedRegistryOfOpenUpmPackage(string packageName)
+        static void AddScopedRegistryOfOpenUpmPackage(string packageName)
         {
             AddScopedRegistry(new ScopedRegistry
             {
@@ -104,9 +125,9 @@ namespace Styly.VisionOs.Plugin
             public Dictionary<string, string> dependencies = new();
             public List<ScopedRegistry> scopedRegistries = new();
         }
-    
-    
-    
-    
+
+
+
+
     }
 }
