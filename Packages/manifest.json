@@ -13,6 +13,8 @@
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
+    "com.unity.xr.meta-openxr": "1.0.1",
+    "com.unity.xr.openxr": "1.11.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -61,7 +63,8 @@
         "com.vrmc.vrm",
         "com.vrmc.vrmshaders",
         "jp.keijiro.osc-jack",
-        "org.khronos.unitygltf"
+        "org.khronos.unitygltf",
+        "com.styly.styly-xr-rig"
       ]
     }
   ]
