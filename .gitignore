@@ -90,10 +90,13 @@ crashlytics-build.properties
 /[Aa]ssets/link.xml
 /[Aa]ssets/link.xml.meta
 
-#BurstAot
+# BurstAot
 /Build_BurstDebugInformation_DoNotShip/StaticLibraries/lib_burst_generated.txt
-/ProjectSettings/BurstAotSettings_Android.json
-/ProjectSettings/BurstAotSettings_iOS.json
+/ProjectSettings/BurstAotSettings_*.json
+/ProjectSettings/CommonBurstAotSettings.json
+
+# Crash Report
+mono_crash.*.json
 
 # Others
 **/.DS_Store
@@ -104,3 +107,7 @@ crashlytics-build.properties
 /[Aa]ssets/_temp.meta
 /_Output/*
 /_Output.meta
+/[Aa]ssets/Samples/
+/[Aa]ssets/Samples.meta
+/[Aa]ssets/TextMesh Pro/
+/[Aa]ssets/TextMesh Pro.meta
