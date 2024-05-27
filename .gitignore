@@ -98,6 +98,14 @@ crashlytics-build.properties
 # Crash Report
 mono_crash.*.json
 
+# XR Device Simulator
+/[Aa]ssets/UnityXRContent/*
+/[Aa]ssets/UnityXRContent.meta
+/[Aa]ssets/XR/UserSimulationSettings/*
+/[Aa]ssets/XR/UserSimulationSettings.meta
+/[Aa]ssets/XR/XRGeneralSettingsPerBuildTarget.asset
+ContentPackages/com.unity.xr-content.xr-sim-environments-*.tgz
+
 # Others
 **/.DS_Store
 .idea
