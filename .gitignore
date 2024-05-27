@@ -99,6 +99,9 @@ crashlytics-build.properties
 /[Aa]ssets/Samples
 /[Aa]ssets/Samples.meta
 
+#TextMesh Pro files
+/[Aa]ssets/TextMesh Pro/*
+/[Aa]ssets/TextMesh Pro.meta
 
 # Crash Report
 mono_crash.*.json
