@@ -123,7 +123,4 @@ ContentPackages/com.unity.xr-content.xr-sim-environments-*.tgz
 /[Aa]ssets/_temp.meta
 /_Output/*
 /_Output.meta
-/[Aa]ssets/Samples/
-/[Aa]ssets/Samples.meta
-/[Aa]ssets/TextMesh Pro/
-/[Aa]ssets/TextMesh Pro.meta
+
