@@ -95,6 +95,11 @@ crashlytics-build.properties
 /ProjectSettings/BurstAotSettings_*.json
 /ProjectSettings/CommonBurstAotSettings.json
 
+#Samples
+/[Aa]ssets/Samples
+/[Aa]ssets/Samples.meta
+
+
 # Crash Report
 mono_crash.*.json
 
