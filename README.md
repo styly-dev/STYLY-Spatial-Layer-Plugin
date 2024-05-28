@@ -42,7 +42,6 @@
 * Fully Immersive VR, Windowed Apps
 * Your C# scripts
 * Custom shaders
-* Video player
 * Visual Effect Graph
 * Postprocessing Stack
 
@@ -52,6 +51,7 @@
 * [glTFast Visual Scripting Nodes](https://openupm.com/packages/com.from2001.gltfast-visualscripting-nodes/)
 * [Spectrum Visual Scripting Nodes](https://openupm.com/packages/com.from2001.spectrum-visualscripting-nodes/)
 * [WebRequest Visual Scripting Nodes](https://openupm.com/packages/com.styly.webrequest-visualscripting-nodes/)
+* [STYLY-XR-Rig](https://openupm.com/packages/com.styly.styly-xr-rig/)
 
   You are moe than welcome to recommend new custom Visual Scripting nodes to support.
 
