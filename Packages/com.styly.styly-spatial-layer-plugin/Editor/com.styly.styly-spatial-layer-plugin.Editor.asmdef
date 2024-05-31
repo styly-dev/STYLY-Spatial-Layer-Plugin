@@ -5,7 +5,8 @@
         "GUID:efc3be13805eb4f7daf619b7ff375a8b",
         "GUID:8b0c2853a940d4fd9979bac438eb5bf3",
         "GUID:e40ba710768534012815d3193fa296cb",
-        "GUID:f9fe0089ec81f4079af78eb2287a6163"
+        "GUID:f9fe0089ec81f4079af78eb2287a6163",
+        "GUID:ae3d1603ce9534ff5a9eb62408568574"
     ],
     "includePlatforms": [
         "Editor"
@@ -21,6 +22,11 @@
             "name": "com.styly.styly-xr-rig",
             "expression": "",
             "define": "USE_STYLY_XR_RIG"
+        },
+        {
+            "name": "com.unity.xr.visionos",
+            "expression": "",
+            "define": "USE_UNITY_XR_VISIONOS"
         }
     ],
     "noEngineReferences": false
