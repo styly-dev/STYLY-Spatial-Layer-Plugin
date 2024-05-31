@@ -86,7 +86,8 @@
         "com.unity.visualscripting": "1.9.4",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.xr.arfoundation": "5.1.4",
-        "com.unity.textmeshpro": "3.0.7"
+        "com.unity.textmeshpro": "3.0.7",
+        "com.unity.xr.management": "4.4.1"
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
@@ -442,7 +443,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.4.0",
+      "version": "4.4.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
