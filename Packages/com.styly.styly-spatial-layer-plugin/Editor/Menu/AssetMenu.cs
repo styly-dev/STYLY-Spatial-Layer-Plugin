@@ -67,6 +67,9 @@ namespace Styly.VisionOs.Plugin
         
         private static void BuildAssetBundle(string assetPath, string outputPath)
         {
+#if USE_UNITY_XR_VISIONOS
+            EnablePluginProviders.EnableXRPlugin(BuildTargetGroup.VisionOS, typeof(UnityEngine.XR.VisionOS.VisionOSLoader));
+#endif
             SetPreloadAudioData.SetPreloadDataOfAllAudioClips();
             SetPlatformRequiresReadableAssets(true);
             var assetBundleUtility = new AssetBundleUtility();
