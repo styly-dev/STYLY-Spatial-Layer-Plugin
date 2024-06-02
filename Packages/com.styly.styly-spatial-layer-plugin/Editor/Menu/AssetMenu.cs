@@ -23,6 +23,7 @@ namespace Styly.VisionOs.Plugin
             isProcessing = true;
 
             var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            var assetFileNameWithoutExtension = Path.GetFileNameWithoutExtension(assetPath);
             Debug.Log($"Selected asset:{assetPath}");
 
             if (!IsBuildTargetType(assetPath))
@@ -43,7 +44,7 @@ namespace Styly.VisionOs.Plugin
             }
             GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName));
 
-            ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
+            ZipFile.CreateFromDirectory(outputPath, $"{outputPath}_{assetFileNameWithoutExtension}.styly");
             EditorUtility.RevealInFinder(Config.OutputPath);
 
             Directory.Delete(outputPath, true);
@@ -56,10 +57,6 @@ namespace Styly.VisionOs.Plugin
 
         private static string PrepareOutputDirectory()
         {
-            if (Directory.Exists(Config.OutputPath))
-            {
-                Directory.Delete(Config.OutputPath, true);
-            }
             var outputPath = Path.Combine(Config.OutputPath, DateTime.Now.ToString("yyyyMMddHHmmss"));
             Debug.Log(outputPath);
             if (!Directory.Exists(outputPath))
