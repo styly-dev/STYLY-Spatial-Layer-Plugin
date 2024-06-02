@@ -23,6 +23,7 @@ namespace Styly.VisionOs.Plugin
             isProcessing = true;
 
             var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            var assetFileNameWithoutExtension = Path.GetFileNameWithoutExtension(assetPath);
             Debug.Log($"Selected asset:{assetPath}");
 
             if (!IsBuildTargetType(assetPath))
@@ -32,30 +33,31 @@ namespace Styly.VisionOs.Plugin
             }
 
             var outputPath = PrepareOutputDirectory();
-            
+
             CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, ThumbnailFileName));
             ExportBackupFileUtility.Export(assetPath, Path.Combine(outputPath, BackupDirectoryName));
-            BuildAssetBundle(assetPath, Path.Combine(outputPath, VisionOsDirectoryName));
-            GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName ));
-            
-            ZipFile.CreateFromDirectory(outputPath, $"{outputPath}.styly");
-            EditorUtility.RevealInFinder( Config.OutputPath );
-            
+            bool buildResult = BuildAssetBundle(assetPath, Path.Combine(outputPath, VisionOsDirectoryName));
+            if (buildResult == false)
+            {
+                Directory.Delete(outputPath, true);
+                return;
+            }
+            GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName));
+
+            ZipFile.CreateFromDirectory(outputPath, $"{outputPath}_{assetFileNameWithoutExtension}.styly");
+            EditorUtility.RevealInFinder(Config.OutputPath);
+
             Directory.Delete(outputPath, true);
-            
+
             var uri = new Uri(Config.UploadPage);
             Application.OpenURL(uri.AbsoluteUri);
-            
+
             isProcessing = false;
         }
 
         private static string PrepareOutputDirectory()
         {
-            if (Directory.Exists(Config.OutputPath))
-            {
-                Directory.Delete(Config.OutputPath,true);
-            }
-            var outputPath = Path.Combine(Config.OutputPath,DateTime.Now.ToString("yyyyMMddHHmmss"));
+            var outputPath = Path.Combine(Config.OutputPath, DateTime.Now.ToString("yyyyMMddHHmmss"));
             Debug.Log(outputPath);
             if (!Directory.Exists(outputPath))
             {
@@ -64,17 +66,22 @@ namespace Styly.VisionOs.Plugin
 
             return outputPath;
         }
-        
-        private static void BuildAssetBundle(string assetPath, string outputPath)
+
+        private static bool BuildAssetBundle(string assetPath, string outputPath)
         {
+#if USE_UNITY_XR_VISIONOS
+            EnablePluginProviders.EnableXRPlugin(BuildTargetGroup.VisionOS, typeof(UnityEngine.XR.VisionOS.VisionOSLoader));
+#endif
             SetPreloadAudioData.SetPreloadDataOfAllAudioClips();
             SetPlatformRequiresReadableAssets(true);
             var assetBundleUtility = new AssetBundleUtility();
             assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
             ARBuildPreprocess.ARBuildPreprocessBuild(BuildTarget.VisionOS);
-            assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, BuildTarget.VisionOS);
+            var buildResult = assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, BuildTarget.VisionOS);
             File.Delete(Path.Combine(outputPath, VisionOsDirectoryName));
             File.Delete(Path.Combine(outputPath, $"{VisionOsDirectoryName}.manifest"));
+
+            return buildResult != null;
         }
 
         private static void GenerateMetadata(string assetPath, string outputPath)
@@ -82,15 +89,15 @@ namespace Styly.VisionOs.Plugin
             var metadata = MetadataUtility.CreateMetaJson(assetPath);
             File.WriteAllText(outputPath, metadata);
         }
-        
+
         private static void GenerateParameter(string assetPath, string outputPath)
         {
             GameObject targetObj = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
-            
+
             var parameter = VisualScriptingParameterUtility.GetParameterDefinitionJson(targetObj);
             File.WriteAllText(outputPath, parameter);
         }
-        
+
         private static bool IsBuildTargetType(string path)
         {
             return Path.GetExtension(path).ToLower() == ".prefab";
@@ -100,22 +107,22 @@ namespace Styly.VisionOs.Plugin
         {
             var path = "ProjectSettings/ProjectSettings.asset";
             var asset = AssetDatabase.LoadAllAssetsAtPath(path).FirstOrDefault();
-        
+
             if (asset == null)
             {
                 Debug.LogError("Failed to load ProjectSettings.asset");
                 return;
             }
-        
+
             var serializedObject = new SerializedObject(asset);
             var property = serializedObject.FindProperty("platformRequiresReadableAssets");
-        
+
             if (property == null)
             {
                 Debug.LogError("Failed to find platformRequiresReadableAssets");
                 return;
             }
-        
+
             property.boolValue = val;
             serializedObject.ApplyModifiedProperties();
             Debug.Log("Set platformRequiresReadableAssets to " + property.boolValue);

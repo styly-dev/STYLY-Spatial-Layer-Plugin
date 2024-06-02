@@ -3,7 +3,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 namespace Styly.VisionOs.Plugin
 {
     /// <summary>
@@ -14,37 +13,45 @@ namespace Styly.VisionOs.Plugin
         public bool SwitchPlatform(BuildTarget buildTarget)
         {
             if (buildTarget == BuildTarget.VisionOS)
-            { 
+            {
                 return EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.VisionOS, BuildTarget.VisionOS);
             }
             return false;
         }
 
-         public AssetBundleManifest Build(string filename, string sourcePath, string destDirectory, BuildTarget buildTarget)
-         {
-             if (!Directory.Exists(destDirectory))
-             {
-                 Directory.CreateDirectory(destDirectory);
-             }
+        public AssetBundleManifest Build(string filename, string sourcePath, string destDirectory, BuildTarget buildTarget)
+        {
+            try
+            {
+                if (!Directory.Exists(destDirectory))
+                {
+                    Directory.CreateDirectory(destDirectory);
+                }
 
-             var outputFilePath = Path.Combine(destDirectory, filename);
-             if (File.Exists( outputFilePath))
-             {
-                 File.Delete(outputFilePath);
-             }
-             var outputManifestFilePath = $"{outputFilePath}.manifest";
-             if (File.Exists( outputManifestFilePath))
-             {
-                 File.Delete(outputManifestFilePath);
-             }
+                var outputFilePath = Path.Combine(destDirectory, filename);
+                if (File.Exists(outputFilePath))
+                {
+                    File.Delete(outputFilePath);
+                }
+                var outputManifestFilePath = $"{outputFilePath}.manifest";
+                if (File.Exists(outputManifestFilePath))
+                {
+                    File.Delete(outputManifestFilePath);
+                }
 
-             AssetBundleBuild[] buildMap = new AssetBundleBuild[1];
-             buildMap[0].assetBundleName = filename;
-             buildMap[0].assetNames = new string[] { sourcePath };
-             var buildResult = BuildPipeline.BuildAssetBundles(destDirectory, buildMap, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
+                AssetBundleBuild[] buildMap = new AssetBundleBuild[1];
+                buildMap[0].assetBundleName = filename;
+                buildMap[0].assetNames = new string[] { sourcePath };
+                var buildResult = BuildPipeline.BuildAssetBundles(destDirectory, buildMap, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
 
-             return buildResult;
-         }
+                return buildResult;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+                return null;
+            }
+        }
 
         public GameObject LoadFromAssetBundle(string path)
         {
@@ -72,7 +79,7 @@ namespace Styly.VisionOs.Plugin
             }
             return null;
         }
-        
+
         public void Migrate(GameObject obj)
         {
             var renderers = obj.GetComponentsInChildren<Renderer>(true);
@@ -102,7 +109,7 @@ namespace Styly.VisionOs.Plugin
 
             Shader replaceShader = null;
             replaceShader = Shader.Find(shaderName);
-        
+
             if (replaceShader != null)
             {
                 mat.shader = replaceShader;

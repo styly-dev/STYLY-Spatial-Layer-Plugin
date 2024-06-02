@@ -111,7 +111,6 @@ mono_crash.*.json
 /[Aa]ssets/UnityXRContent.meta
 /[Aa]ssets/XR/UserSimulationSettings/*
 /[Aa]ssets/XR/UserSimulationSettings.meta
-/[Aa]ssets/XR/XRGeneralSettingsPerBuildTarget.asset
 ContentPackages/com.unity.xr-content.xr-sim-environments-*.tgz
 
 # Others
