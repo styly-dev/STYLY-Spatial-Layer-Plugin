@@ -56,11 +56,7 @@ namespace Styly.VisionOs.Plugin
 
         private static string PrepareOutputDirectory()
         {
-            if (Directory.Exists(Config.OutputPath))
-            {
-                Directory.Delete(Config.OutputPath, true);
-            }
-            var outputPath = Path.Combine(Config.OutputPath, DateTime.Now.ToString("yyyyMMddHHmmss"));
+                        var outputPath = Path.Combine(Config.OutputPath, DateTime.Now.ToString("yyyyMMddHHmmss"));
             Debug.Log(outputPath);
             if (!Directory.Exists(outputPath))
             {
