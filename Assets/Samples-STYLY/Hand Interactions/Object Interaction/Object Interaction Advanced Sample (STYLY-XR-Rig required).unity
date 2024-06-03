@@ -3783,7 +3783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8291815833012195880}
   m_Layer: 0
-  m_Name: Object Interaction (Upload This Prefab to STYLY)
+  m_Name: Object Interaction Advanced (Upload This Prefab to STYLY)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
