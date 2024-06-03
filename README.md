@@ -118,3 +118,9 @@ Upload your built contents (.styly file) with its title, description and display
 * Click `Play on device` on the page.
 * Your content will be displayed.
 
+### STYLY-XR-Rig (Add-on)
+
+Right click at hierarchy window to install STYLY-XR-Rig, which allows you to develop and test adovanced features. You need a Unity Pro license to install it.
+<img width="898" alt="Install STYLY-XR-Rig" src="https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/assets/387880/4d9e6ec2-da84-4dee-a9c9-4b062a46ba1f">
+
+
