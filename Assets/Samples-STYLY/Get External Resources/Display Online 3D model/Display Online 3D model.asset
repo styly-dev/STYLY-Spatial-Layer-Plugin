@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"Display
-      Online 3D model","summary":null,"pan":{"x":0.0,"y":0.0},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-349.0,"y":-241.0},"guid":"098fb0b0-3a17-4cae-b619-4d37801f08d5","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{"glTF/glb
+      Online 3D model","summary":null,"pan":{"x":0.0,"y":0.0},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-655.0,"y":-195.0},"guid":"098fb0b0-3a17-4cae-b619-4d37801f08d5","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{"glTF/glb
       URL":{"$content":"https://styly.inc/wp-content/uploads/Files/DamagedHelmet.glb","$type":"System.String"},"Target
-      Game Object":null,"Normalize Scale":{"$content":true,"$type":"System.Boolean"}},"position":{"x":-105.0,"y":-237.0},"guid":"b9492764-db65-4a66-be5c-a26c6203e05d","$version":"A","$type":"GltfastVisualScriptingNodes.LoadGltf","$id":"11"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"inputTrigger","guid":"0e6606cb-cff8-4942-b010-9dd2fa95777b","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+      Game Object":null,"rotateAmount":{"x":0.0,"y":180.0,"z":0.0,"$type":"UnityEngine.Vector3"},"Normalize
+      Scale":{"$content":true,"$type":"System.Boolean"}},"position":{"x":-426.0,"y":-218.0},"guid":"b9492764-db65-4a66-be5c-a26c6203e05d","$version":"A","$type":"GltfastVisualScriptingNodes.LoadGltf","$id":"11"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"inputTrigger","guid":"0e6606cb-cff8-4942-b010-9dd2fa95777b","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
     _objectReferences: []

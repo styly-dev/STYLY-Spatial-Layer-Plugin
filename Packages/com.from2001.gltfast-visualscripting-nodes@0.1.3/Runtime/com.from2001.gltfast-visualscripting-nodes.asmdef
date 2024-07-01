@@ -1,0 +1,30 @@
+{
+    "name": "com.from2001.gltfast-visualscripting-nodes",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:21b0c8d1703a94250bfac916590cea4f",
+        "GUID:ea715009a4efd4c6cbc85be3ae097dd3",
+        "GUID:315d634a9ac6d460a9515f5a56be6311",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:a42927d1d4a3b4cda9b076a7adecb9cc",
+        "GUID:5e7ba8d6d26c84943b64dd07bd1c9510",
+        "GUID:40f39bff7bc9be34182ebe488fcf8228",
+        "GUID:d58a4b8a1f92baa4f8100941944470f7",
+        "GUID:fe848190f1a690142846fa6384b74e17",
+        "GUID:17181a83a8717a34d8ce050af64edd83",
+        "GUID:18d18f811ba286c49814567a3cfba688",
+        "GUID:1a0324566af4ed544918d6837a1f4e11",
+        "GUID:d688d3cbc2c1041f68fa250ae633471b",
+        "GUID:234ae69a98d734645952bb4c0be67d86"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
