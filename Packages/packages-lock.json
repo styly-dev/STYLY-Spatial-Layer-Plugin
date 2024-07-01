@@ -37,9 +37,9 @@
       "url": "https://package.openupm.com"
     },
     "com.from2001.vrm-visualscripting-nodes": {
-      "version": "0.1.11",
-      "depth": 1,
-      "source": "registry",
+      "version": "file:com.from2001.vrm-visualscripting-nodes@0.1.11",
+      "depth": 0,
+      "source": "embedded",
       "dependencies": {
         "com.unity.visualscripting": "1.9.1",
         "com.vrmc.vrm": "0.122.0",
@@ -47,12 +47,11 @@
         "com.cysharp.unitask": "2.5.4",
         "com.styly.webrequest-visualscripting-nodes": "0.0.5",
         "com.segur.poly-spatial-environment-diffuse-shader": "0.3.0"
-      },
-      "url": "https://package.openupm.com"
+      }
     },
     "com.segur.poly-spatial-environment-diffuse-shader": {
       "version": "0.3.0",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
@@ -478,7 +477,7 @@
     },
     "com.vrmc.gltf": {
       "version": "0.122.0",
-      "depth": 3,
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.vrmc.vrmshaders": "0.122.0",
@@ -488,7 +487,7 @@
     },
     "com.vrmc.vrm": {
       "version": "0.122.0",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.vrmc.vrmshaders": "0.122.0",
@@ -498,7 +497,7 @@
     },
     "com.vrmc.vrmshaders": {
       "version": "0.122.0",
-      "depth": 3,
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.imageconversion": "1.0.0"

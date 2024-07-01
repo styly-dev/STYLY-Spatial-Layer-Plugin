@@ -62,6 +62,7 @@ namespace Styly.VisionOs.Plugin
             {
                 var prefab = bundle.LoadAllAssets<GameObject>()[0];
                 var go = GameObject.Instantiate(prefab.gameObject);
+                Debug.Log(go);
                 go.name = prefab.name;
                 Migrate(go);
                 bundle.Unload(false);

@@ -1,0 +1,37 @@
+{
+  "name": "com.from2001.vrm-visualscripting-nodes",
+  "version": "0.1.11",
+  "displayName": "VRM Visual Scripting Nodes",
+  "description": "Unity Visual Scripting node library for VRM",
+  "unity": "2021.3",
+  "documentationUrl": "https://github.com/from2001/VRM_VisualScriptingNodes",
+  "changelogUrl": "",
+  "licensesUrl": "https://github.com/from2001/VRM_VisualScriptingNodes/blob/main/LICENSE",
+  "dependencies": {
+    "com.unity.visualscripting": "1.9.1",
+    "com.vrmc.vrm": "0.122.0",
+    "com.unity.render-pipelines.universal": "10.10.1",
+    "com.cysharp.unitask": "2.5.4",
+    "com.styly.webrequest-visualscripting-nodes": "0.0.5",
+    "com.segur.poly-spatial-environment-diffuse-shader": "0.3.0"
+  },
+  "keywords": [
+    "VRM",
+    "Visual Scripting"
+  ],
+  "author": {
+    "name": "from2001",
+    "email": "from2001@hotmail.com",
+    "url": "https://github.com/from2001/"
+  },
+  "samples": [
+    {
+      "displayName": "Usage samples",
+      "description": "Contains sample Visual Scripting Graphs for VRM Node",
+      "path": "Samples~/Sample1"
+    }
+  ],
+  "publishConfig": {
+    "registry": "https://package.openupm.com"
+  }
+}

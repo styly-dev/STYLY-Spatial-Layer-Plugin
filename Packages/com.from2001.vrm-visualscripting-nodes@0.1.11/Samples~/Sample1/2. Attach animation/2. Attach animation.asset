@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: 2. Attach animation
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"Attach
+      sanimation","summary":null,"pan":{"x":192.0,"y":20.46335},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-300.0,"y":-215.0},"guid":"79ca0710-d064-4ac8-a75a-19512ec01b08","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"coroutine":false,"defaultValues":{},"position":{"x":-297.0,"y":105.0},"guid":"7b1ffaee-b4d2-4a4f-892b-853bfa503275","$version":"A","$type":"Unity.VisualScripting.Update"},{"defaultValues":{"VRM
+      URL":{"$content":"","$type":"System.String"}},"position":{"x":-125.0,"y":-216.0},"guid":"11f1e39e-9ee2-4393-ba3b-b1edde89fd1e","$version":"A","$type":"VrmVisualScriptingNodes.LoadVRM","$id":"13"},{"chainable":false,"member":{"name":"runtimeAnimatorController","parameterTypes":null,"targetType":"UnityEngine.Animator","targetTypeName":"UnityEngine.Animator","$version":"A"},"defaultValues":{"target":null,"input":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":164.0,"y":-214.0},"guid":"c17ef876-f0b1-4c36-8574-f235bad0020d","$version":"A","$type":"Unity.VisualScripting.SetMember","$id":"15"},{"chainable":false,"member":{"name":"applyRootMotion","parameterTypes":null,"targetType":"UnityEngine.Animator","targetTypeName":"UnityEngine.Animator","$version":"A"},"defaultValues":{"target":null,"input":{"$content":true,"$type":"System.Boolean"}},"position":{"x":472.0,"y":-86.0},"guid":"32e9a805-8118-46e2-86ad-3c93af1db08f","$version":"A","$type":"Unity.VisualScripting.SetMember","$id":"18"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"URL
+      of VRM model","$type":"System.String"},"object":null},"position":{"x":-347.0,"y":-61.0},"guid":"26e53f6b-3217-41ca-ad04-e589e85de991","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"21"},{"sourceUnit":{"$ref":"13"},"sourceKey":"outputTrigger","destinationUnit":{"$ref":"15"},"destinationKey":"assign","guid":"ec425642-8c60-42ac-b9e9-44bfc4820a26","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"inputTrigger","guid":"8c1b7ba4-1412-4adb-9393-6d4494e901cc","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"assigned","destinationUnit":{"$ref":"18"},"destinationKey":"assign","guid":"57dee9de-1de1-418c-93b5-f4f3fe626fa1","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"Game
+      Object","destinationUnit":{"$ref":"15"},"destinationKey":"target","guid":"f72841da-0670-4109-84de-7546ab7b379a","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"Game
+      Object","destinationUnit":{"$ref":"18"},"destinationKey":"target","guid":"857f3dc8-a495-4f18-9ad9-16feaf681b56","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"value","destinationUnit":{"$ref":"13"},"destinationKey":"VRM
+      URL","guid":"f5be8d19-5b3a-444f-8fd5-d33a38cb8be5","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 9100000, guid: d414c9f2f23514b6ea3b654f58a8c917, type: 2}

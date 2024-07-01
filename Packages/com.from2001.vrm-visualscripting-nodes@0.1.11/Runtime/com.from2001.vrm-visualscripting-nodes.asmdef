@@ -1,0 +1,29 @@
+{
+    "name": "com.from2001.vrm-visualscripting-nodes",
+    "rootNamespace": "",
+    "references": [
+        "VRM10",
+        "Unity.VisualScripting.Core",
+        "Unity.VisualScripting.Flow",
+        "Unity.VisualScripting.State",
+        "UniGLTF",
+        "VRMShaders.VRM.IO.Runtime",
+        "VRMShaders.GLTF.IO.Runtime",
+        "UniTask",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "VrmLib",
+        "VRMShaders.VRM10.MToon10.Runtime",
+        "Unity.ShaderGraph.Utilities",
+        "com.styly.webrequest-visualscripting-nodes",
+        "Unity.PolySpatialEnvironmentDiffuseShader"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
