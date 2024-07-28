@@ -92,7 +92,7 @@ namespace Styly.VisionOs.Plugin
             Assert.That(buildInfo.AssetPath, Is.EqualTo(assetPath));
             Assert.That(buildInfo.BuiltAt, Is.EqualTo(date));
             Assert.That(buildInfo.AssetType, Is.EqualTo("Prefab"));
-            Assert.That(buildInfo.VisualScriptingVersion, Is.EqualTo("1.9.1"));
+            Assert.That(buildInfo.VisualScriptingVersion, Is.EqualTo("1.9.4"));
         }
 
         [Test]
