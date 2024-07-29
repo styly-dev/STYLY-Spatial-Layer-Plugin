@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8499543421489422115}
   - component: {fileID: -7991142178245097292}
   m_Layer: 0
-  m_Name: Yellow Transparent Mesh Material with Collider Prefab
+  m_Name: YellowTransparentMeshWithCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
