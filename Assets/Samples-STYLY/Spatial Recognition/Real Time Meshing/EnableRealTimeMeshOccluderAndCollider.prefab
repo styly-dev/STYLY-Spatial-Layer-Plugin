@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2969041794262028699}
   - component: {fileID: 8998755546648094231}
   m_Layer: 0
-  m_Name: EnableRealtimeMeshOcclusionAndCollider
+  m_Name: EnableRealTimeMeshOccluderAndCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
