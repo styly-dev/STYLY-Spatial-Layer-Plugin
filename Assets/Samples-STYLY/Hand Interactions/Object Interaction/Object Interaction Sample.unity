@@ -1024,7 +1024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6764795306650548273}
   m_Layer: 5
-  m_Name: ReactOnGrab
+  m_Name: ReactiveForGrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2658,7 +2658,7 @@ PrefabInstance:
     - target: {fileID: 6013766279551709923, guid: c0f0d9d58fa774a3492f45e2981b84b4,
         type: 3}
       propertyPath: m_Name
-      value: ReactOnGrab
+      value: ReactiveForGrab
       objectReference: {fileID: 0}
     - target: {fileID: 6013766279551709923, guid: c0f0d9d58fa774a3492f45e2981b84b4,
         type: 3}
