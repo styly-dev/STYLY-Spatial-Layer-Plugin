@@ -1,0 +1,1 @@
+This is a sample for 3D motion graphics animation.
