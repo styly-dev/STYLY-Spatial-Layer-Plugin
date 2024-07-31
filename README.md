@@ -59,11 +59,8 @@ You are moe than welcome to recommend new custom Visual Scripting nodes to suppo
 #### How to setup
 
 ##### Unity
-
-  * Install Unity via [Unity Hub](https://unity.com/unity-hub)
-
-    * Install Unity [2022.3.27](https://unity.com/ja/releases/editor/whats-new/2022.3.27) or later (Use 2022.3.XX) with modules:
-      * visionOS Build Support
+* Install Unity [2022.3.27](https://unity.com/ja/releases/editor/whats-new/2022.3.27) or later (Use 2022.3.XX) via [Unity Hub](https://unity.com/unity-hub) with modules:
+  * visionOS Build Support
 
 ##### Setup Unity project
 
@@ -86,14 +83,13 @@ You are moe than welcome to recommend new custom Visual Scripting nodes to suppo
 ```
 
 ##### Xcode
-
-  * Install Xcode 15.2 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
-  * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
-  * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 1.0` -`Apple Vision Pro`
+* Install Xcode 15.2 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
+* Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
+* Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 1.0` -`Apple Vision Pro`
 
 ##### Install STYLY for Vision Pro into the visionOS simulator
-  * Install STYLY for visionOS into the simulator
-    * Download [STYLY-Vision-OS-App.app](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz) and drag the app file to the simulator window from Finder.
+* Install STYLY for visionOS into the simulator
+  * Download [STYLY-Vision-OS-App.app](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz) and drag the app file and drop to the simulator window.
 ![Simulator](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/0e2da2ad-f45c-4452-b71e-9339ade58fd6)
 
 ### How to build and upload contents
