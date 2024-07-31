@@ -26,7 +26,7 @@
   * Apple Silicon Mac (M1/M2/M3)
 
 #### Links
-* [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
+* [STYLY app for visionOS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 * [Website of STYLY for Vision Pro](https://spatial-layer.styly.cc/)
 * [visionOS app release note](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/wiki/STYLY-for-Vision-Pro-Release-Notes)
 * [Github repository of this plugin](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/)
