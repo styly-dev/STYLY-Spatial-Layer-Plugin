@@ -1,0 +1,1 @@
+This is a sample to load a JSON and display content from it. Using JSON requries complicated parsing process. If you're not falimilar with JSON format, please learn the format first. This sample loads a JSON which contains pairs of an image URL and a title. Then display the image and title on the screen.
