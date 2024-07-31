@@ -3,14 +3,14 @@
 ![Kujira](https://github.com/styly-dev/STYLY-visionOS-Plugin/assets/387880/f8c5a959-ef49-4ed3-b06b-db367624766f)
 
 ### What is this plugin?
-* You can upload your Unity contents to [STYLY for Vision Pro](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
+* You can build your Unity contents for uplaoding to [STYLY for Vision Pro](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
 
 ### Notes
-* Contents of STYLY for Vision Pro is not compatible with STYLY for other platforms. Its code base is different from STYLY VR or STYLY mobile. 
-* STYLY for Vision Pro doesn't have 3D contents creation tools for now.
+* Contents of STYLY for Vision Pro is not compatible with [STYLY for other platforms (STYLY VR or STYLY mobile)](https://gallery.styly.cc/). 
+* STYLY for Vision Pro doesn't have 3D contents assembly tools for now.
 * Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/issues).  
-* Your contents will be published to the PUBLIC. Don't upload your contents which you want make private. 
-* Contents gallery on STYLY app is white list based now. STYLY team may pick up your contents display in the app.    
+* Your contents will be PUBLIC once your uploaded. Don't upload your contents which you want to keep private. 
+* The content gallery on the STYLY app is now managed on a whitelist basis. Please apply through [this APPICAtiON FORM](https://docs.google.com/forms/d/e/1FAIpQLSd6eK_mo6ECXy-fLZP53xkz9e6t-B_au_PSCE0eafIB0u86GQ/viewform) if you want your content to get listed.
 
 #### Requirements
 
@@ -27,23 +27,22 @@
 #### Links
 * [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 * [Website of STYLY for Vision Pro](https://spatial-layer.styly.cc/)
-* [Github repository](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/)
+* [Github repository of this plugin](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/)
 * [OpenUPM page](https://openupm.com/packages/com.styly.styly-spatial-layer-plugin/)
 
 #### Supported features for STYLY visionOS Plugin
 
 * Mixed Reality mode: Bounded Volumes, Unbounded Volumes
-* Standard URP shaders: Lit, Simple Lit, Unlit and some shaders in supported Unity packages
+* Standard URP materials: Lit, Simple Lit, Unlit (and some spacial materials)
 * Visual Scripting
 * Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.2/manual/SupportedFeatures.html) page for the detail.
 
 #### **NOT** Supported features for STYLY visionOS Plugin
 
 * Fully Immersive VR, Windowed Apps
-* Your C# scripts
-* Custom shaders
+* Scripting in C#
+* Custom shaders / Shader Graph
 * Visual Effect Graph
-* Postprocessing Stack
 
 #### Supported Visual Scripting Unity packages
 
@@ -53,7 +52,7 @@
 * [WebRequest Visual Scripting Nodes](https://openupm.com/packages/com.styly.webrequest-visualscripting-nodes/)
 * [STYLY-XR-Rig](https://openupm.com/packages/com.styly.styly-xr-rig/)
 
-  You are moe than welcome to recommend new custom Visual Scripting nodes to support.
+You are moe than welcome to recommend new custom Visual Scripting nodes to support.
 
 #### How to setup
 
