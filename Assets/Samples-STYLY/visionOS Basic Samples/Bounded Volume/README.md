@@ -1,0 +1,1 @@
+This sample is a show case content. The size of Bounded volume is 1m x 1m x 1m. When you create a bounded content, please keep it in your mind that content exceeding the size of Bounded volume will be cropped.
