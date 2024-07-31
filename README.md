@@ -11,7 +11,7 @@
 * STYLY for Vision Pro doesn't have 3D contents assembly tools for now.
 * Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/issues).  
 * Your contents will be PUBLIC once your uploaded. Don't upload your contents which you want to keep private. 
-* The content gallery on the STYLY app is now managed on a whitelist basis. Please apply through [this APPICAtiON FORM](https://docs.google.com/forms/d/e/1FAIpQLSd6eK_mo6ECXy-fLZP53xkz9e6t-B_au_PSCE0eafIB0u86GQ/viewform) if you want your content to get listed.
+* The content gallery on the STYLY app is now managed on a whitelist basis. Please apply through [this APPICATION FORM](https://docs.google.com/forms/d/e/1FAIpQLSd6eK_mo6ECXy-fLZP53xkz9e6t-B_au_PSCE0eafIB0u86GQ/viewform) if you want your content to get listed.
 
 #### Requirements
 
