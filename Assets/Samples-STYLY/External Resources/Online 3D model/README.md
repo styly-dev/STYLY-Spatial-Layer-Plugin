@@ -1,0 +1,1 @@
+This is a sample to load a 3D model (only glTF is supported.) and display it. This sample loads a 3D model from the URL. Then display the model in the space. STYLY has a dedicated plugin for loading 3D models and it provides a VisualScripting node. Please check the VisiusalScripting graph of "Display Online 3D model".

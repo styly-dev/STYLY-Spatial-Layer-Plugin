@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 7289033753831257704}
   - component: {fileID: 5170254715519932416}
   m_Layer: 0
-  m_Name: Load Online JSON (Upload this)
+  m_Name: Online JSON (Upload as prefab)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 8449701413717166389}
   - component: {fileID: 7229831638167555987}
   m_Layer: 0
-  m_Name: LoadImage
+  m_Name: Display title and image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
