@@ -3,7 +3,7 @@
 ![Kujira](https://github.com/styly-dev/STYLY-visionOS-Plugin/assets/387880/f8c5a959-ef49-4ed3-b06b-db367624766f)
 
 ### What is this plugin?
-* You can build your Unity contents for uplaoding to [STYLY for Vision Pro](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
+* You can build your Unity contents for uplaoding to [STYLY for Vision Pro](https://spatial-layer.styly.cc/) and enjoy it on [our app](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
 * This plugin also works a template including content samples for creations. [Downalod Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) 
 
 ### Notes
