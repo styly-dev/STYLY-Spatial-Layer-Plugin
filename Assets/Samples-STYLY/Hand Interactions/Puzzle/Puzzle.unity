@@ -446,75 +446,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 239447861793471967, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 239447861793471967, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1922250927745788943, guid: 963884c52e71f62418337eeb26ad4abc,
+    - target: {fileID: 1922250927745788943, guid: ff8c86edb4db2e04aad8b3e322cbf526,
         type: 3}
       propertyPath: m_Name
       value: Puzzle (Upload as Prefab)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7142584596319231091, guid: 963884c52e71f62418337eeb26ad4abc,
-        type: 3}
-      propertyPath: _data._json
-      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Origin","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Cube2","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ThresholdDegree","value":{"$content":100.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"ThresholdDistance","value":{"$content":0.1,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 963884c52e71f62418337eeb26ad4abc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ff8c86edb4db2e04aad8b3e322cbf526, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
