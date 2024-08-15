@@ -1,0 +1,1 @@
+This folder has samples for showcase. You will know what you can do with STYLY for Vision Pro. The samples may not be helpful as assets that you can use as it is. However, you can learn how to realize them by analyzing the setup.
