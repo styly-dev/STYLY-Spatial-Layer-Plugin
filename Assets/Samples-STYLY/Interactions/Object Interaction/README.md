@@ -24,5 +24,5 @@ In the setting of "XR General Grab Transformer", please allow scaling. (e.g. Ena
 
 For details, please check compoents attached to "ReactiveForGrab" object.
 
-# Object Interaction Advanced
-Explanation to be added.
+# Object Interaction Hover Effect (Unity Pro required)
+This is the same as Object Interaction but with hover effect. To realize hover effect, please add "VisionOS Hover Effect" component to your 3D objects.
