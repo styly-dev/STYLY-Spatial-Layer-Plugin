@@ -25,4 +25,4 @@ In the setting of "XR General Grab Transformer", please allow scaling. (e.g. Ena
 For details, please check compoents attached to "ReactiveForGrab" object.
 
 # Object Interaction Hover Effect (Unity Pro required)
-This is the same as Object Interaction but with hover effect. To realize hover effect, please add "VisionOS Hover Effect" component to your 3D objects.
+This is the same as Object Interaction but with hover effect. To realize hover effect, please add "VisionOS Hover Effect" component to your 3D objects. You should import STYLY-XR-Rig package to your project to use hover effect. [Right Click in Object Hierarchy] -> [XR] -> [Install STYLY-XR-Rig]
