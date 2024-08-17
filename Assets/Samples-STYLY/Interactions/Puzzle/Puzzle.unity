@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 7859730137542257671}
   - component: {fileID: 1608100054448290688}
   m_Layer: 0
-  m_Name: SPos
+  m_Name: STransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -947,7 +947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3580337263751476357}
   m_Layer: 0
-  m_Name: PuzzlePos
+  m_Name: Transforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1489,7 +1489,7 @@ GameObject:
   - component: {fileID: 3122371156651258165}
   - component: {fileID: 6155091281215920289}
   m_Layer: 0
-  m_Name: LPos
+  m_Name: LTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1509,7 +1509,7 @@ GameObject:
   - component: {fileID: 8094590318818939482}
   - component: {fileID: 5548313217461315503}
   m_Layer: 0
-  m_Name: CPos
+  m_Name: CTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1677,7 +1677,7 @@ GameObject:
   - component: {fileID: 8718362987113575429}
   - component: {fileID: 8944500694963452053}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1693,7 +1693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4778653604696606799}
   m_Layer: 0
-  m_Name: PuzzlePieces
+  m_Name: Pieces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
