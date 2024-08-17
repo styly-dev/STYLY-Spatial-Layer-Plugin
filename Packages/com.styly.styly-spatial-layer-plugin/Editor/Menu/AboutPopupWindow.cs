@@ -32,7 +32,7 @@ namespace Styly.VisionOs.Plugin
             versionLabel.text = packageVersion;
 
             var unityVersionLabel = root.Q<Label>("UnityVersionLabel");
-            unityVersionLabel.text = UnityEngine.Application.unityVersion;
+            unityVersionLabel.text = Application.unityVersion;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Styly.VisionOs.Plugin
         private static readonly string AssetBundleFileName = "assetbundle";
         private static readonly string BackupDirectoryName = "Backup";
 
-        [MenuItem(@"Assets/STYLY/Build prefab", false, 10000)]
+        [MenuItem(@"Assets/STYLY/Build Prefab")]
         private static void BuildContent()
         {
             isProcessing = true;
@@ -28,7 +28,7 @@ namespace Styly.VisionOs.Plugin
 
             if (!IsBuildTargetType(assetPath))
             {
-                Debug.LogError("Selected asset is not prefab");
+                Debug.LogError("Selected asset is not a Prefab.");
                 return;
             }
 
@@ -53,6 +53,15 @@ namespace Styly.VisionOs.Plugin
             Application.OpenURL(uri.AbsoluteUri);
 
             isProcessing = false;
+        }
+
+        [MenuItem(@"Assets/STYLY/Build Prefab", validate = true, priority = 10000)]
+        static bool ValidateBuildContent()
+        {
+            if (Application.isPlaying) return false;
+            if (Selection.objects.Length != 1) return false;
+            var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            return IsBuildTargetType(assetPath);
         }
 
         private static string PrepareOutputDirectory()

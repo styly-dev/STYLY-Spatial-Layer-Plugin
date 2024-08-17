@@ -1,0 +1,1 @@
+You will learn how to play and stop an audio. Please check the graph in this folder. The VisualScripting graph assumes that the GameObject which the graph is attached to has AudioSouce component and a AudioClip is set to the AudioSource. This graph plays the audio after 3 sec and continues playing for 10 sec then this graph stops playing.

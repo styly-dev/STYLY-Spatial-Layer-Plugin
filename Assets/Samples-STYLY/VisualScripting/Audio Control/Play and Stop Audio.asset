@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: Play and Stop Audio
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":42.23689,"y":-129.8604},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-506.0,"y":-288.0},"guid":"f2b8e74e-e6df-43e9-ad84-728156c888ff","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{"seconds":{"$content":3.0,"$type":"System.Single"},"unscaledTime":{"$content":false,"$type":"System.Boolean"}},"position":{"x":-323.0,"y":-264.0},"guid":"ac237f6a-2e29-4cc5-9b56-18fb3e21a2ae","$version":"A","$type":"Unity.VisualScripting.WaitForSecondsUnit","$id":"11"},{"defaultValues":{"seconds":{"$content":10.0,"$type":"System.Single"},"unscaledTime":{"$content":false,"$type":"System.Boolean"}},"position":{"x":91.0,"y":-196.0},"guid":"062812e9-ec44-4c35-aa3b-a6b2cabea6af","$version":"A","$type":"Unity.VisualScripting.WaitForSecondsUnit","$id":"13"},{"chainable":false,"parameterNames":[],"member":{"name":"Play","parameterTypes":[],"targetType":"UnityEngine.AudioSource","targetTypeName":"UnityEngine.AudioSource","$version":"A"},"defaultValues":{"target":null},"position":{"x":-108.0,"y":-215.0},"guid":"87f8f4aa-9a1e-4787-8b23-66f27518de2c","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"15"},{"chainable":false,"parameterNames":[],"member":{"name":"Stop","parameterTypes":[],"targetType":"UnityEngine.AudioSource","targetTypeName":"UnityEngine.AudioSource","$version":"A"},"defaultValues":{"target":null},"position":{"x":306.0,"y":-162.0},"guid":"e0de2297-562d-4075-b064-f0e065b949d4","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"19"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"39dc92c3-6054-4b0f-820d-ee7f81a00249","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"bb443391-658e-428f-b606-4f4cb0493bac","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"9d7d0ff7-86e2-4f51-bbae-ff2126f91fe8","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"946031c1-d74c-4370-b11b-b989e59b149c","$type":"Unity.VisualScripting.ControlConnection"},{"position":{"xMin":-352.0,"yMin":-440.0,"xMax":-135.0,"yMax":-295.0},"title":"How
+      it works","body":"This VisualScripting graph assumes that the GameObject which
+      this graph is attached to has AudioSouce component and a AudioClip is set.
+      This graph playes the audio after 3 sec and continue playing for 10 sec then
+      this graph stops playing.","colorTheme":"Classic","guid":"fe79d5ba-c2ce-4bdf-a2d8-22bd005a4e30","$type":"Unity.VisualScripting.StickyNote"}],"$version":"A"}}'
+    _objectReferences: []
