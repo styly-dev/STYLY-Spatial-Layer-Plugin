@@ -107,7 +107,7 @@ Upload your built contents (.styly file) with its title, description and display
 * Bounded: Your contents will be displayed in 1m x 1m x 1m size. Contents can be displayed with other apps.
 * Unbounded: Your contents will be displayed exclusively in a space.
 
-<img width="1033" alt="UploadContents" src="https://github.com/styly-dev/STYLY-VisionOS-Plugin/assets/387880/474b38a9-59c8-4e7d-9b5c-489ab2c59638">
+![upload](https://github.com/user-attachments/assets/409abb21-b1f5-49a4-9a7a-c17f2e3bcd5d)
 
 ### How to play the contents on STYLY
 
