@@ -90,6 +90,25 @@
         "com.unity.xr.management": "4.4.1"
       }
     },
+    "com.styly.styly-xr-rig": {
+      "version": "0.1.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.interaction.toolkit": "3.0.3",
+        "com.unity.xr.hands": "1.4.1",
+        "com.unity.polyspatial": "1.2.3",
+        "com.unity.polyspatial.visionos": "1.2.3",
+        "com.unity.polyspatial.xr": "1.2.3",
+        "com.unity.xr.visionos": "1.2.3",
+        "com.unity.xr.arfoundation": "5.1.4",
+        "com.unity.visualscripting": "1.9.4",
+        "com.unity.xr.management": "4.4.1",
+        "com.unity.xr.openxr": "1.11.0",
+        "com.unity.xr.meta-openxr": "1.0.1"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.styly.webrequest-visualscripting-nodes": {
       "version": "0.0.7",
       "depth": 1,
@@ -101,7 +120,7 @@
       "url": "https://package.openupm.com"
     },
     "com.unity.burst": {
-      "version": "1.8.13",
+      "version": "1.8.17",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -156,14 +175,32 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "2.3.1",
+      "version": "2.4.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.collections": {
+      "version": "2.1.4",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.4",
+        "com.unity.modules.unityanalytics": "1.0.0",
+        "com.unity.nuget.mono-cecil": "1.11.4"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ext.flatsharp": {
+      "version": "1.1.1",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
@@ -177,7 +214,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.28",
+      "version": "3.0.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -227,11 +264,64 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.mono-cecil": {
+      "version": "1.11.4",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.2.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.polyspatial": {
+      "version": "1.2.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.unity.render-pipelines.universal": "14.0.1",
+        "com.unity.collections": "2.1.4",
+        "com.unity.textmeshpro": "3.0.7",
+        "com.unity.xr.core-utils": "2.3.0",
+        "com.unity.ext.flatsharp": "1.1.1",
+        "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.inputsystem": "1.4.4",
+        "com.unity.modules.video": "1.0.0",
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.polyspatial.visionos": {
+      "version": "1.2.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.polyspatial": "1.2.3",
+        "com.unity.polyspatial.xr": "1.2.3",
+        "com.unity.xr.visionos": "1.2.3",
+        "com.unity.xr.management": "4.4.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.polyspatial.xr": {
+      "version": "1.2.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.unity.render-pipelines.universal": "14.0.1",
+        "com.unity.textmeshpro": "3.0.7",
+        "com.unity.xr.core-utils": "2.3.0",
+        "com.unity.inputsystem": "1.4.4",
+        "com.unity.polyspatial": "1.2.3",
+        "com.unity.xr.arfoundation": "5.1.0",
+        "com.unity.xr.hands": "1.1.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.probuilder": {
@@ -377,7 +467,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arfoundation": {
-      "version": "5.1.4",
+      "version": "5.1.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -473,6 +563,17 @@
         "com.unity.xr.legacyinputhelpers": "2.1.2",
         "com.unity.inputsystem": "1.6.3",
         "com.unity.xr.core-utils": "2.1.1"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.visionos": {
+      "version": "1.2.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.core-utils": "2.3.0",
+        "com.unity.xr.arfoundation": "5.1.0",
+        "com.unity.xr.management": "4.3.3"
       },
       "url": "https://packages.unity.com"
     },
