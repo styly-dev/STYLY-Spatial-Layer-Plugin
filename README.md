@@ -4,7 +4,7 @@
 
 ### What is this plugin?
 * You can build your Unity contents for uplaoding to [STYLY for Vision Pro](https://spatial-layer.styly.cc/) and enjoy it on [our app](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
-* This plugin also works a template including content samples for creations. [Downalod Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) 
+* This plugin also works a template including [content samples](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/wiki/Content-samples) for creations. [Downalod Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) 
 
 ### Notes
 * Contents of STYLY for Vision Pro is not compatible with [STYLY for other platforms (STYLY VR or STYLY mobile)](https://gallery.styly.cc/). 
