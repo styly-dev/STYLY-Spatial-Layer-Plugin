@@ -17,7 +17,7 @@ public class SimpleHttpServer
     public int port = 8181;
     public string path = "/";
     private bool serverRunning = false;
-    private readonly string assetBundleDir = "_Output/Serve";
+    private readonly string assetBundleDir = "_Output/Serve/VisionOS";
 
     public void StartServer()
     {
@@ -171,7 +171,8 @@ public class SimpleHttpServer
 
         if (!Directory.Exists(dirPath))
         {
-            throw new DirectoryNotFoundException($"Directory not found: {dirPath}");
+            Debug.LogError($"Directory not found: {dirPath}");
+            return new List<string>();
         }
 
         var files = Directory.GetFiles(dirPath);
@@ -204,7 +205,9 @@ public class SimpleHttpServer
         {
             var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
             sb.AppendLine("<tr>");
-            sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>{filename}</a></td>");
+            sb.AppendLine($"<td>{filename}</td>");
+            sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>Bounded</a></td>");
+            sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Unbounded'>Unbounded</a></td>");
             sb.AppendLine("</tr>");
         }
 
