@@ -144,7 +144,7 @@ namespace Styly.VisionOs.Plugin
              const string HostingDirectoryName = "Serve";
             
             var assetBundlePath = Path.Combine(outputPath, VisionOsDirectoryName, AssetBundleFileName);
-            var HostingDirPath = Path.Combine(Directory.GetParent(outputPath).ToString(), HostingDirectoryName);
+            var HostingDirPath = Path.Combine(Directory.GetParent(outputPath).ToString(), HostingDirectoryName, VisionOsDirectoryName);
             var assetBundleOutputPath = Path.Combine(HostingDirPath, $"{Path.GetFileName(outputPath)}_{assetFileNameWithoutExtension}");
             
             if (!Directory.Exists(HostingDirPath)) { Directory.CreateDirectory(HostingDirPath);}
