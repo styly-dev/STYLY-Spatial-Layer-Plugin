@@ -240,6 +240,7 @@ public class SimpleHttpServer
         if (!Directory.Exists(dirPath))
         {
             Debug.LogError($"Directory not found: {dirPath}");
+            Directory.CreateDirectory(dirPath);
             return new List<string>();
         }
 
@@ -265,24 +266,35 @@ public class SimpleHttpServer
         var sb = new StringBuilder();
 
         sb.AppendLine("<html>");
-        sb.AppendLine("<head><title>Files List</title></head>");
+        sb.AppendLine("<head><title>Contents List</title></head>");
         sb.AppendLine("<body>");
-        sb.AppendLine("<table border='1'>");
-
-        foreach (var filename in filenames)
+        sb.AppendLine("<h1>Contents List</h1>");
+        if (filenames.Count == 0)
         {
-            var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
-            var thumbnailUrl = $"http://{GetHostName()}:{port}/{ThumbnailDirName}/{filename}.png";
+            sb.AppendLine("<p>No contents found.</p>");
+        }
+        else
+        {
+            sb.AppendLine("<table border='1'>");
 
-            sb.AppendLine("<tr>");
-            sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>");
-            sb.AppendLine($"<td>{filename}</td>");
-            sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>Bounded</a></td>");
-            sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Unbounded'>Unbounded</a></td>");
-            sb.AppendLine("</tr>");
+            foreach (var filename in filenames)
+            {
+                var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
+                var thumbnailUrl = $"http://{GetHostName()}:{port}/{ThumbnailDirName}/{filename}.png";
+
+                sb.AppendLine("<tr>");
+                sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>");
+                sb.AppendLine($"<td>{filename}</td>");
+                sb.AppendLine(
+                    $"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>Bounded</a></td>");
+                sb.AppendLine(
+                    $"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Unbounded'>Unbounded</a></td>");
+                sb.AppendLine("</tr>");
+            }
+
+            sb.AppendLine("</table>");
         }
 
-        sb.AppendLine("</table>");
         sb.AppendLine("</body>");
         sb.AppendLine("</html>");
 
