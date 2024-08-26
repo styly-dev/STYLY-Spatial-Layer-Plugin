@@ -21,10 +21,14 @@ public class SimpleHttpServer
     private readonly string assetBundleDir = "_Output/Serve";
     private static readonly string VisionOsDirectoryName = "VisionOS";
     private static readonly string ThumbnailDirName = "Thumbnails";
+    private static readonly string HtmlFilePath = Path.Combine("_Output", "Serve", "index.html");
 
     public void StartServer()
     {
         if (serverRunning) return;
+
+        // サーバー起動時にHTMLファイルを静的に生成
+        GenerateStaticHtmlFile();
 
         httpListener.Prefixes.Add($"http://*:{port}{path}");
         httpListener.Start();
@@ -35,6 +39,18 @@ public class SimpleHttpServer
         RunServer().Forget();
     }
 
+    private void GenerateStaticHtmlFile()
+    {
+        var filenames = GetFilenamesSortedByTime();
+        var htmlContent = GenerateHtmlTable(filenames);
+
+        // HTMLファイルを保存
+        Directory.CreateDirectory(Path.GetDirectoryName(HtmlFilePath));
+        File.WriteAllText(HtmlFilePath, htmlContent);
+
+        Debug.Log($"Static HTML generated at: {HtmlFilePath}");
+    }
+
     private async UniTaskVoid RunServer()
     {
         while (serverRunning)
@@ -43,6 +59,12 @@ public class SimpleHttpServer
 
             Debug.Log($"{context.Request.HttpMethod} Request path: {context.Request.RawUrl}");
 
+            if (context.Request.RawUrl == "/index.html" || context.Request.RawUrl == "/")
+            {
+                await ServeStaticHtml(context);
+                continue;
+            }
+            
             if (context.Request.HttpMethod == "POST")
             {
                 var dataText = await new StreamReader(context.Request.InputStream,
@@ -52,17 +74,12 @@ public class SimpleHttpServer
 
             var requestPath = context.Request.RawUrl.Substring(1);
 
-            if (requestPath == "index.html" || requestPath == "")
-            {
-                await ResponseIndexHtml(context);
-                continue;
-            }
-            
             if (requestPath == "lastfilename")
             {
                 await ResponseLastFileName(context);
                 continue;
             }
+
             if (requestPath.StartsWith(ThumbnailDirName))
             {
                 await ResponseThumbnailData(context, requestPath);
@@ -88,20 +105,18 @@ public class SimpleHttpServer
         Debug.Log("Server stopped.");
     }
 
-    private async Task ResponseIndexHtml(HttpListenerContext context)
+    private async Task ServeStaticHtml(HttpListenerContext context)
     {
-        var html = GenerateHtmlTable(GetFilenamesSortedByTime());
-        byte[] buffer = Encoding.UTF8.GetBytes(html);
-
-        var response = context.Response;
-        response.ContentLength64 = buffer.Length;
-        response.ContentType = "text/html";
-        response.OutputStream.Write(buffer, 0, buffer.Length);
+        byte[] buffer = await File.ReadAllBytesAsync(HtmlFilePath);
+        context.Response.ContentLength64 = buffer.Length;
+        context.Response.ContentType = "text/html";
+        await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+        context.Response.OutputStream.Close();
     }
 
     private async UniTask ResponseFileData(HttpListenerContext context, string requestPath)
     {
-        string assetBundlePath = Path.Combine(assetBundleDir, "VisionOS", requestPath);
+        string assetBundlePath = Path.Combine(assetBundleDir, VisionOsDirectoryName, requestPath);
 
         var response = context.Response;
         
@@ -122,6 +137,7 @@ public class SimpleHttpServer
         }
         context.Response.Close();
     }
+
     private async UniTask ResponseThumbnailData(HttpListenerContext context, string requestPath)
     {
         requestPath = WebUtility.UrlDecode(requestPath);
@@ -139,7 +155,7 @@ public class SimpleHttpServer
                 {
                     response.ContentLength64 = fileStream.Length;
                     await fileStream.CopyToAsync(response.OutputStream);
-                    response.OutputStream.Flush();  // 明示的にストリームをフラッシュ
+                    response.OutputStream.Flush();
                 }
             }
             else
@@ -222,9 +238,8 @@ public class SimpleHttpServer
             var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
             var thumbnailUrl = $"http://{GetHostName()}:{port}/{ThumbnailDirName}/{filename}.png";
 
-            
             sb.AppendLine("<tr>");
-            sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>"); // サムネイル画像を表示
+            sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>");
             sb.AppendLine($"<td>{filename}</td>");
             sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>Bounded</a></td>");
             sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Unbounded'>Unbounded</a></td>");
