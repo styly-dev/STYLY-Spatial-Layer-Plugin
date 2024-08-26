@@ -1,0 +1,236 @@
+#if UNITY_EDITOR
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using UnityEditor;
+using UnityEngine;
+
+public class SimpleHttpServer
+{
+    readonly HttpListener httpListener = new HttpListener();
+
+    public int port = 8181;
+    public string path = "/";
+    private bool serverRunning = false;
+    private readonly string assetBundleDir = "_Output/Serve";
+
+    public void StartServer()
+    {
+        if (serverRunning) return;
+
+        httpListener.Prefixes.Add($"http://*:{port}{path}");
+        httpListener.Start();
+        serverRunning = true;
+
+        Debug.Log("Server started.");
+
+        RunServer().Forget();
+    }
+
+    private async UniTaskVoid RunServer()
+    {
+        while (serverRunning)
+        {
+            var context = await httpListener.GetContextAsync();
+
+            Debug.Log($"{context.Request.HttpMethod} Request path: {context.Request.RawUrl}");
+
+            if (context.Request.HttpMethod == "POST")
+            {
+                var dataText = await new StreamReader(context.Request.InputStream,
+                    context.Request.ContentEncoding).ReadToEndAsync();
+                Debug.Log(dataText);
+            }
+
+            var requestPath = context.Request.RawUrl.Substring(1);
+
+            if (requestPath == "index.html" || requestPath == "")
+            {
+                await ResponseIndexHtml(context);
+                continue;
+            }
+            
+            if (requestPath == "lastfilename")
+            {
+                await ResponseLastFileName(context);
+                continue;
+            }
+            if (requestPath.StartsWith("Thumbnails"))
+            {
+                await ResponseThumbnailData(context, requestPath);
+                continue;
+            }
+            
+            if (requestPath == "latest")
+            {
+                requestPath = GetLatestFilename();
+            }
+
+            requestPath = WWW.UnEscapeURL(requestPath);
+            await ResponseFileData(context, requestPath);
+        }
+    }
+
+    public void StopServer()
+    {
+        if (!serverRunning) return;
+
+        httpListener.Stop();
+        serverRunning = false;
+        Debug.Log("Server stopped.");
+    }
+
+    private async Task ResponseIndexHtml(HttpListenerContext context)
+    {
+        var html = GenerateHtmlTable(GetFilenamesSortedByTime());
+        byte[] buffer = Encoding.UTF8.GetBytes(html);
+
+        var response = context.Response;
+        response.ContentLength64 = buffer.Length;
+        response.ContentType = "text/html";
+        response.OutputStream.Write(buffer, 0, buffer.Length);
+    }
+
+    private async UniTask ResponseFileData(HttpListenerContext context, string requestPath)
+    {
+        string assetBundlePath = Path.Combine(assetBundleDir, requestPath);
+
+        var response = context.Response;
+        
+        if (File.Exists(assetBundlePath))
+        {
+            response.StatusCode = 200;
+            var buffer = File.ReadAllBytes(assetBundlePath);
+            context.Response.Headers.Add("Content-Disposition", "attachment; filename=" + requestPath);
+            response.ContentType = "binary/octet-stream";
+            response.ContentLength64 = buffer.Length;
+            var output = response.OutputStream;
+            await output.WriteAsync(buffer, 0, buffer.Length);
+            output.Close();
+        }
+        else
+        {
+            response.StatusCode = 404;
+        }
+        context.Response.Close();
+    }
+
+    private async UniTask ResponseThumbnailData(HttpListenerContext context, string requestPath)
+    {
+        string thumbnailPath = Path.Combine(assetBundleDir, requestPath);
+
+        var response = context.Response;
+        
+        if (File.Exists(thumbnailPath))
+        {
+            response.StatusCode = 200;
+            var buffer = File.ReadAllBytes(thumbnailPath);
+            response.ContentType = "image/png";
+            response.ContentLength64 = buffer.Length;
+            var output = response.OutputStream;
+            await output.WriteAsync(buffer, 0, buffer.Length);
+            output.Close();
+        }
+        else
+        {
+            response.StatusCode = 404;
+        }
+        context.Response.Close();
+    }
+
+    private async UniTask ResponseLastFileName(HttpListenerContext context)
+    {
+        var filename = GetLatestFilename();
+        Debug.Log($"ResponseLastName:{filename}");
+
+        var response = context.Response;
+        
+        response.StatusCode = 200;
+        var buffer = System.Text.Encoding.UTF8.GetBytes("{\"last filename\": \"" + WWW.EscapeURL(filename) + "\"}");
+        response.ContentType = "application/json";
+        response.ContentLength64 = buffer.Length;
+        var output = response.OutputStream;
+        await output.WriteAsync(buffer, 0, buffer.Length);
+        output.Close();
+        context.Response.Close();
+    }
+
+    private string GetLatestFilename()
+    {
+        return Path.GetFileName(GetFilenamesSortedByTime().FirstOrDefault());
+    }
+    
+    private List<string> GetFilenamesSortedByTime()
+    {
+        string dirPath = assetBundleDir;
+
+        if (!Directory.Exists(dirPath))
+        {
+            throw new DirectoryNotFoundException($"Directory not found: {dirPath}");
+        }
+
+        var files = Directory.GetFiles(dirPath);
+
+        if (files.Length == 0)
+        {
+            return new List<string>();
+        }
+
+        var validFiles = files.Where(f => (Path.GetFileName(f) != "VOS" && ! System.Text.RegularExpressions
+            .Regex.IsMatch(f, ".manifest")));
+
+        var sortedFiles = validFiles.OrderByDescending(File.GetCreationTime).ToList();
+
+        Debug.Log(string.Join(",",sortedFiles.Select(Path.GetFileName).ToList()));
+        
+        return sortedFiles.Select(Path.GetFileName).ToList();
+    }
+    
+    private string GenerateHtmlTable(List<string> filenames)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine("<html>");
+        sb.AppendLine("<head><title>Files List</title></head>");
+        sb.AppendLine("<body>");
+        sb.AppendLine("<table border='1'>");
+
+        foreach (var filename in filenames)
+        {
+            var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
+            sb.AppendLine("<tr>");
+            sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>{filename}</a></td>");
+            sb.AppendLine("</tr>");
+        }
+
+        sb.AppendLine("</table>");
+        sb.AppendLine("</body>");
+        sb.AppendLine("</html>");
+
+        return sb.ToString();
+    }
+
+    public static string GetHostName()
+    {
+        string hostname = Dns.GetHostName();
+        IPAddress[] adrList = Dns.GetHostAddresses(hostname);
+        
+        var usableIps = adrList
+            .Where(ip => ip.AddressFamily == AddressFamily.InterNetwork)
+            .Where(ip => !ip.Equals(IPAddress.Parse("127.0.0.1")));
+
+        var ipAddresses = usableIps as IPAddress[] ?? usableIps.ToArray();
+        foreach (var ip in ipAddresses)
+        {
+            Debug.Log(ip);
+        }
+
+        return ipAddresses.FirstOrDefault().ToString();
+    }
+}
+#endif
