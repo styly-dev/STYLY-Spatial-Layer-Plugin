@@ -44,6 +44,8 @@ namespace Styly.VisionOs.Plugin
             }
             GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName));
 
+            ConpyAssetBundleToHostingDirectory(outputPath, assetFileNameWithoutExtension);
+            
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}_{assetFileNameWithoutExtension}.styly");
             EditorUtility.RevealInFinder(Config.OutputPath);
 
@@ -135,6 +137,19 @@ namespace Styly.VisionOs.Plugin
             property.boolValue = val;
             serializedObject.ApplyModifiedProperties();
             Debug.Log("Set platformRequiresReadableAssets to " + property.boolValue);
+        }
+
+        private static void ConpyAssetBundleToHostingDirectory(string outputPath, string assetFileNameWithoutExtension)
+        {
+             const string HostingDirectoryName = "Serve";
+            
+            var assetBundlePath = Path.Combine(outputPath, VisionOsDirectoryName, AssetBundleFileName);
+            var HostingDirPath = Path.Combine(Directory.GetParent(outputPath).ToString(), HostingDirectoryName);
+            var assetBundleOutputPath = Path.Combine(HostingDirPath, $"{Path.GetFileName(outputPath)}_{assetFileNameWithoutExtension}");
+            
+            if (!Directory.Exists(HostingDirPath)) { Directory.CreateDirectory(HostingDirPath);}
+            
+            File.Copy(assetBundlePath, assetBundleOutputPath);
         }
     }
 

@@ -87,7 +87,8 @@
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.xr.arfoundation": "5.1.4",
         "com.unity.textmeshpro": "3.0.7",
-        "com.unity.xr.management": "4.4.1"
+        "com.unity.xr.management": "4.4.1",
+        "com.cysharp.unitask": "2.5.4"
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
