@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,9 @@ public class SimpleHttpServer
     public int port = 8181;
     public string path = "/";
     private bool serverRunning = false;
-    private readonly string assetBundleDir = "_Output/Serve/VisionOS";
+    private readonly string assetBundleDir = "_Output/Serve";
+    private static readonly string VisionOsDirectoryName = "VisionOS";
+    private static readonly string ThumbnailDirName = "Thumbnails";
 
     public void StartServer()
     {
@@ -60,7 +63,7 @@ public class SimpleHttpServer
                 await ResponseLastFileName(context);
                 continue;
             }
-            if (requestPath.StartsWith("Thumbnails"))
+            if (requestPath.StartsWith(ThumbnailDirName))
             {
                 await ResponseThumbnailData(context, requestPath);
                 continue;
@@ -98,7 +101,7 @@ public class SimpleHttpServer
 
     private async UniTask ResponseFileData(HttpListenerContext context, string requestPath)
     {
-        string assetBundlePath = Path.Combine(assetBundleDir, requestPath);
+        string assetBundlePath = Path.Combine(assetBundleDir, "VisionOS", requestPath);
 
         var response = context.Response;
         
@@ -119,28 +122,41 @@ public class SimpleHttpServer
         }
         context.Response.Close();
     }
-
     private async UniTask ResponseThumbnailData(HttpListenerContext context, string requestPath)
     {
+        requestPath = WebUtility.UrlDecode(requestPath);
         string thumbnailPath = Path.Combine(assetBundleDir, requestPath);
 
         var response = context.Response;
-        
-        if (File.Exists(thumbnailPath))
+    
+        try
         {
-            response.StatusCode = 200;
-            var buffer = File.ReadAllBytes(thumbnailPath);
-            response.ContentType = "image/png";
-            response.ContentLength64 = buffer.Length;
-            var output = response.OutputStream;
-            await output.WriteAsync(buffer, 0, buffer.Length);
-            output.Close();
+            if (File.Exists(thumbnailPath))
+            {
+                response.StatusCode = 200;
+                response.ContentType = "image/png";
+                using (var fileStream = new FileStream(thumbnailPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, bufferSize: 4096, useAsync: true))
+                {
+                    response.ContentLength64 = fileStream.Length;
+                    await fileStream.CopyToAsync(response.OutputStream);
+                    response.OutputStream.Flush();  // 明示的にストリームをフラッシュ
+                }
+            }
+            else
+            {
+                response.StatusCode = 404;
+            }
         }
-        else
+        catch (Exception ex)
         {
-            response.StatusCode = 404;
+            Debug.LogError($"Error while serving thumbnail: {ex.Message}");
+            response.StatusCode = 500;
         }
-        context.Response.Close();
+        finally
+        {
+            response.OutputStream.Close();
+            context.Response.Close();
+        }
     }
 
     private async UniTask ResponseLastFileName(HttpListenerContext context)
@@ -167,7 +183,7 @@ public class SimpleHttpServer
     
     private List<string> GetFilenamesSortedByTime()
     {
-        string dirPath = assetBundleDir;
+        string dirPath = Path.Combine(assetBundleDir, VisionOsDirectoryName);
 
         if (!Directory.Exists(dirPath))
         {
@@ -204,7 +220,11 @@ public class SimpleHttpServer
         foreach (var filename in filenames)
         {
             var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
+            var thumbnailUrl = $"http://{GetHostName()}:{port}/{ThumbnailDirName}/{filename}.png";
+
+            
             sb.AppendLine("<tr>");
+            sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>"); // サムネイル画像を表示
             sb.AppendLine($"<td>{filename}</td>");
             sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Bounded'>Bounded</a></td>");
             sb.AppendLine($"<td><a href='styly-vos://assetbundle?url={WebUtility.UrlEncode(assetUrl)}&type=Unbounded'>Unbounded</a></td>");

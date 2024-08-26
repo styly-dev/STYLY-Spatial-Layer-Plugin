@@ -11,6 +11,7 @@ namespace Styly.VisionOs.Plugin
     {
         private static bool isProcessing;
         private static readonly string ThumbnailFileName = "thumbnail.png";
+        private static readonly string ThumbnailDirName = "Thumbnails";
         private static readonly string VisionOsDirectoryName = "VisionOS";
         private static readonly string MetaFileName = "meta.json";
         private static readonly string ParameterFileName = "parameter.json";
@@ -45,6 +46,7 @@ namespace Styly.VisionOs.Plugin
             GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName));
 
             ConpyAssetBundleToHostingDirectory(outputPath, assetFileNameWithoutExtension);
+            ConpyThumbnailToHostingDirectory(outputPath, assetFileNameWithoutExtension);
             
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}_{assetFileNameWithoutExtension}.styly");
             EditorUtility.RevealInFinder(Config.OutputPath);
@@ -150,6 +152,18 @@ namespace Styly.VisionOs.Plugin
             if (!Directory.Exists(HostingDirPath)) { Directory.CreateDirectory(HostingDirPath);}
             
             File.Copy(assetBundlePath, assetBundleOutputPath);
+        }
+        private static void ConpyThumbnailToHostingDirectory(string outputPath, string assetFileNameWithoutExtension)
+        {
+            const string HostingDirectoryName = "Serve";
+            
+            var thumbnailPath = Path.Combine(outputPath, ThumbnailFileName);
+            var HostingDirPath = Path.Combine(Directory.GetParent(outputPath).ToString(), HostingDirectoryName, ThumbnailDirName);
+            var thumbnailOutputPath = Path.Combine(HostingDirPath, $"{Path.GetFileName(outputPath)}_{assetFileNameWithoutExtension}.png");
+            
+            if (!Directory.Exists(HostingDirPath)) { Directory.CreateDirectory(HostingDirPath);}
+            
+            File.Copy(thumbnailPath, thumbnailOutputPath);
         }
     }
 
