@@ -14,6 +14,7 @@ using UnityEngine;
 public class SimpleHttpServer
 {
     readonly HttpListener httpListener = new HttpListener();
+    private FileSystemWatcher fileWatcher;
 
     public int port = 8181;
     public string path = "/";
@@ -29,6 +30,9 @@ public class SimpleHttpServer
 
         // サーバー起動時にHTMLファイルを静的に生成
         GenerateStaticHtmlFile();
+
+        // ファイルシステムの監視を開始
+        StartFileWatcher();
 
         httpListener.Prefixes.Add($"http://*:{port}{path}");
         httpListener.Start();
@@ -49,6 +53,30 @@ public class SimpleHttpServer
         File.WriteAllText(HtmlFilePath, htmlContent);
 
         Debug.Log($"Static HTML generated at: {HtmlFilePath}");
+    }
+
+    private void StartFileWatcher()
+    {
+        fileWatcher = new FileSystemWatcher
+        {
+            Path = Path.Combine(assetBundleDir, VisionOsDirectoryName),
+            NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite,
+            Filter = "*.*"
+        };
+
+        fileWatcher.Changed += OnFilesChanged;
+        fileWatcher.Created += OnFilesChanged;
+        fileWatcher.Deleted += OnFilesChanged;
+        fileWatcher.Renamed += OnFilesChanged;
+        fileWatcher.EnableRaisingEvents = true;
+
+        Debug.Log("Started watching file changes.");
+    }
+
+    private void OnFilesChanged(object sender, FileSystemEventArgs e)
+    {
+        Debug.Log($"File system changed: {e.ChangeType} - {e.FullPath}");
+        GenerateStaticHtmlFile();
     }
 
     private async UniTaskVoid RunServer()
@@ -102,6 +130,14 @@ public class SimpleHttpServer
 
         httpListener.Stop();
         serverRunning = false;
+
+        // ファイルシステムの監視を停止
+        if (fileWatcher != null)
+        {
+            fileWatcher.EnableRaisingEvents = false;
+            fileWatcher.Dispose();
+        }
+
         Debug.Log("Server stopped.");
     }
 
