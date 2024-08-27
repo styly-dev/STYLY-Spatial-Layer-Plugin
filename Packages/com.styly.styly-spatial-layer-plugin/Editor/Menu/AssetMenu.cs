@@ -140,10 +140,11 @@ namespace Styly.VisionOs.Plugin
             serializedObject.ApplyModifiedProperties();
             Debug.Log("Set platformRequiresReadableAssets to " + property.boolValue);
         }
+    
+        const string HostingDirectoryName = "html";
 
         private static void ConpyAssetBundleToHostingDirectory(string outputPath, string assetFileNameWithoutExtension)
         {
-             const string HostingDirectoryName = "Serve";
             
             var assetBundlePath = Path.Combine(outputPath, VisionOsDirectoryName, AssetBundleFileName);
             var HostingDirPath = Path.Combine(Directory.GetParent(outputPath).ToString(), HostingDirectoryName, VisionOsDirectoryName);
@@ -155,8 +156,6 @@ namespace Styly.VisionOs.Plugin
         }
         private static void ConpyThumbnailToHostingDirectory(string outputPath, string assetFileNameWithoutExtension)
         {
-            const string HostingDirectoryName = "Serve";
-            
             var thumbnailPath = Path.Combine(outputPath, ThumbnailFileName);
             var HostingDirPath = Path.Combine(Directory.GetParent(outputPath).ToString(), HostingDirectoryName, ThumbnailDirName);
             var thumbnailOutputPath = Path.Combine(HostingDirPath, $"{Path.GetFileName(outputPath)}_{assetFileNameWithoutExtension}.png");
