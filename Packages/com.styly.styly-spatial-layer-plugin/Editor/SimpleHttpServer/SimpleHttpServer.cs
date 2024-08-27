@@ -19,10 +19,10 @@ public class SimpleHttpServer
     public int port = 8181;
     public string path = "/";
     private bool serverRunning = false;
-    private readonly string assetBundleDir = "_Output/Serve";
+    private readonly string assetBundleDir = "_Output/html";
     private static readonly string VisionOsDirectoryName = "VisionOS";
     private static readonly string ThumbnailDirName = "Thumbnails";
-    private static readonly string HtmlFilePath = Path.Combine("_Output", "Serve", "index.html");
+    private static readonly string HtmlFilePath = Path.Combine("_Output", "html", "index.html");
 
     public void StartServer()
     {
@@ -280,7 +280,7 @@ public class SimpleHttpServer
             foreach (var filename in filenames)
             {
                 var assetUrl = $"http://{GetHostName()}:{port}/{filename}";
-                var thumbnailUrl = $"http://{GetHostName()}:{port}/{ThumbnailDirName}/{filename}.png";
+                var thumbnailUrl = $"{ThumbnailDirName}/{filename}.png";
 
                 sb.AppendLine("<tr>");
                 sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>");
