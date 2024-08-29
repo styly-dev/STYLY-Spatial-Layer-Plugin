@@ -4,7 +4,8 @@
     "references": [
         "GUID:21b0c8d1703a94250bfac916590cea4f",
         "GUID:4fe4a1be2f2c04eecbd2036d47b4b310",
-        "GUID:234ae69a98d734645952bb4c0be67d86"
+        "GUID:234ae69a98d734645952bb4c0be67d86",
+        "Unity.XR.Hands"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
