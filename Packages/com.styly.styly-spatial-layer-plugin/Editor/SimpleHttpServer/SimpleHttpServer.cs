@@ -82,8 +82,9 @@ public class SimpleHttpServer
         }
         else
         {
+            // 404エラーメッセージの設定
             context.Response.StatusCode = 404;
-            byte[] buffer = Encoding.UTF8.GetBytes("File not found");
+            byte[] buffer = Encoding.UTF8.GetBytes("404 Not Found");
             context.Response.ContentType = "text/plain";
             context.Response.ContentLength64 = buffer.Length;
             await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
