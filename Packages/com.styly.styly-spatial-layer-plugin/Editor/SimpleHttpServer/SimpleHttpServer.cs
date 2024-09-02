@@ -18,7 +18,13 @@ public class SimpleHttpServer
 
     public int Port { get; set; }
     public string DocumentRoot { get; set; }
+    
+    // POSTリクエストのテキストデータ処理用のデリゲート
+    public Action<string> OnReceiveText { get; set; }
 
+    // POSTリクエストのバイナリデータ処理用のデリゲート
+    public Action<byte[]> OnReceiveBinary { get; set; }
+    
     public void StartServer()
     {
         if (serverRunning) return;
@@ -53,8 +59,33 @@ public class SimpleHttpServer
             await HandleRequest(context);
         }
     }
-
     protected async Task HandleRequest(HttpListenerContext context)
+    {
+        // HTTPメソッドの取得
+        string httpMethod = context.Request.HttpMethod;
+
+        if (httpMethod == "GET")
+        {
+            await HandleGetRequest(context);
+        }
+        else if (httpMethod == "POST")
+        {
+            await HandlePostRequest(context);
+        }
+        else
+        {
+            // 他のメソッドは405 Method Not Allowedを返す
+            context.Response.StatusCode = 405;
+            byte[] buffer = Encoding.UTF8.GetBytes("405 Method Not Allowed");
+            context.Response.ContentType = "text/plain";
+            context.Response.ContentLength64 = buffer.Length;
+            await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+            context.Response.Close();
+        }
+    }
+
+    // GETリクエストの処理
+    private async Task HandleGetRequest(HttpListenerContext context)
     {
         // リクエストパスを取得
         string requestPath = context.Request.RawUrl.TrimStart('/');
@@ -64,10 +95,11 @@ public class SimpleHttpServer
         {
             requestPath = "index.html";
         }
-        
+
+        // リクエストされたファイルのフルパスを生成
         string filePath = Path.Combine(DocumentRoot, requestPath);
-        Debug.Log($"file path:{filePath}");
-        
+        Debug.Log($"file path: {filePath}");
+    
         if (File.Exists(filePath))
         {
             context.Response.StatusCode = 200;
@@ -93,6 +125,82 @@ public class SimpleHttpServer
         context.Response.Close();
     }
 
+    private async Task HandlePostRequest(HttpListenerContext context)
+    {
+        try
+        {
+            // コンテンツタイプを取得
+            string contentType = context.Request.ContentType;
+
+            if (contentType != null && (contentType.StartsWith("text/") || contentType == "application/json"))
+            {
+                // テキストデータとして処理
+                using (var reader = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding))
+                {
+                    string textData = await reader.ReadToEndAsync();
+                    Debug.Log($"Received text data: {textData}");
+                    
+                    // テキストデータの処理をデリゲートに委任
+                    OnReceiveText?.Invoke(textData);
+                }
+
+                // 成功レスポンスを返す
+                context.Response.StatusCode = 200;
+                byte[] buffer = Encoding.UTF8.GetBytes("POST request with text data received and processed successfully.");
+                context.Response.ContentType = "text/plain";
+                context.Response.ContentLength64 = buffer.Length;
+                await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+            }
+            else
+            {
+                /
+                // バイナリデータとして処理
+                long contentLength = context.Request.ContentLength64;
+                if (contentLength > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await context.Request.InputStream.CopyToAsync(memoryStream);
+                        byte[] binaryData = memoryStream.ToArray();
+
+                        Debug.Log($"Received binary data of length: {binaryData.Length}");
+
+                        // バイナリデータの処理をデリゲートに委任
+                        OnReceiveBinary?.Invoke(binaryData);
+                    }
+
+                    // 成功レスポンスを返す
+                    context.Response.StatusCode = 200;
+                    byte[] buffer = Encoding.UTF8.GetBytes("POST request with binary data received and processed successfully.");
+                    context.Response.ContentType = "text/plain";
+                    context.Response.ContentLength64 = buffer.Length;
+                    await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+                }
+                else
+                {
+                    // コンテンツがない場合のエラーレスポンス
+                    context.Response.StatusCode = 400; // Bad Request
+                    byte[] buffer = Encoding.UTF8.GetBytes("No data received in POST request.");
+                    context.Response.ContentType = "text/plain";
+                    context.Response.ContentLength64 = buffer.Length;
+                    await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // エラーレスポンスを返す
+            Debug.LogError($"Error processing POST request: {ex.Message}");
+            context.Response.StatusCode = 500; // Internal Server Error
+            byte[] buffer = Encoding.UTF8.GetBytes("500 Internal Server Error");
+            context.Response.ContentType = "text/plain";
+            context.Response.ContentLength64 = buffer.Length;
+            await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+        }
+
+        context.Response.Close();
+    }
+    
     // MIMEタイプを決定するヘルパーメソッド
     private string GetMimeType(string filePath)
     {
