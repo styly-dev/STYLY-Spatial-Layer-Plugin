@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleHttpServerEditor : EditorWindow
 {
     private string serverUrl = "";
-    private SimpleHttpServer server;
+    private UnityHttpServerManager server;
     private bool serverRunning = false;
 
     [MenuItem("STYLY/Simple HTTP Server")]
@@ -16,7 +16,7 @@ public class SimpleHttpServerEditor : EditorWindow
 
     private void OnEnable()
     {
-        server = new SimpleHttpServer();
+        server = new UnityHttpServerManager();
     }
 
     private void OnGUI()
@@ -30,7 +30,7 @@ public class SimpleHttpServerEditor : EditorWindow
                 server.StartServer();
                 serverRunning = true;
 
-                serverUrl = $"http://{SimpleHttpServer.GetHostName()}:{server.port}{server.path}";
+                serverUrl = $"http://{SimpleHttpServer.GetHostName()}:{server.Port}/";
             }
         }
         else
