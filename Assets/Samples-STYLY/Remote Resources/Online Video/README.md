@@ -1,1 +1,7 @@
-This is a sample for playing a video online. If you want to play your video online, please put your video in your server and use the URL. In this sample, the cube is the screen to play video. Video player uses a render texture to render the video. The render texture is set to the material attached to the cube. If you want to play a video on your 3D model, please attach VideoPlayer and VideoPlayerHelper script to your model. Check the settings of the cube in Inspector.
+This is a sample for playing a video in a server.
+If you want to play your video online, please put your video in your server and use the URL as the parameter of VideoPlayer.
+Only Cube Screen has VideoPlayer and VideoPlayerHelper as components although there are many screens.
+The VideoPlayer component is rendering the video to a render texture.
+The render texture is set to the material attached to the cube and other screens.
+If you want to play a video on your 3D model surfaces, please attach VideoPlayer and VideoPlayerHelper script to your model.
+Check the components settings of the cube in Inspector.
