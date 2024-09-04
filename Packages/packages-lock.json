@@ -8,7 +8,7 @@
       "url": "https://package.openupm.com"
     },
     "com.from2001.gltfast-visualscripting-nodes": {
-      "version": "0.1.3",
+      "version": "0.1.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -57,8 +57,17 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.styly.hands": {
+      "version": "0.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.hands": "1.4.1"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.styly.package-collection-spatial-layer": {
-      "version": "1.0.8",
+      "version": "1.0.12",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -66,15 +75,17 @@
         "com.unity.probuilder": "5.2.2",
         "com.unity.visualscripting": "1.9.4",
         "com.from2001.vrm-visualscripting-nodes": "0.1.11",
-        "com.from2001.gltfast-visualscripting-nodes": "0.1.3",
+        "com.from2001.gltfast-visualscripting-nodes": "0.1.5",
         "com.from2001.spectrum-visualscripting-nodes": "0.0.3",
         "jp.keijiro.osc-jack": "2.0.0",
+        "jp.keijiro.osc-jack.visualscripting": "2.0.0",
         "com.styly.webrequest-visualscripting-nodes": "0.0.7",
         "com.cysharp.unitask": "2.5.4",
         "com.unity.inputsystem": "1.8.2",
         "com.unity.xr.arfoundation": "5.1.4",
         "com.unity.xr.interaction.toolkit": "3.0.3",
-        "com.unity.xr.hands": "1.4.1"
+        "com.unity.xr.hands": "1.4.1",
+        "com.styly.hands": "0.0.1"
       },
       "url": "https://package.openupm.com"
     },
@@ -132,10 +143,10 @@
       "depth": 2,
       "source": "registry",
       "dependencies": {
-        "com.unity.modules.jsonserialize": "1.0.0",
-        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.burst": "1.8.4",
         "com.unity.mathematics": "1.3.1",
-        "com.unity.burst": "1.8.4"
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -222,8 +233,8 @@
       "depth": 2,
       "source": "registry",
       "dependencies": {
-        "com.unity.mathematics": "1.2.1",
-        "com.unity.burst": "1.4.11"
+        "com.unity.burst": "1.4.11",
+        "com.unity.mathematics": "1.2.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -239,9 +250,9 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.settings-manager": "1.0.3",
+        "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0"
+        "com.unity.settings-manager": "1.0.3"
       },
       "url": "https://packages.unity.com"
     },
@@ -340,9 +351,9 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.director": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
       },
       "url": "https://packages.unity.com"
@@ -381,14 +392,14 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.ui": "1.0.0",
         "com.unity.inputsystem": "1.3.0",
+        "com.unity.mathematics": "1.2.5",
         "com.unity.xr.core-utils": "2.2.1",
         "com.unity.xr.management": "4.0.1",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.mathematics": "1.2.5",
+        "com.unity.editorcoroutines": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0",
-        "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.unityanalytics": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0"
       },
@@ -408,11 +419,11 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.inputsystem": "1.3.0",
         "com.unity.modules.xr": "1.0.0",
+        "com.unity.inputsystem": "1.3.0",
+        "com.unity.mathematics": "1.2.6",
         "com.unity.xr.core-utils": "2.2.0",
-        "com.unity.xr.management": "4.0.1",
-        "com.unity.mathematics": "1.2.6"
+        "com.unity.xr.management": "4.0.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -421,14 +432,14 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.xr": "1.0.0",
         "com.unity.inputsystem": "1.8.1",
         "com.unity.mathematics": "1.2.6",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.xr.core-utils": "2.2.3",
         "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.xr": "1.0.0"
+        "com.unity.xr.core-utils": "2.2.3",
+        "com.unity.modules.physics": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -447,9 +458,9 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.modules.subsystems": "1.0.0",
         "com.unity.modules.vr": "1.0.0",
         "com.unity.modules.xr": "1.0.0",
+        "com.unity.modules.subsystems": "1.0.0",
         "com.unity.xr.legacyinputhelpers": "2.1.7"
       },
       "url": "https://packages.unity.com"
@@ -469,10 +480,10 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.xr.management": "4.4.0",
-        "com.unity.xr.legacyinputhelpers": "2.1.2",
         "com.unity.inputsystem": "1.6.3",
-        "com.unity.xr.core-utils": "2.1.1"
+        "com.unity.xr.core-utils": "2.1.1",
+        "com.unity.xr.management": "4.4.0",
+        "com.unity.xr.legacyinputhelpers": "2.1.2"
       },
       "url": "https://packages.unity.com"
     },
@@ -510,6 +521,17 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "jp.keijiro.osc-jack.visualscripting": {
+      "version": "2.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.visualscripting": "1.5.2",
+        "jp.keijiro.osc-jack": "2.0.0"
+      },
       "url": "https://package.openupm.com"
     },
     "org.khronos.unitygltf": {
