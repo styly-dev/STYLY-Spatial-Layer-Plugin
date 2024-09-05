@@ -1,6 +1,6 @@
-This folder has some samples for intracting with objects by hands.
+This folder has some samples for intracting by grab by hands.
 
-# Object Interaction
+# Grab Interaction
 This includes following objects:
 
 - Grabbable cube which feels gravity.
@@ -24,5 +24,5 @@ In the setting of "XR General Grab Transformer", please allow scaling. (e.g. Ena
 
 For details, please check compoents attached to "ReactiveForGrab" object.
 
-# Object Interaction Hover Effect (Unity Pro required)
-This is the same as Object Interaction but with hover effect. The hover effect in visionOS is expressed by rim effect in white color. To realize hover effect, please add "Vision OS Hover Effect" component to your 3D objects. You should import STYLY-XR-Rig package to your project to use hover effect. To do this, please right click in Object Hierarchy and select "XR" -> "Install STYLY-XR-Rig". Then, you can add "VisionOS Hover Effect" component to your 3D objects.
+# Grab Interaction Hover Effect (Unity Pro required)
+This is the same as Grab Interaction but with hover effect. The hover effect in visionOS is expressed by rim effect in white color. To realize hover effect, please add "Vision OS Hover Effect" component to your 3D objects. You should import STYLY-XR-Rig package to your project to use hover effect. To do this, please right click in Object Hierarchy and select "XR" -> "Install STYLY-XR-Rig". Then, you can add "VisionOS Hover Effect" component to your 3D objects.
