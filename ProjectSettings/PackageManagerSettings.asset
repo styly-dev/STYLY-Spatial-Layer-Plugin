@@ -35,6 +35,8 @@ MonoBehaviour:
     - com.from2001.spectrum-visualscripting-nodes
     - com.from2001.vrm-visualscripting-nodes
     - com.segur.poly-spatial-environment-diffuse-shader
+    - com.styly.hands
+    - com.styly.styly-xr-rig
     - com.styly.package-collection-spatial-layer
     - com.styly.webrequest-visualscripting-nodes
     - com.vrmc.gltf
@@ -42,7 +44,6 @@ MonoBehaviour:
     - com.vrmc.vrmshaders
     - jp.keijiro.osc-jack
     - org.khronos.unitygltf
-    - com.styly.styly-xr-rig
     m_IsDefault: 0
     m_Capabilities: 0
     m_ConfigSource: 4
