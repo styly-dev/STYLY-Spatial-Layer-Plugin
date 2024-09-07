@@ -153,7 +153,6 @@ public class SimpleHttpServer
             }
             else
             {
-                /
                 // バイナリデータとして処理
                 long contentLength = context.Request.ContentLength64;
                 if (contentLength > 0)
