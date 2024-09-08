@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 6893721962339535626}
   - component: {fileID: 7163741466971792544}
   m_Layer: 0
-  m_Name: Handle Csv (Upload as Prefab)
+  m_Name: CSV Handling (Upload as Prefab)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
