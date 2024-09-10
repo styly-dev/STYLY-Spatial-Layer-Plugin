@@ -22,25 +22,14 @@ namespace Styly.VisionOs.Plugin.Validation
                 {
                     if (material != null && System.Array.IndexOf(allowedShaders, material.shader) == -1)
                     {
-                        string path = GetGameObjectPath(renderer.gameObject);
-                        Debug.LogWarning($"Using unauthorized shaders: {material.shader.name}, Game Object: {path}");
+                        string path = ValidatorUtility.GetGameObjectPath(renderer.gameObject);
+                        Debug.LogWarning($"Using unsupported shaders: {material.shader.name}, Game Object: {path}");
                         passed = false;
                     }
                 }
             }
 
             return passed;
-        }
-
-        private string GetGameObjectPath(GameObject obj)
-        {
-            string path = obj.name;
-            while (obj.transform.parent != null)
-            {
-                obj = obj.transform.parent.gameObject;
-                path = obj.name + "/" + path;
-            }
-            return path;
         }
     }
 }

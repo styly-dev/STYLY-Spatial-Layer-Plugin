@@ -7,7 +7,7 @@ namespace Styly.VisionOs.Plugin.Validation
 {
     public class PrefabValidatorRunner : MonoBehaviour
     {
-        [MenuItem("Assets/STYLY/Validate Prefab", false, 100)]
+        [MenuItem("Assets/STYLY/Validate Prefab (Alpha)", false, 100)]
         private static void ValidateSelectedPrefab()
         {
             GameObject selectedPrefab = Selection.activeObject as GameObject;

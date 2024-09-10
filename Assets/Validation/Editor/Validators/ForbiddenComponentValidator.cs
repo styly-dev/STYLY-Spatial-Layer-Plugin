@@ -25,24 +25,13 @@ namespace Styly.VisionOs.Plugin.Validation
                 Component forbiddenComponent = prefab.GetComponentInChildren(componentType, true);
                 if (forbiddenComponent != null)
                 {
-                    string path = GetGameObjectPath(forbiddenComponent.gameObject);
+                    string path = ValidatorUtility.GetGameObjectPath(forbiddenComponent.gameObject);
                     Debug.LogWarning($"{componentType.Name} component is used: {path}");
                     passed = false;
                 }
             }
 
             return passed;
-        }
-
-        private string GetGameObjectPath(GameObject obj)
-        {
-            string path = obj.name;
-            while (obj.transform.parent != null)
-            {
-                obj = obj.transform.parent.gameObject;
-                path = obj.name + "/" + path;
-            }
-            return path;
         }
     }
 }
