@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740f51a1ac4b42088297287229057627, type: 3}
   m_Name: PointAt
   m_EditorClassIdentifier: 
-  m_HandShape: {fileID: 11400000, guid: 19f67bcc69361634a82c70dcaa26700b, type: 2}
+  m_HandShape: {fileID: 11400000, guid: bdd115c3cc05447fa9bf74d72f655726, type: 2}
   m_RelativeOrientation:
     m_UserConditions: []
     m_TargetConditions:
