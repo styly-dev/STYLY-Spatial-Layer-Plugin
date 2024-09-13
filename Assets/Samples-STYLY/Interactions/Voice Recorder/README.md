@@ -1,0 +1,1 @@
+This sample demonstrates how to record voice and play it back.
