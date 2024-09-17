@@ -55,7 +55,11 @@ namespace Styly.VisionOs.Plugin.Validation
 
                 // VR Shader
                 Shader.Find("Universal Render Pipeline/VR/SpacialMapping/Occlusion"),
-                Shader.Find("Universal Render Pipeline/VR/SpacialMapping/Wireframe"),                };
+                Shader.Find("Universal Render Pipeline/VR/SpacialMapping/Wireframe"),
+
+                // Text Mesh Pro Shader
+                Shader.Find("TextMeshPro/Mobile/Distance Field"),
+            };
             validationManager.AddValidator(new ShaderValidator(allowedShaders));
 
             // Added forbidden components
