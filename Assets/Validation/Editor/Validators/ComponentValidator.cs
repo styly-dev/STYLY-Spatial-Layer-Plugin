@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace Styly.VisionOs.Plugin.Validation
 {
-    public class ForbiddenComponentsValidator : IPrefabValidator
+    public class ComponentsValidator : IPrefabValidator
     {
-        private System.Type[] forbiddenComponentTypes;
+        private System.Type[] _forbiddenComponentTypes;
 
         /// <summary>
         /// List of forbidden components
         /// </summary>
         /// <param name="forbiddenComponentTypes"></param>
-        public ForbiddenComponentsValidator(System.Type[] forbiddenComponentTypes)
+        public ComponentsValidator(System.Type[] forbiddenComponentTypes)
         {
-            this.forbiddenComponentTypes = forbiddenComponentTypes;
+            _forbiddenComponentTypes = forbiddenComponentTypes;
         }
 
         public bool Validate(GameObject prefab)
@@ -20,7 +20,7 @@ namespace Styly.VisionOs.Plugin.Validation
             bool passed = true;
 
             // Verification of each forbidden component
-            foreach (var componentType in forbiddenComponentTypes)
+            foreach (var componentType in _forbiddenComponentTypes)
             {
                 Component forbiddenComponent = prefab.GetComponentInChildren(componentType, true);
                 if (forbiddenComponent != null)

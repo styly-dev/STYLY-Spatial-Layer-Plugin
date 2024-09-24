@@ -4,11 +4,11 @@ namespace Styly.VisionOs.Plugin.Validation
 {
     public class ShaderValidator : IPrefabValidator
     {
-        private Shader[] allowedShaders;
+        private Shader[] _allowedShaders;
 
         public ShaderValidator(Shader[] allowedShaders)
         {
-            this.allowedShaders = allowedShaders;
+            _allowedShaders = allowedShaders;
         }
 
         public bool Validate(GameObject prefab)
@@ -20,7 +20,7 @@ namespace Styly.VisionOs.Plugin.Validation
             {
                 foreach (Material material in renderer.sharedMaterials)
                 {
-                    if (material != null && System.Array.IndexOf(allowedShaders, material.shader) == -1)
+                    if (material != null && System.Array.IndexOf(_allowedShaders, material.shader) == -1)
                     {
                         string path = ValidatorUtility.GetGameObjectPath(renderer.gameObject);
                         Debug.LogWarning($"Using unsupported shaders: {material.shader.name}, Game Object: {path}");
