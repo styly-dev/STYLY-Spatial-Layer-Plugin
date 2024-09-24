@@ -24,6 +24,7 @@ namespace Styly.VisionOs.Plugin.Validation
             validationManager.AddValidator(new ShaderValidator(ConfigShaders.allowedShaders));
             validationManager.AddValidator(new ComponentsValidator(ConfigComponent.forbiddenComponents));
             validationManager.AddValidator(new BoundingBoxValidator(ConfigBoundingBox.recommanedSize));
+            validationManager.AddValidator(new VertexValidator(ConfigVertex.MaxVertexCount, ConfigVertex.MaxTotalVertexCount));
 
             // Perform all verifications and get results
             bool allPassed = validationManager.ValidateAll(selectedPrefab);
