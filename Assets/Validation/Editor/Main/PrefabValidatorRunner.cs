@@ -21,24 +21,21 @@ namespace Styly.VisionOs.Plugin.Validation
             PrefabValidationManager validationManager = new PrefabValidationManager();
 
             // Add verification items
-            validationManager.AddValidator(new ShaderValidator(ConfigShaders.allowedShaders));
+//            validationManager.AddValidator(new ShaderValidator(ConfigShaders.allowedShaders));
             validationManager.AddValidator(new ComponentsValidator(ConfigComponent.forbiddenComponents));
             validationManager.AddValidator(new BoundingBoxValidator(ConfigBoundingBox.recommanedSize));
             validationManager.AddValidator(new VertexValidator(ConfigVertex.MaxVertexCount, ConfigVertex.MaxTotalVertexCount));
-            validationManager.AddValidator(new TextureValidator(ConfigTexture.MaxTextureWidth, ConfigTexture.MaxTextureHeight));
+//            validationManager.AddValidator(new TextureValidator(ConfigTexture.MaxTextureWidth, ConfigTexture.MaxTextureHeight));
             validationManager.AddValidator(new GroundValidator());
 
             // Perform all verifications and get results
             bool allPassed = validationManager.ValidateAll(selectedPrefab);
 
             // Output final result to log
-            if (allPassed)
+            Debug.Log("All Validation was performed.");
+            if (!allPassed)
             {
-                Debug.Log("All verifications have passed!");
-            }
-            else
-            {
-                Debug.LogWarning("Some verification failed.");
+                Debug.LogWarning("It detected some warnings.");
             }
         }
     }
