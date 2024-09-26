@@ -39,7 +39,7 @@ namespace Styly.VisionOs.Plugin.Validation
             }
 
             // Display execution results in dialog
-            if (EditorUtility.DisplayDialog("Validator", "Prefab validation completed. Please confirm the Unity editor console messages.", "OK"))
+            if (EditorUtility.DisplayDialog("Validate Prefab (Alpha)", "Prefab validation completed. Please confirm the Unity editor console messages.", "OK"))
             {
                 // Do nothing
             }
