@@ -32,10 +32,16 @@ namespace Styly.VisionOs.Plugin.Validation
             bool allPassed = validationManager.ValidateAll(selectedPrefab);
 
             // Output final result to log
-            Debug.Log("All Validation was performed.");
+            Debug.Log("Prefab validation completed.");
             if (!allPassed)
             {
                 Debug.LogWarning("It detected some warnings.");
+            }
+
+            // Display execution results in dialog
+            if (EditorUtility.DisplayDialog("Validator", "Prefab validation completed. Please confirm the Unity editor console messages.", "OK"))
+            {
+                // Do nothing
             }
         }
     }
