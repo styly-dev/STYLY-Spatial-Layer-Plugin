@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Styly.VisionOs.Plugin.Validation
 {
-    public class ValidatorUtility : MonoBehaviour
+    public class ValidatorUtility
     {
         public static string GetGameObjectPath(GameObject obj)
         {
