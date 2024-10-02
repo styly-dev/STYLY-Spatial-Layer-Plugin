@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,24 +6,23 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 
 public class SimpleHttpServer
 {
     private readonly HttpListener httpListener = new HttpListener();
     private bool serverRunning = false;
+    private Task serverTask;
 
     public int Port { get; set; }
     public string DocumentRoot { get; set; }
-    
+
     // POSTリクエストのテキストデータ処理用のデリゲート
     public Action<string> OnReceiveText { get; set; }
 
     // POSTリクエストのバイナリデータ処理用のデリゲート
     public Action<byte[]> OnReceiveBinary { get; set; }
-    
+
     public void StartServer()
     {
         if (serverRunning) return;
@@ -35,30 +33,58 @@ public class SimpleHttpServer
 
         Debug.Log("Server started.");
 
-        RunServer().Forget();
+        serverTask = Task.Run(RunServer);
     }
 
     public void StopServer()
     {
         if (!serverRunning) return;
 
-        httpListener.Stop();
         serverRunning = false;
+        httpListener.Stop();
 
         Debug.Log("Server stopped.");
-    }
 
-    private async UniTaskVoid RunServer()
-    {
-        while (serverRunning)
+        if (serverTask != null)
         {
-            var context = await httpListener.GetContextAsync();
-            Debug.Log($"{context.Request.HttpMethod} Request path: {context.Request.RawUrl}");
-
-            // リクエストの処理をここで行う
-            await HandleRequest(context);
+            try
+            {
+                serverTask.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                Debug.LogError($"Server task ended with exception: {ex.InnerException.Message}");
+            }
         }
     }
+
+    private async Task RunServer()
+    {
+        try
+        {
+            while (serverRunning)
+            {
+                var context = await httpListener.GetContextAsync();
+                Debug.Log($"{context.Request.HttpMethod} Request path: {context.Request.RawUrl}");
+
+                // リクエストの処理をここで行う
+                await HandleRequest(context);
+            }
+        }
+        catch (HttpListenerException ex)
+        {
+            // httpListener.Stop() を呼び出すと発生する例外を無視
+            if (ex.ErrorCode != 995) // 995 は ERROR_OPERATION_ABORTED
+            {
+                Debug.LogError($"HttpListenerException in RunServer: {ex.Message}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Exception in RunServer: {ex.Message}");
+        }
+    }
+
     protected async Task HandleRequest(HttpListenerContext context)
     {
         // HTTPメソッドの取得
@@ -89,7 +115,7 @@ public class SimpleHttpServer
     {
         // リクエストパスを取得
         string requestPath = context.Request.RawUrl.TrimStart('/');
-    
+
         // ルートパスへのアクセスの場合に index.html を返す
         if (string.IsNullOrEmpty(requestPath) || requestPath == "/")
         {
@@ -99,7 +125,7 @@ public class SimpleHttpServer
         // リクエストされたファイルのフルパスを生成
         string filePath = Path.Combine(DocumentRoot, requestPath);
         Debug.Log($"file path: {filePath}");
-    
+
         if (File.Exists(filePath))
         {
             context.Response.StatusCode = 200;
@@ -139,7 +165,7 @@ public class SimpleHttpServer
                 {
                     string textData = await reader.ReadToEndAsync();
                     Debug.Log($"Received text data: {textData}");
-                    
+
                     // テキストデータの処理をデリゲートに委任
                     OnReceiveText?.Invoke(textData);
                 }
@@ -199,7 +225,7 @@ public class SimpleHttpServer
 
         context.Response.Close();
     }
-    
+
     // MIMEタイプを決定するヘルパーメソッド
     private string GetMimeType(string filePath)
     {
@@ -240,6 +266,7 @@ public class SimpleHttpServer
                 return "application/octet-stream"; // デフォルトはバイナリデータ
         }
     }
+
     public static string GetHostName()
     {
         string hostname = Dns.GetHostName();
@@ -255,7 +282,7 @@ public class SimpleHttpServer
             Debug.Log(ip);
         }
 
-        return ipAddresses.FirstOrDefault().ToString();
+        return ipAddresses.FirstOrDefault()?.ToString();
     }
 }
 
@@ -268,7 +295,7 @@ public class UnityHttpServerManager
     private static readonly string ThumbnailDirName = "Thumbnails";
     private static readonly string HtmlFilePath = Path.Combine("_Output", "html", "index.html");
 
-    public int Port => server. Port;
+    public int Port => server.Port;
 
     public string DocumentRoot => server.DocumentRoot;
 
@@ -276,7 +303,7 @@ public class UnityHttpServerManager
     {
         server = new SimpleHttpServer();
         server.Port = 8181;
-        server.DocumentRoot = Path.Combine(Application.dataPath, "..",assetBundleDir);
+        server.DocumentRoot = Path.Combine(Application.dataPath, "..", assetBundleDir);
     }
 
     public void StartServer()
@@ -397,4 +424,3 @@ public class UnityHttpServerManager
         return sb.ToString();
     }
 }
-#endif
