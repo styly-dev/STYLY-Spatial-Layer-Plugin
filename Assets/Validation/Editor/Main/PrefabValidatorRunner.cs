@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -5,9 +6,9 @@ using UnityEngine.UI;
 
 namespace Styly.VisionOs.Plugin.Validation
 {
-    public class PrefabValidatorRunner : MonoBehaviour
+    public class PrefabValidatorRunner
     {
-        [MenuItem("Assets/STYLY/Validate Prefab (Alpha)", false, 100)]
+        [MenuItem("Assets/STYLY/Validate Prefab (Alpha)", priority = 100)]
         private static void ValidateSelectedPrefab()
         {
             GameObject selectedPrefab = Selection.activeObject as GameObject;
@@ -43,6 +44,19 @@ namespace Styly.VisionOs.Plugin.Validation
             {
                 // Do nothing
             }
+        }
+
+        [MenuItem(@"Assets/STYLY/Validate Prefab (Alpha)", validate = true, priority = 100)]
+        static bool ValidateBuildContent()
+        {
+            if (Application.isPlaying) return false;
+            if (Selection.objects.Length != 1) return false;
+            var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            return IsBuildTargetType(assetPath);
+        }
+        private static bool IsBuildTargetType(string path)
+        {
+            return Path.GetExtension(path).ToLower() == ".prefab";
         }
     }
 }
