@@ -18,7 +18,7 @@ namespace Styly.VisionOs.Plugin.Validation
                 if (transform.position.y < 0)
                 {
                     string path = ValidatorUtility.GetGameObjectPath(transform.gameObject);
-                    Debug.LogWarning($"{transform.gameObject.name} has a position below (*, 0, *) in world coordinates: {transform.position}. Attached to object: {path}");
+                    ValidatorUtility.LogWarning($"{transform.gameObject.name} has a position below (*, 0, *) in world coordinates: {transform.position}. Attached to object: {path}");
                     passed = false;
                 }
             }

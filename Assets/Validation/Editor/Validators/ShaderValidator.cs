@@ -23,7 +23,7 @@ namespace Styly.VisionOs.Plugin.Validation
                     if (material != null && System.Array.IndexOf(_allowedShaders, material.shader) == -1)
                     {
                         string path = ValidatorUtility.GetGameObjectPath(renderer.gameObject);
-                        Debug.LogWarning($"Using unsupported shaders: {material.shader.name}, Game Object: {path}");
+                        ValidatorUtility.LogWarning($"Using unsupported shaders: {material.shader.name}, Game Object: {path}");
                         passed = false;
                     }
                 }

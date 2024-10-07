@@ -22,11 +22,14 @@ namespace Styly.VisionOs.Plugin.Validation
             // Verification of each forbidden component
             foreach (var componentType in _forbiddenComponentTypes)
             {
-                Component forbiddenComponent = prefab.GetComponentInChildren(componentType, true);
-                if (forbiddenComponent != null)
+                Component[] forbiddenComponents = prefab.GetComponentsInChildren(componentType, true);
+                if (forbiddenComponents != null)
                 {
-                    string path = ValidatorUtility.GetGameObjectPath(forbiddenComponent.gameObject);
-                    Debug.LogWarning($"{componentType.Name} component is used: {path}");
+                    foreach (var forbiddenComponent in forbiddenComponents)
+                    {
+                        string path = ValidatorUtility.GetGameObjectPath(forbiddenComponent.gameObject);
+                        ValidatorUtility.LogWarning($"{componentType.Name} component is used: {path}");
+                    }
                     passed = false;
                 }
             }

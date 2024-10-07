@@ -34,7 +34,7 @@ namespace Styly.VisionOs.Plugin.Validation
                     if (vertexCount > _maxVertexCountPerMesh)
                     {
                         string path = ValidatorUtility.GetGameObjectPath(meshFilter.gameObject);
-                        Debug.LogWarning($"{meshFilter.gameObject.name} exceeds the maximum vertex count per mesh of {_maxVertexCountPerMesh} ({vertexCount} vertices): {path}");
+                        ValidatorUtility.LogWarning($"{meshFilter.gameObject.name} exceeds the maximum vertex count per mesh of {_maxVertexCountPerMesh} ({vertexCount} vertices): {path}");
                         passed = false;
                     }
                 }
@@ -43,7 +43,7 @@ namespace Styly.VisionOs.Plugin.Validation
             // Check total vertex count
             if (totalVertexCount > _maxTotalVertexCount)
             {
-                Debug.LogWarning($"Total vertex count exceeds the maximum of {_maxTotalVertexCount} vertices: {totalVertexCount} vertices in total.");
+                ValidatorUtility.LogWarning($"Total vertex count exceeds the maximum of {_maxTotalVertexCount} vertices: {totalVertexCount} vertices in total.");
                 passed = false;
             }
 

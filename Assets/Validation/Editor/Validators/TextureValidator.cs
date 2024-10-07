@@ -42,7 +42,7 @@ namespace Styly.VisionOs.Plugin.Validation
                                     sb.Append($"{renderer.gameObject.name} has a texture '{texture2D.name}");
                                     sb.Append($" attached that exceeds the maximum size ({_maxTextureWidth}x{_maxTextureHeight}):");
                                     sb.Append($" {texture2D.width}x{texture2D.height}. Attached to object: {path}");
-                                    Debug.LogError(sb.ToString());
+                                    ValidatorUtility.LogError(sb.ToString());
                                     passed = false;
                                 }
                             }

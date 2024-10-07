@@ -14,7 +14,7 @@ namespace Styly.VisionOs.Plugin.Validation
             GameObject selectedPrefab = Selection.activeObject as GameObject;
             if (selectedPrefab == null)
             {
-                Debug.LogError("Prefab is not selected.");
+                ValidatorUtility.LogError("Prefab is not selected.");
                 return;
             }
 
@@ -22,21 +22,22 @@ namespace Styly.VisionOs.Plugin.Validation
             PrefabValidationManager validationManager = new PrefabValidationManager();
 
             // Add verification items
-//            validationManager.AddValidator(new ShaderValidator(ConfigShaders.allowedShaders));
             validationManager.AddValidator(new ComponentsValidator(ConfigComponent.forbiddenComponents));
             validationManager.AddValidator(new BoundingBoxValidator(ConfigBoundingBox.recommanedSize));
             validationManager.AddValidator(new VertexValidator(ConfigVertex.MaxVertexCount, ConfigVertex.MaxTotalVertexCount));
-//            validationManager.AddValidator(new TextureValidator(ConfigTexture.MaxTextureWidth, ConfigTexture.MaxTextureHeight));
             validationManager.AddValidator(new GroundValidator());
+
+//            validationManager.AddValidator(new ShaderValidator(ConfigShaders.allowedShaders));
+//            validationManager.AddValidator(new TextureValidator(ConfigTexture.MaxTextureWidth, ConfigTexture.MaxTextureHeight));
 
             // Perform all verifications and get results
             bool allPassed = validationManager.ValidateAll(selectedPrefab);
 
             // Output final result to log
-            Debug.Log("Prefab validation completed.");
+            ValidatorUtility.Log("Prefab validation completed.");
             if (!allPassed)
             {
-                Debug.LogWarning("It detected some warnings.");
+                ValidatorUtility.LogWarning("It detected some warnings.");
             }
 
             // Display execution results in dialog

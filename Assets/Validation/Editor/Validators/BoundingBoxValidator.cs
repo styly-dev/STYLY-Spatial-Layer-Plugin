@@ -22,7 +22,7 @@ namespace Styly.VisionOs.Plugin.Validation
             if (prefabBounds.size == Vector3.zero)
             {
                 string path = ValidatorUtility.GetGameObjectPath(prefab.gameObject);
-                Debug.LogWarning($"Prefab '{path}' has no renderers to calculate bounds.");
+                ValidatorUtility.LogWarning($"Prefab '{path}' has no renderers to calculate bounds.");
                 return false;
             }
 
@@ -86,13 +86,13 @@ namespace Styly.VisionOs.Plugin.Validation
         private void LogBoundsWarning(GameObject prefab, Vector3 size)
         {
             string path = ValidatorUtility.GetGameObjectPath(prefab.gameObject);
-            Debug.LogWarning($"Prefab '{path}' has large bounds: {size}");
+            ValidatorUtility.LogWarning($"Prefab '{path}' has large bounds: {size}");
         }
 
         private void LogBoundsInfo(GameObject prefab, Vector3 size)
         {
             string path = ValidatorUtility.GetGameObjectPath(prefab.gameObject);
-            Debug.Log($"Prefab '{path}' has bounds: {size}");
+            ValidatorUtility.Log($"Prefab '{path}' has bounds: {size}");
         }
     }
 }
