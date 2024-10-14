@@ -33,6 +33,11 @@ namespace Styly.VisionOs.Plugin.Validation
         {
             ValidatorUtility.Log($"Validating prefab: {selectedPrefab.name}");
 
+            // Check if the Prefab has been overridden
+            if (!CheckForPrefabOverrides(selectedPrefab)) {
+                return ;
+            }
+
             // Create a verification management class
             PrefabValidationManager validationManager = new PrefabValidationManager();
 
@@ -59,8 +64,39 @@ namespace Styly.VisionOs.Plugin.Validation
             // Now check if any components reference other Prefabs
             CheckComponentsForPrefabReferences(selectedPrefab);
         }
+        
+        // Check if the Prefab has any overrides
+        private static bool CheckForPrefabOverrides(GameObject prefab)
+        {
+            // Get all instances of the prefab in the open scenes
+            GameObject[] allPrefabInstances = GameObject.FindObjectsOfType<GameObject>();
 
-        // Method to check each GameObject's components for references to other Prefabs
+            foreach (var instance in allPrefabInstances)
+            {
+                // Check if this is an instance of the selected prefab
+                if (PrefabUtility.GetCorrespondingObjectFromSource(instance) == prefab)
+                {
+                    // Check if there are any overrides on this instance
+                    if (PrefabUtility.HasPrefabInstanceAnyOverrides(instance, false))
+                    {
+                        // No overrides found, show a dialog warning
+                        bool result = EditorUtility.DisplayDialog(
+                            "Prefab Override Warning",
+                            $"The Prefab '{prefab.name}' in the scene has not been overridden. Do you want to continue?",
+                            "Continue", "Cancel"
+                        );
+
+                        if (!result)
+                        {
+                            ValidatorUtility.LogWarning("Validation cancelled by the user.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         // Method to check each GameObject's components for references to other Prefabs
         private static void CheckComponentsForPrefabReferences(GameObject selectedPrefab)
         {
