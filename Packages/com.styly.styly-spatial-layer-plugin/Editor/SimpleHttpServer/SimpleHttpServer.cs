@@ -124,6 +124,7 @@ public class SimpleHttpServer
 
         // リクエストされたファイルのフルパスを生成
         string filePath = Path.Combine(DocumentRoot, requestPath);
+        filePath = WebUtility.UrlDecode(filePath);
         Debug.Log($"file path: {filePath}");
 
         if (File.Exists(filePath))
@@ -402,8 +403,9 @@ public class UnityHttpServerManager
 
             foreach (var filename in filenames)
             {
-                var assetUrl = $"http://{SimpleHttpServer.GetHostName()}:{server.Port}/{VisionOsDirectoryName}/{filename}";
-                var thumbnailUrl = $"{ThumbnailDirName}/{filename}.png";
+                var encodedFilename = WebUtility.UrlEncode(filename);
+                var assetUrl = $"http://{SimpleHttpServer.GetHostName()}:{server.Port}/{VisionOsDirectoryName}/{encodedFilename}";
+                var thumbnailUrl = $"{ThumbnailDirName}/{encodedFilename}.png";
 
                 sb.AppendLine("<tr>");
                 sb.AppendLine($"<td><img src='{thumbnailUrl}' alt='Thumbnail' width='100'></td>");
