@@ -16,13 +16,13 @@
 #### Requirements
 
 * Unity
-  * Unity 2022.3.50 or later (Use 2022.3.XX)
+  * Unity 6000.0.45 or later (Use 6000.0.XX)
   * Modules:
     * visionOS Build Support
   * Render pipelines: URP
   * Color Space: Linear
 * Xcode (if you want to test with visionOS simulator)
-  * Xcode 15.2 or later
+  * Xcode 16.3 or later
   * Apple Silicon Mac (M1/M2/M3)
 
 #### Links
@@ -37,7 +37,7 @@
 * Mixed Reality mode: Bounded Volumes, Unbounded Volumes
 * Standard URP materials: Lit, Simple Lit, Unlit (and some spacial materials)
 * Visual Scripting
-* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.2/manual/SupportedFeatures.html) page for the detail.
+* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@2.2/manual/SupportedFeatures.html) page for the detail.
 
 #### **NOT** Supported features for STYLY visionOS Plugin
 
@@ -59,7 +59,7 @@ You are moe than welcome to recommend new custom Visual Scripting nodes to suppo
 #### How to setup
 
 ##### Unity
-* Install Unity 2022.3.50 or later (Use 2022.3.XX) via [Unity Hub](https://unity.com/unity-hub) with modules:
+* Install Unity 6000.0.45 or later (Use 6000.0.XX) via [Unity Hub](https://unity.com/unity-hub) with modules:
   * visionOS Build Support
 
 ##### Setup Unity project
@@ -83,9 +83,9 @@ You are moe than welcome to recommend new custom Visual Scripting nodes to suppo
 ```
 
 ##### Xcode
-* Install Xcode 15.2 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
+* Install Xcode 16.3 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
 * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
-* Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 1.0` -`Apple Vision Pro`
+* Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 2.0` -`Apple Vision Pro`
 
 ##### Install STYLY for Vision Pro into the visionOS simulator
 * Install STYLY for visionOS into the simulator
