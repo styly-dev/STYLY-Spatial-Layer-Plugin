@@ -23,7 +23,7 @@
   * Color Space: Linear
 * Xcode (if you want to test with visionOS simulator)
   * Xcode 16.3 or later
-  * Apple Silicon Mac (M1/M2/M3)
+  * Apple Silicon Mac (M1/M2/M3/M4)
 
 #### Links
 * [STYLY app for visionOS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
