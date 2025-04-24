@@ -102,11 +102,10 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.unity.visualscripting": "1.9.5",
+        "com.unity.visualscripting": "1.9.6",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
-        "com.unity.xr.arfoundation": "5.1.4",
-        "com.unity.textmeshpro": "3.0.7",
-        "com.unity.xr.management": "4.4.1"
+        "com.unity.xr.arfoundation": "6.0.5",
+        "com.unity.xr.management": "4.5.0"
       }
     },
     "com.styly.webrequest-visualscripting-nodes": {
@@ -394,14 +393,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.unity.textmeshpro": {
-      "version": "5.0.0",
-      "depth": 1,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.ugui": "2.0.0"
-      }
     },
     "com.unity.timeline": {
       "version": "1.8.8",
