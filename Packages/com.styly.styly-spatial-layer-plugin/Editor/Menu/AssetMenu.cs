@@ -18,15 +18,28 @@ namespace Styly.VisionOs.Plugin
         private static readonly string AssetBundleFileName = "assetbundle";
         private static readonly string BackupDirectoryName = "Backup";
 
+#if !STYLY_EXPERIMENTAL
         [MenuItem(@"Assets/STYLY/Build Prefab")]
         private static void BuildVisionOsContent()
         {
             BuildContent(new[]{BuildTarget.VisionOS});
         }
-
+#endif
 #if STYLY_EXPERIMENTAL
-        [MenuItem(@"Assets/STYLY/Build Prefab for visionOS and Android(experimental)")]
+        [MenuItem(@"Assets/STYLY/Build Prefab for visionOS", false, 100)]
+        private static void BuildVisionOsContent()
+        {
+            BuildContent(new[]{BuildTarget.VisionOS});
+        }
+        
+        [MenuItem(@"Assets/STYLY/Build Prefab for Android", false, 101)]
         private static void BuildAndroidContent()
+        {
+            BuildContent(new[] { BuildTarget.Android });
+        }
+        
+        [MenuItem(@"Assets/STYLY/Build Prefab for visionOS and Android", false, 102)]
+        private static void BuildVisionOSandAndroidContent()
         {
             BuildContent(new[] { BuildTarget.VisionOS, BuildTarget.Android });
         }
@@ -109,7 +122,9 @@ namespace Styly.VisionOs.Plugin
             EnablePluginProviders.EnableXRPlugin(BuildTargetGroup.VisionOS, typeof(UnityEngine.XR.VisionOS.VisionOSLoader));
 #endif
             SetPreloadAudioData.SetPreloadDataOfAllAudioClips();
+#if UNITY_VISIONOS
             SetPlatformRequiresReadableAssets(true);
+#endif
             var assetBundleUtility = new AssetBundleUtility();
             assetBundleUtility.SwitchPlatform(buildTarget);
             ARBuildPreprocess.ARBuildPreprocessBuild(buildTarget);
