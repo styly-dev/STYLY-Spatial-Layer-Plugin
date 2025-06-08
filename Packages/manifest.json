@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.styly.package-collection-spatial-layer": "1.1.0",
+    "com.styly.package-collection-spatial-layer": "1.1.1",
     "com.unity.cloud.draco.webgl-2023": "1.0.0",
     "com.unity.cloud.ktx.webgl-2023": "1.0.1",
     "com.unity.collab-proxy": "2.7.1",
@@ -12,8 +12,6 @@
     "com.unity.timeline": "1.8.8",
     "com.unity.toolchain.macos-arm64-linux-x86_64": "2.0.4",
     "com.unity.ugui": "2.0.0",
-    "com.unity.visualscripting": "1.9.7",
-    "com.unity.xr.arfoundation": "6.1.0",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
