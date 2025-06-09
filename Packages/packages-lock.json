@@ -67,7 +67,7 @@
       "url": "https://package.openupm.com"
     },
     "com.styly.package-collection-spatial-layer": {
-      "version": "1.1.1",
+      "version": "1.1.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -85,7 +85,7 @@
         "com.unity.xr.interaction.toolkit": "3.1.2",
         "com.unity.xr.hands": "1.5.1",
         "com.styly.hands": "0.0.1",
-        "com.unity.cinemachine": "3.1.3",
+        "com.unity.cinemachine": "2.10.3",
         "com.styly.shader-collection.urp": "0.0.4"
       },
       "url": "https://package.openupm.com"
@@ -129,12 +129,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
-      "version": "3.1.3",
+      "version": "2.10.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.splines": "2.0.0",
-        "com.unity.modules.imgui": "1.0.0"
+        "com.unity.test-framework": "1.1.31"
       },
       "url": "https://packages.unity.com"
     },
@@ -216,7 +215,7 @@
       "dependencies": {}
     },
     "com.unity.ide.rider": {
-      "version": "3.0.31",
+      "version": "3.0.36",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -358,17 +357,6 @@
         "com.unity.render-pipelines.core": "17.0.4",
         "com.unity.searcher": "4.9.3"
       }
-    },
-    "com.unity.splines": {
-      "version": "2.8.0",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.mathematics": "1.2.1",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.settings-manager": "1.0.3"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.sysroot": {
       "version": "2.0.10",
