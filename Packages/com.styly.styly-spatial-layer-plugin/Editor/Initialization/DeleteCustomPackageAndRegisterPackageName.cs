@@ -6,6 +6,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
 using Styly.VisionOs.Plugin;
+using System;
 
 namespace Styly
 {
@@ -28,13 +29,21 @@ namespace Styly
             string MyPackagePath = MyPackageInfo.resolvedPath;
             string MyPackageSource = MyPackageInfo.source.ToString();
 
+            // If the package is installed with files in Packages and not managed with Git, delete the package folder and register the package using OpenUPM.
             if (MyPackageSource == "Embedded")
             {
-                // Delete the package folder
-                if (Directory.Exists(MyPackagePath)) { Directory.Delete(MyPackagePath, true); }
+                string tempPath = null;
+                // Delete the package folder (Move the directory to a temporary path for fallback)
+                if (Directory.Exists(MyPackagePath)) { tempPath = MoveDirectoryToTempPath(MyPackagePath); }
 
-                // Add the package to the project
-                PackageManagerUtility.AddUnityPackage(MyPackageName + "@" + MyPackageVersion);
+                // Add the package to the project using OpenUPM
+                if (!PackageManagerUtility.AddUnityPackage(MyPackageName + "@" + MyPackageVersion))
+                {
+                    // If the package was not added successfully, restore the directory from the temporary path
+                    string originalPath = Path.Combine(Path.GetDirectoryName(MyPackagePath), Path.GetFileName(tempPath));
+                    Directory.Move(tempPath, originalPath);
+                    Debug.LogWarning($"{MyPackageName}: Failed to switch the package source to OpenUPM. The change will be retried automatically next time.");
+                }
             }
         }
 
@@ -58,6 +67,22 @@ namespace Styly
             if (Directory.Exists(Path.Combine(ProjectRootDirectry.FullName, ".git")) || Directory.Exists(Path.Combine(ProjectRootDirectry.Parent.FullName, ".git"))) { return true; }
 
             return false;
+        }
+
+        /// <summary>
+        /// Move the directory to a temporary path.
+        /// </summary>
+        /// <param name="sourcePath"></param>
+        /// <returns></returns>
+        static string MoveDirectoryToTempPath(string sourcePath)
+        {
+            // Create a unique temporary path to avoid name collisions
+            string tempPath = Path.Combine(
+                Path.GetTempPath(),
+                $"{Path.GetFileName(sourcePath)}_{Guid.NewGuid():N}"
+            );
+            Directory.Move(sourcePath, tempPath);
+            return tempPath;
         }
 
 
