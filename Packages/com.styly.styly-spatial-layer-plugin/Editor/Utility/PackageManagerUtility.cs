@@ -47,12 +47,11 @@ namespace Styly.VisionOs.Plugin
         }
 
         /// <summary>
-        /// Add a Unity package to the project
+        /// Add a Unity package by its name and version.
         /// </summary>
-        /// <param name="packageName">
-        /// Example: com.company.packaganame or com.company.packaganame@0.1.1
-        /// </param>
-        public static void AddUnityPackage(string packageNameWithVersion)
+        /// <param name="packageNameWithVersion"></param>
+        /// <returns></returns>
+        public static bool AddUnityPackage(string packageNameWithVersion)
         {
             // Separate the package name and version
             var packageName = packageNameWithVersion.Split('@')[0];
@@ -67,7 +66,12 @@ namespace Styly.VisionOs.Plugin
             // Add the package
             var request = UnityEditor.PackageManager.Client.Add(packageNameWithVersion);
             while (!request.IsCompleted) { }
-            if (request.Error != null) { Debug.LogError(request.Error.message); }
+            if (request.Error != null)
+            {
+                Debug.LogError(request.Error.message);
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
