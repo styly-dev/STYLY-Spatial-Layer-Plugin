@@ -22,7 +22,7 @@ namespace Styly
             // If the project is managed with Git, do nothing.
             if (PackageManagerUtility.IsProjectManagedWithGit()) { return; }
 
-            // Proceed only when the project seems donwloaded from the release zip.
+            // Proceed only when the project seems downloaded from the release zip.
             var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
             string MyPackageName = MyPackageInfo.name;
             string MyPackageVersion = MyPackageInfo.version;
