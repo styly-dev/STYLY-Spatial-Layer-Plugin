@@ -43,9 +43,16 @@ namespace Styly
                 if (!result)
                 {
                     // If the package was not added successfully, restore the directory from the temporary path
-                    string originalPath = Path.Combine(Path.GetDirectoryName(MyPackagePath), Path.GetFileName(tempPath));
-                    Directory.Move(tempPath, originalPath);
-                    Debug.LogError($"{MyPackageName}: Failed to switch the package source to OpenUPM. This will be retried automatically next time.");
+                    if (tempPath != null)
+                    {
+                        string originalPath = Path.Combine(Path.GetDirectoryName(MyPackagePath), Path.GetFileName(tempPath));
+                        Directory.Move(tempPath, originalPath);
+                        Debug.LogError($"{MyPackageName}: Failed to switch the package source to OpenUPM. This will be retried automatically next time.");
+                    }
+                    else
+                    {
+                        Debug.LogError($"{MyPackageName}: Failed to switch the package source to OpenUPM, and no temporary path was available for fallback.");
+                    }
                 }
                 else
                 {
