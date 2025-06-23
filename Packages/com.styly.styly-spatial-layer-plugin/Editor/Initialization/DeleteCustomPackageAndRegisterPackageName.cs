@@ -20,9 +20,9 @@ namespace Styly
         static void FuncOfDeleteCustomPackageAndRegisterPackageName()
         {
             // If the project is managed with Git, do nothing.
-            if (IsProjectManagedWithGit()) { return; }
+            if (PackageManagerUtility.IsProjectManagedWithGit()) { return; }
 
-            // Proceed only when the project seems donwloaded from the release zip.
+            // Proceed only when the project seems downloaded from the release zip.
             var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
             string MyPackageName = MyPackageInfo.name;
             string MyPackageVersion = MyPackageInfo.version;
@@ -48,30 +48,8 @@ namespace Styly
                 }
                 // Cleanup the temporary directory
                 if (Directory.Exists(tempPath)) { Directory.Delete(tempPath, true); }
-                if (Directory.Exists(Path.GetDirectoryName(tempPath)) && !Directory.EnumerateFileSystemEntries(Path.GetDirectoryName(tempPath)).Any()){Directory.Delete(Path.GetDirectoryName(tempPath), true);}
+                if (Directory.Exists(Path.GetDirectoryName(tempPath)) && !Directory.EnumerateFileSystemEntries(Path.GetDirectoryName(tempPath)).Any()) { Directory.Delete(Path.GetDirectoryName(tempPath), true); }
             }
-        }
-
-        /// <summary>
-        /// Check if the project is managed with Git
-        /// (If .git directory exists at the root of the project or the parent folder of the project directory, return true.)
-        /// </summary>
-        /// <returns></returns>
-        static bool IsProjectManagedWithGit()
-        {
-            var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
-
-            // Return false if the package is installed with files in Packages folder
-            if (MyPackageInfo.source.ToString() != "Embedded") { return false; }
-
-            // Get the root directory of the project
-            string MyPackagePath = MyPackageInfo.resolvedPath;
-            var ProjectRootDirectry = Directory.GetParent(MyPackagePath).Parent;
-
-            // Check .git directory at the root of the project (or the parent folder of the project directory) 
-            if (Directory.Exists(Path.Combine(ProjectRootDirectry.FullName, ".git")) || Directory.Exists(Path.Combine(ProjectRootDirectry.Parent.FullName, ".git"))) { return true; }
-
-            return false;
         }
 
         /// <summary>
@@ -100,7 +78,5 @@ namespace Styly
                 return null; // Return null to indicate failure
             }
         }
-
-
     }
 }
