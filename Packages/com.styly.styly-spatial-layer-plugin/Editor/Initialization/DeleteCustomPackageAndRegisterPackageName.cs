@@ -80,16 +80,24 @@ namespace Styly
         /// <returns></returns>
         static string MoveDirectoryToTempPath(string sourcePath)
         {
-            // Create a unique temporary path to avoid name collisions
-            var workDirectoryPath = FileUtil.GetUniqueTempPathInProject();
-            Directory.CreateDirectory(workDirectoryPath);
-            string tempPath = Path.Combine(
-                workDirectoryPath,
-                $"{Path.GetFileName(sourcePath)}_{Guid.NewGuid():N}"
-            );
-            FileUtil.CopyFileOrDirectory(sourcePath, tempPath);
-            Directory.Delete(sourcePath, true);
-            return tempPath;
+            try
+            {
+                // Create a unique temporary path to avoid name collisions
+                var workDirectoryPath = FileUtil.GetUniqueTempPathInProject();
+                Directory.CreateDirectory(workDirectoryPath);
+                string tempPath = Path.Combine(
+                    workDirectoryPath,
+                    $"{Path.GetFileName(sourcePath)}_{Guid.NewGuid():N}"
+                );
+                FileUtil.CopyFileOrDirectory(sourcePath, tempPath);
+                Directory.Delete(sourcePath, true);
+                return tempPath;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Failed to move directory '{sourcePath}' to a temporary path. Exception: {ex.Message}");
+                return null; // Return null to indicate failure
+            }
         }
 
 
