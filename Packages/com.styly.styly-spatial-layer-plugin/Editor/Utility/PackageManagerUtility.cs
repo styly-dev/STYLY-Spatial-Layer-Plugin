@@ -12,6 +12,33 @@ namespace Styly.VisionOs.Plugin
 {
     public class PackageManagerUtility
     {
+        /// <summary>
+        /// Check if the project is managed with Git
+        /// (If .git directory exists at the root of the project or the parent folder of the project directory, return true.)
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsProjectManagedWithGit()
+        {
+            var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
+
+            // Return false if the package is installed with files in Packages folder
+            if (MyPackageInfo.source.ToString() != "Embedded") { return false; }
+
+            // Get the root directory of the project
+            string MyPackagePath = MyPackageInfo.resolvedPath;
+            var ProjectRootDirectry = Directory.GetParent(MyPackagePath).Parent;
+
+            // Check .git directory at the root of the project (or the parent folder of the project directory) 
+            if (Directory.Exists(Path.Combine(ProjectRootDirectry.FullName, ".git")) || Directory.Exists(Path.Combine(ProjectRootDirectry.Parent.FullName, ".git"))) { return true; }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Get the version of a Unity package by its name.
+        /// </summary>
+        /// <param name="packageName"></param>
+        /// <returns></returns>
         public static string GetPackageVersion(string packageName)
         {
             var request = Client.List(true, true); // This requests the list of packages
@@ -130,9 +157,5 @@ namespace Styly.VisionOs.Plugin
             public Dictionary<string, string> dependencies = new();
             public List<ScopedRegistry> scopedRegistries = new();
         }
-
-
-
-
     }
 }
