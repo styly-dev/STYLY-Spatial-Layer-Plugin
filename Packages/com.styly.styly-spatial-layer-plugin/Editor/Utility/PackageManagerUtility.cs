@@ -26,10 +26,10 @@ namespace Styly.VisionOs.Plugin
 
             // Get the root directory of the project
             string MyPackagePath = MyPackageInfo.resolvedPath;
-            var ProjectRootDirectry = Directory.GetParent(MyPackagePath).Parent;
+            var projectRootDirectory = Directory.GetParent(MyPackagePath).Parent;
 
             // Check .git directory at the root of the project (or the parent folder of the project directory) 
-            if (Directory.Exists(Path.Combine(ProjectRootDirectry.FullName, ".git")) || Directory.Exists(Path.Combine(ProjectRootDirectry.Parent.FullName, ".git"))) { return true; }
+            if (Directory.Exists(Path.Combine(projectRootDirectory.FullName, ".git")) || Directory.Exists(Path.Combine(projectRootDirectory.Parent.FullName, ".git"))) { return true; }
 
             return false;
         }
