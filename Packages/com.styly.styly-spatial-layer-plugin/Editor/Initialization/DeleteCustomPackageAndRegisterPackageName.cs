@@ -32,9 +32,9 @@ namespace Styly
             // If the package is installed with files in Packages and not managed with Git, delete the package folder and register the package using OpenUPM.
             if (MyPackageSource == "Embedded")
             {
-                string tempPath = null;
                 // Delete the package folder (Move the directory to a temporary path for fallback)
-                if (Directory.Exists(MyPackagePath)) { tempPath = MoveDirectoryToTempPath(MyPackagePath); }
+                if (!Directory.Exists(MyPackagePath)) { return; }
+                string tempPath = MoveDirectoryToTempPath(MyPackagePath);
 
                 // Add the package to the project using OpenUPM
                 bool result = PackageManagerUtility.AddUnityPackage(MyPackageName + "@" + MyPackageVersion);
@@ -43,22 +43,11 @@ namespace Styly
                 if (!result)
                 {
                     // If the package was not added successfully, restore the directory from the temporary path
-                    if (tempPath != null)
-                    {
-                        string originalPath = Path.Combine(Path.GetDirectoryName(MyPackagePath), Path.GetFileName(tempPath));
-                        Directory.Move(tempPath, originalPath);
-                        Debug.LogError($"{MyPackageName}: Failed to switch the package source to OpenUPM. This will be retried automatically next time.");
-                    }
-                    else
-                    {
-                        Debug.LogError($"{MyPackageName}: Failed to switch the package source to OpenUPM, and no temporary path was available for fallback.");
-                    }
+                    FileUtil.CopyFileOrDirectory(tempPath, MyPackagePath);
+                    Debug.LogError($"{MyPackageName}: Failed to switch the package source to OpenUPM. This will be retried automatically next time.");
                 }
-                else
-                {
-                    // If the package was added successfully, delete the temporary path
-                    if (Directory.Exists(tempPath)) { Directory.Delete(tempPath, true); }
-                }
+                // Cleanup the temporary directory
+                if (Directory.Exists(tempPath)) { Directory.Delete(tempPath, true); }
             }
         }
 
