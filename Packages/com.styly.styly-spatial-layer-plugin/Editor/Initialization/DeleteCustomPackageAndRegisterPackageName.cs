@@ -48,12 +48,7 @@ namespace Styly
                 }
                 // Cleanup the temporary directory
                 if (Directory.Exists(tempPath)) { Directory.Delete(tempPath, true); }
-                // Delete the parent temporary directory if it exists and is empty
-                var workDirectoryPath = Path.GetDirectoryName(tempPath);
-                if (Directory.Exists(workDirectoryPath) && !Directory.EnumerateFileSystemEntries(workDirectoryPath).Any())
-                {
-                    Directory.Delete(workDirectoryPath, true);
-                }
+                if (Directory.Exists(Path.GetDirectoryName(tempPath)) && !Directory.EnumerateFileSystemEntries(Path.GetDirectoryName(tempPath)).Any()){Directory.Delete(Path.GetDirectoryName(tempPath), true);}
             }
         }
 
