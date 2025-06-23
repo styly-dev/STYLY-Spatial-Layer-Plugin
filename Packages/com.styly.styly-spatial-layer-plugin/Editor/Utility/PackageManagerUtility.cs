@@ -22,7 +22,7 @@ namespace Styly.VisionOs.Plugin
             var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
 
             // Return false if the package is installed with files in Packages folder
-            if (MyPackageInfo.source.ToString() != "Embedded") { return false; }
+            if (MyPackageInfo.source != PackageSource.Embedded) { return false; }
 
             // Get the root directory of the project
             string MyPackagePath = MyPackageInfo.resolvedPath;

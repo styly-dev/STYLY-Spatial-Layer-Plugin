@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
@@ -20,36 +21,63 @@ namespace Styly.VisionOs.Plugin
         private static ListRequest listRequest;
         private static readonly List<SearchTask> pendingSearches = new List<SearchTask>();
 
-        private const string MenuCheckUpdates          = "Window/Check UPM Package Updates";
-        private const string MenuCheckUpdatesWithDeps  = "Window/Check UPM Package Updates (incl. Dependencies)";
-
-        // --- Check direct-dependency packages ---------------------------------
+        private const string MenuCheckUpdates = "Window/Check UPM Package Updates";
+        private const string MenuCheckUpdatesWithDeps = "Window/Check UPM Package Updates (incl. Dependencies)";
         [MenuItem(MenuCheckUpdates, false, 2011)]
         public static void CheckPackageUpdates()
         {
             pendingSearches.Clear();
+            // Only direct dependencies
             listRequest = Client.List(offlineMode: false, includeIndirectDependencies: false);
             EditorApplication.update += OnListCompleted;
         }
 
-        // Validation – show the item only when the project is managed with Git
-        [MenuItem(MenuCheckUpdates, true)]
-        private static bool CheckPackageUpdates_Validate()
-            => PackageManagerUtility.IsProjectManagedWithGit();
-
-        // --- Check packages including indirect dependencies -------------------
         [MenuItem(MenuCheckUpdatesWithDeps, false, 2011)]
         public static void CheckPackageUpdatesWithDeps()
         {
             pendingSearches.Clear();
-            listRequest = Client.List(offlineMode: false, includeIndirectDependencies: true);
+            // Get including indirect dependencies
+            listRequest = Client.List(/*offlineMode*/ false, /*includeIndirect*/ true);
             EditorApplication.update += OnListCompleted;
         }
 
-        // Validation – show the item only when the project is managed with Git
-        [MenuItem(MenuCheckUpdatesWithDeps, true)]
-        private static bool CheckPackageUpdatesWithDeps_Validate()
-            => PackageManagerUtility.IsProjectManagedWithGit();
+        /// <summary>
+        /// Hide the menu items if the project is not managed with Git.
+        /// This is to prevent showing the menu items when the project is not using Git, as the package updates are typically relevant only for Git-managed projects.
+        /// This is done using an internal static class that runs on Unity's load.
+        /// </summary>
+        [InitializeOnLoad]
+        internal static class HideMenuWhenNoGit
+        {
+            static HideMenuWhenNoGit()
+            {
+                // Check if the project is managed with Git
+                // If not, remove the menu items for checking package updates
+                if (PackageManagerUtility.IsProjectManagedWithGit()) return;
+
+                // Remove the menu items for checking package updates
+                // This is done using reflection to access the internal UnityEditor.Menu class
+                // and remove the menu items, as Unity does not provide a public API to remove menu items.
+                EditorApplication.delayCall += RemoveMenus;
+            }
+
+            private static void RemoveMenus()
+            {
+                RemoveMenuItem(MenuCheckUpdates);
+                RemoveMenuItem(MenuCheckUpdatesWithDeps);
+            }
+
+            private static void RemoveMenuItem(string path)
+            {
+                // Use reflection to access the internal UnityEditor.Menu class and remove the menu item
+                // This is necessary because Unity does not provide a public API to remove menu items.
+                var menuType = typeof(EditorApplication).Assembly.GetType("UnityEditor.Menu");
+                var remove = menuType?.GetMethod(
+                    "RemoveMenuItem",
+                    BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);   // ← include NonPublic
+                remove?.Invoke(null, new object[] { path });
+            }
+        }
 
         /// <summary>
         /// Represents a task for searching a package in the UPM registry.
