@@ -15,7 +15,7 @@ using UnityEngine;
 // </remarks>
 namespace Styly.VisionOs.Plugin
 {
-    public static class PackageVersionChecker
+    public static class VersionUpgradeAvailabilityCheck
     {
         private static ListRequest listRequest;
         private static readonly List<SearchTask> pendingSearches = new List<SearchTask>();
