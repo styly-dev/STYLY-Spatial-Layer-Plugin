@@ -37,12 +37,20 @@ namespace Styly
                 if (Directory.Exists(MyPackagePath)) { tempPath = MoveDirectoryToTempPath(MyPackagePath); }
 
                 // Add the package to the project using OpenUPM
-                if (!PackageManagerUtility.AddUnityPackage(MyPackageName + "@" + MyPackageVersion))
+                bool result = PackageManagerUtility.AddUnityPackage(MyPackageName + "@" + MyPackageVersion);
+
+                // Fallback and cleanup
+                if (!result)
                 {
                     // If the package was not added successfully, restore the directory from the temporary path
                     string originalPath = Path.Combine(Path.GetDirectoryName(MyPackagePath), Path.GetFileName(tempPath));
                     Directory.Move(tempPath, originalPath);
                     Debug.LogWarning($"{MyPackageName}: Failed to switch the package source to OpenUPM. The change will be retried automatically next time.");
+                }
+                else
+                {
+                    // If the package was added successfully, delete the temporary path
+                    if (Directory.Exists(tempPath)) { Directory.Delete(tempPath, true); }
                 }
             }
         }
@@ -77,11 +85,14 @@ namespace Styly
         static string MoveDirectoryToTempPath(string sourcePath)
         {
             // Create a unique temporary path to avoid name collisions
+            var workDirectoryPath = FileUtil.GetUniqueTempPathInProject();
+            Directory.CreateDirectory(workDirectoryPath);
             string tempPath = Path.Combine(
-                Path.GetTempPath(),
+                workDirectoryPath,
                 $"{Path.GetFileName(sourcePath)}_{Guid.NewGuid():N}"
             );
-            Directory.Move(sourcePath, tempPath);
+            FileUtil.CopyFileOrDirectory(sourcePath, tempPath);
+            Directory.Delete(sourcePath, true);
             return tempPath;
         }
 
