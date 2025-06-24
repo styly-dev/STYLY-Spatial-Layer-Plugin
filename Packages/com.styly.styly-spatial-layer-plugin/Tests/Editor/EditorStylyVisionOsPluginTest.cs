@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using File = UnityEngine.Windows.File;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class EditorStylyVisionOsPluginTest
     {

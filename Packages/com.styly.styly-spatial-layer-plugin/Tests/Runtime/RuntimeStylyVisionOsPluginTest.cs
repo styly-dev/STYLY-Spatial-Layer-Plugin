@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Styly.VisionOs
+namespace Styly.SpatialLayer
 {
     public class RuntimeStylyVisionOsPluginTest
     {

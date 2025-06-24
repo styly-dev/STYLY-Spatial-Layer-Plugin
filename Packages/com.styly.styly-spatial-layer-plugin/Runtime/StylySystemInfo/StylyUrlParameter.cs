@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using UnityEngine;
 
-namespace Styly.VisionOs
+namespace Styly.SpatialLayer.Plugin
 {
     public class StylyUrlParameter
     {

@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class BuildInfo
     {

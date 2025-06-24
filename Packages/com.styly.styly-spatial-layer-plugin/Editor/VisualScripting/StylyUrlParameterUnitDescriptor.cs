@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 
 
-namespace Styly.VisionOs.Plugin.VisualScripting
+namespace Styly.SpatialLayer.Plugin.VisualScripting
 {
     [Descriptor(typeof(GetUrlParameterUnit))]
     public class GetUrlParameterUnitDescriptor : UnitDescriptor<GetUrlParameterUnit>

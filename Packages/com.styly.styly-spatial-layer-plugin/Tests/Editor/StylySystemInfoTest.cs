@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Styly.SpatialLayer.Plugin;
 using UnityEngine;
 
-namespace Styly.VisionOs.Test
+namespace Styly.SpatialLayer.Test
 {
     public class StylySystemInfoTest : MonoBehaviour
     {
