@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-namespace Styly.VisionOs.Plugin.VisualScripting
+namespace Styly.SpatialLayer.Plugin.VisualScripting
 {
     [UnitCategory("STYLY/System")]
     [UnitTitle("Get System Info")]

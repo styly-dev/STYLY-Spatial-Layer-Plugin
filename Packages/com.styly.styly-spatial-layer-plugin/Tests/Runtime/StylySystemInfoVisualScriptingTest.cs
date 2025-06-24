@@ -1,8 +1,9 @@
 using NUnit.Framework;
+using Styly.SpatialLayer.Plugin;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Styly.VisionOs.Test
+namespace Styly.SpatialLayer.Test
 {
     public class StylySystemInfoVisualScriptingTest
     {

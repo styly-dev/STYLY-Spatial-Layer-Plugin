@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 
-namespace Styly.VisionOs.Plugin.VisualScripting
+namespace Styly.SpatialLayer.Plugin.VisualScripting
 {
 
     

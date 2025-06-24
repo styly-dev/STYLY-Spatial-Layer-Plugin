@@ -5,10 +5,10 @@ using UnityEditor;
 using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
-using Styly.VisionOs.Plugin;
+using Styly.SpatialLayer.Plugin;
 using System;
 
-namespace Styly
+namespace Styly.SpatialLayer.Plugin
 {
     /// <summary>
     /// This class is intended to move the package from Package directry to OpenUPM when the project is downloaded from the release zip.

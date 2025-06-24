@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Styly
+namespace Styly.SpatialLayer.Plugin
 {
     /// <summary>
     /// This script is intended to be attached to a GameObject with a VideoPlayer component.

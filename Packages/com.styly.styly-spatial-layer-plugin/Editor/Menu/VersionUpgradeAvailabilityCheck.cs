@@ -14,7 +14,7 @@ using UnityEngine;
 // It logs the results in the console, indicating whether updates are available or if the package is up-to-date.
 // It also handles indirect dependencies by performing a depth-first search (DFS) to find all related packages and their versions.
 // </remarks>
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public static class VersionUpgradeAvailabilityCheck
     {

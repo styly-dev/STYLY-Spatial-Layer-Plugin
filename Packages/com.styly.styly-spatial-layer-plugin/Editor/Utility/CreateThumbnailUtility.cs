@@ -3,7 +3,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class CreateThumbnailUtility
     {

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public static class VisualScriptingParameterUtility
     {

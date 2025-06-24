@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Styly.SpatialLayer.Plugin;
 using UnityEngine;
 
-namespace Styly.VisionOs.Samples.URLSchemeParameter
+namespace Styly.SpatialLayer.Samples.URLSchemeParameter
 {
     public class DummyScript : MonoBehaviour
     {

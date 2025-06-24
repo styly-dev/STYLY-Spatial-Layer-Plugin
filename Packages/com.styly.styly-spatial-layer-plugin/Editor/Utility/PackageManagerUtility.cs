@@ -8,7 +8,7 @@ using Styly;
 using Newtonsoft.Json;
 using System.Linq;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class PackageManagerUtility
     {

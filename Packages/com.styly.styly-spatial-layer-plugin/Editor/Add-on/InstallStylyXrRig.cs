@@ -5,7 +5,7 @@ using UnityEditor;
 
 // ToDo: Check the STYLY supported version of STYLY-XR-Rig
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class InstallStylyXrRig : MonoBehaviour
     {
