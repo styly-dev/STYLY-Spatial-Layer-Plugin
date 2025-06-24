@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly
 {
     /// <summary>
     /// This script is intended to be attached to a GameObject with a VideoPlayer component.
     /// </summary>
-    [Obsolete("Use VideoPlayerHelperSpatial instead.")]
     public class VideoPlayerHelper : MonoBehaviour
     {
         RenderTexture targetRenderTexture = null;
