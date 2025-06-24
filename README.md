@@ -3,47 +3,48 @@
 ![Kujira](https://github.com/styly-dev/STYLY-visionOS-Plugin/assets/387880/f8c5a959-ef49-4ed3-b06b-db367624766f)
 
 ### What is this plugin?
-* You can upload your Unity contents to [STYLY for Vision Pro](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
+* You can build your Unity contents for uplaoding to [STYLY for Vision Pro](https://spatial-layer.styly.cc/) and enjoy it on [our app](https://apps.apple.com/us/app/styly-for-vision-pro/id6475184828).
+* This plugin also works a template including [content samples](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/wiki/Content-samples) for creations. [Downalod Unity Template Project](https://api.github.com/repos/styly-dev/STYLY-visionOS-Plugin/zipball/) 
 
 ### Notes
-* Contents of STYLY for Vision Pro is not compatible with STYLY for other platforms. Its code base is different from STYLY VR or STYLY mobile. 
-* STYLY for Vision Pro doesn't have 3D contents creation tools for now.
+* Contents of STYLY for Vision Pro is not compatible with [STYLY for other platforms (STYLY VR or STYLY mobile)](https://gallery.styly.cc/). 
+* STYLY for Vision Pro doesn't have 3D contents assembly tools for now.
 * Please give us your feedback on [Github Issues](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/issues).  
-* Your contents will be published to the PUBLIC. Don't upload your contents which you want make private. 
-* Contents gallery on STYLY app is white list based now. STYLY team may pick up your contents display in the app.    
+* Your contents will be PUBLIC once your uploaded. Don't upload your contents which you want to keep private. 
+* The content gallery on the STYLY app is now managed on a whitelist basis. Please apply through [this APPICATION FORM](https://docs.google.com/forms/d/e/1FAIpQLSd6eK_mo6ECXy-fLZP53xkz9e6t-B_au_PSCE0eafIB0u86GQ/viewform) if you want your content to get listed.
 
 #### Requirements
 
 * Unity
-  * Unity 2022.3.27 or later (Use 2022.3.XX)
+  * Unity 6000.0.48 or later (Use 6000.0.XX)
   * Modules:
     * visionOS Build Support
   * Render pipelines: URP
   * Color Space: Linear
 * Xcode (if you want to test with visionOS simulator)
-  * Xcode 15.2 or later
-  * Apple Silicon Mac (M1/M2/M3)
+  * Xcode 16.3 or later
+  * Apple Silicon Mac (M1/M2/M3/M4)
 
 #### Links
-* [STYLY app for Vision OS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
+* [STYLY app for visionOS Simulator download](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz)
 * [Website of STYLY for Vision Pro](https://spatial-layer.styly.cc/)
-* [Github repository](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/)
+* [visionOS app release note](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/wiki/STYLY-for-Vision-Pro-Release-Notes)
+* [Github repository of this plugin](https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/)
 * [OpenUPM page](https://openupm.com/packages/com.styly.styly-spatial-layer-plugin/)
 
 #### Supported features for STYLY visionOS Plugin
 
 * Mixed Reality mode: Bounded Volumes, Unbounded Volumes
-* Standard URP shaders: Lit, Simple Lit, Unlit and some shaders in supported Unity packages
+* Standard URP materials: Lit, Simple Lit, Unlit (and some spacial materials)
 * Visual Scripting
-* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.2/manual/SupportedFeatures.html) page for the detail.
+* Timeline, animator, animation, audioclip and other basic features. See [Supported Unity Features and Components](https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@2.2/manual/SupportedFeatures.html) page for the detail.
 
 #### **NOT** Supported features for STYLY visionOS Plugin
 
 * Fully Immersive VR, Windowed Apps
-* Your C# scripts
-* Custom shaders
+* Scripting in C#
+* Custom shaders / Shader Graph
 * Visual Effect Graph
-* Postprocessing Stack
 
 #### Supported Visual Scripting Unity packages
 
@@ -53,16 +54,13 @@
 * [WebRequest Visual Scripting Nodes](https://openupm.com/packages/com.styly.webrequest-visualscripting-nodes/)
 * [STYLY-XR-Rig](https://openupm.com/packages/com.styly.styly-xr-rig/)
 
-  You are moe than welcome to recommend new custom Visual Scripting nodes to support.
+You are moe than welcome to recommend new custom Visual Scripting nodes to support.
 
 #### How to setup
 
 ##### Unity
-
-  * Install Unity via [Unity Hub](https://unity.com/unity-hub)
-
-    * Install Unity [2022.3.27](https://unity.com/ja/releases/editor/whats-new/2022.3.27) or later (Use 2022.3.XX) with modules:
-      * visionOS Build Support
+* Install Unity 6000.0.48 or later (Use 6000.0.XX) via [Unity Hub](https://unity.com/unity-hub) with modules:
+  * visionOS Build Support
 
 ##### Setup Unity project
 
@@ -85,14 +83,13 @@
 ```
 
 ##### Xcode
-
-  * Install Xcode 15.2 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
-  * Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
-  * Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 1.0` -`Apple Vision Pro`
+* Install Xcode 16.3 or later with visionOS simulator. [Xcodes](https://www.xcodes.app/) is the easiest way to install and manage multiple versions of Xcode.
+* Open Simulator from Xcode menu. Click`Xcode` -`Open Developer Tool` -`Simulator`
+* Open Vision Pro simulator from menu. Click`File` -`Open Simulator` -`visionOS 2.0` -`Apple Vision Pro`
 
 ##### Install STYLY for Vision Pro into the visionOS simulator
-  * Install STYLY for visionOS into the simulator
-    * Download [STYLY-Vision-OS-App.app](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz) and drag the app file to the simulator window from Finder.
+* Install STYLY for visionOS into the simulator
+  * Download [STYLY-Vision-OS-App.app](https://drive.google.com/uc?export=download&id=1GR4Xw14_gMSG_fW7dyXPoTyFde4D6Vwz) and drag the app file and drop to the simulator window.
 ![Simulator](https://github.com/styly-dev/PolySpatial_VisualScriptingNodes/assets/387880/0e2da2ad-f45c-4452-b71e-9339ade58fd6)
 
 ### How to build and upload contents
@@ -110,7 +107,7 @@ Upload your built contents (.styly file) with its title, description and display
 * Bounded: Your contents will be displayed in 1m x 1m x 1m size. Contents can be displayed with other apps.
 * Unbounded: Your contents will be displayed exclusively in a space.
 
-<img width="1033" alt="UploadContents" src="https://github.com/styly-dev/STYLY-VisionOS-Plugin/assets/387880/474b38a9-59c8-4e7d-9b5c-489ab2c59638">
+![upload](https://github.com/user-attachments/assets/409abb21-b1f5-49a4-9a7a-c17f2e3bcd5d)
 
 ### How to play the contents on STYLY
 
@@ -120,7 +117,7 @@ Upload your built contents (.styly file) with its title, description and display
 
 ### STYLY-XR-Rig (Add-on)
 
-Right click at hierarchy window to install STYLY-XR-Rig, which allows you to develop and test adovanced features. You need a Unity Pro license to install it.
+Right click at hierarchy window to install STYLY-XR-Rig, which allows you to develop and test advanced features.
 <img width="898" alt="Install STYLY-XR-Rig" src="https://github.com/styly-dev/STYLY-Spatial-Layer-Plugin/assets/387880/4d9e6ec2-da84-4dee-a9c9-4b062a46ba1f">
 
 

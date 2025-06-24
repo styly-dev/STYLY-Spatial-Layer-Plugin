@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: Plane Detection
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":125.2478,"y":30.74989},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{},"position":{"x":-183.0,"y":-243.0},"guid":"6ec1067b-1374-4dc2-bcce-78acb2486232","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"nest":{"source":"Macro","macro":0,"embed":null},"defaultValues":{},"position":{"x":0.0,"y":-244.0},"guid":"ff5cb797-d9e9-4133-9c8b-cd768fdf1210","$version":"A","$type":"Unity.VisualScripting.SubgraphUnit","$id":"11"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"ARPlanePrefab","$type":"System.String"},"object":null},"position":{"x":-240.0,"y":-124.0},"guid":"fd1403d3-dd84-4172-8816-bf2930c0d847","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"14"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"Input
+      Trigger","guid":"91909390-611c-4ed0-87ac-e949e74a7f60","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"14"},"sourceKey":"value","destinationUnit":{"$ref":"11"},"destinationKey":"ARPlane","guid":"21cd3bcf-c0b6-4dce-a9f8-81a8bb91d5e7","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 308790ef018ca4b8bb928d7458ed2bba, type: 2}

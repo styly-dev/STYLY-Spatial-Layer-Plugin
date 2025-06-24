@@ -5,20 +5,47 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class AssetMenu
     {
         private static bool isProcessing;
         private static readonly string ThumbnailFileName = "thumbnail.png";
         private static readonly string VisionOsDirectoryName = "VisionOS";
+        private static readonly string AndroidDirectoryName = "Android";
         private static readonly string MetaFileName = "meta.json";
         private static readonly string ParameterFileName = "parameter.json";
         private static readonly string AssetBundleFileName = "assetbundle";
         private static readonly string BackupDirectoryName = "Backup";
 
-        [MenuItem(@"Assets/STYLY/Build prefab", false, 10000)]
-        private static void BuildContent()
+#if !STYLY_EXPERIMENTAL
+        [MenuItem(@"Assets/STYLY/Build Prefab")]
+        private static void BuildVisionOsContent()
+        {
+            BuildContent(new[]{BuildTarget.VisionOS});
+        }
+#endif
+#if STYLY_EXPERIMENTAL
+        [MenuItem(@"Assets/STYLY/Build Prefab for visionOS", false, 100)]
+        private static void BuildVisionOsContent()
+        {
+            BuildContent(new[]{BuildTarget.VisionOS});
+        }
+        
+        [MenuItem(@"Assets/STYLY/Build Prefab for Android", false, 101)]
+        private static void BuildAndroidContent()
+        {
+            BuildContent(new[] { BuildTarget.Android });
+        }
+        
+        [MenuItem(@"Assets/STYLY/Build Prefab for visionOS and Android", false, 102)]
+        private static void BuildVisionOSandAndroidContent()
+        {
+            BuildContent(new[] { BuildTarget.VisionOS, BuildTarget.Android });
+        }
+#endif
+        
+        private static void BuildContent(BuildTarget[] buildTargets)
         {
             isProcessing = true;
 
@@ -28,7 +55,7 @@ namespace Styly.VisionOs.Plugin
 
             if (!IsBuildTargetType(assetPath))
             {
-                Debug.LogError("Selected asset is not prefab");
+                Debug.LogError("Selected asset is not a Prefab.");
                 return;
             }
 
@@ -36,12 +63,24 @@ namespace Styly.VisionOs.Plugin
 
             CreateThumbnailUtility.MakeThumbnail(assetPath, Path.Combine(outputPath, ThumbnailFileName));
             ExportBackupFileUtility.Export(assetPath, Path.Combine(outputPath, BackupDirectoryName));
-            bool buildResult = BuildAssetBundle(assetPath, Path.Combine(outputPath, VisionOsDirectoryName));
-            if (buildResult == false)
+
+            foreach (var buildTarget in buildTargets)
             {
-                Directory.Delete(outputPath, true);
-                return;
+                var directoryName = buildTarget switch
+                {
+                    BuildTarget.VisionOS => VisionOsDirectoryName,
+                    BuildTarget.Android => AndroidDirectoryName,
+                    _ => "UnknownPlatform"
+                };
+
+                bool buildResult = BuildAssetBundle(assetPath, Path.Combine(outputPath, directoryName), buildTarget);
+                if (buildResult == false)
+                {
+                    Directory.Delete(outputPath, true);
+                    return;
+                }
             }
+            
             GenerateMetadata(assetPath, Path.Combine(outputPath, MetaFileName));
 
             ZipFile.CreateFromDirectory(outputPath, $"{outputPath}_{assetFileNameWithoutExtension}.styly");
@@ -53,6 +92,16 @@ namespace Styly.VisionOs.Plugin
             Application.OpenURL(uri.AbsoluteUri);
 
             isProcessing = false;
+        }
+        
+
+        [MenuItem(@"Assets/STYLY/Build Prefab", validate = true, priority = 10000)]
+        static bool ValidateBuildContent()
+        {
+            if (Application.isPlaying) return false;
+            if (Selection.objects.Length != 1) return false;
+            var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            return IsBuildTargetType(assetPath);
         }
 
         private static string PrepareOutputDirectory()
@@ -67,19 +116,28 @@ namespace Styly.VisionOs.Plugin
             return outputPath;
         }
 
-        private static bool BuildAssetBundle(string assetPath, string outputPath)
+        private static bool BuildAssetBundle(string assetPath, string outputPath, BuildTarget buildTarget)
         {
 #if USE_UNITY_XR_VISIONOS
             EnablePluginProviders.EnableXRPlugin(BuildTargetGroup.VisionOS, typeof(UnityEngine.XR.VisionOS.VisionOSLoader));
 #endif
             SetPreloadAudioData.SetPreloadDataOfAllAudioClips();
+#if UNITY_VISIONOS
             SetPlatformRequiresReadableAssets(true);
+#endif
             var assetBundleUtility = new AssetBundleUtility();
-            assetBundleUtility.SwitchPlatform(BuildTarget.VisionOS);
-            ARBuildPreprocess.ARBuildPreprocessBuild(BuildTarget.VisionOS);
-            var buildResult = assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, BuildTarget.VisionOS);
-            File.Delete(Path.Combine(outputPath, VisionOsDirectoryName));
-            File.Delete(Path.Combine(outputPath, $"{VisionOsDirectoryName}.manifest"));
+            assetBundleUtility.SwitchPlatform(buildTarget);
+            ARBuildPreprocess.ARBuildPreprocessBuild(buildTarget);
+            var buildResult = assetBundleUtility.Build(AssetBundleFileName, assetPath, outputPath, buildTarget);
+            var directoryName = buildTarget switch
+            {
+                BuildTarget.VisionOS => VisionOsDirectoryName,
+                BuildTarget.Android => AndroidDirectoryName,
+                _ => "UnknownPlatform"
+            };
+            
+            File.Delete(Path.Combine(outputPath, directoryName));
+            File.Delete(Path.Combine(outputPath, $"{directoryName}.manifest"));
 
             return buildResult != null;
         }

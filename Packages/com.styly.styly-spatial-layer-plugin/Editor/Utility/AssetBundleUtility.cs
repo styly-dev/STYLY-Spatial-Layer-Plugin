@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     /// <summary>
     /// Asset Bundle Utility
@@ -15,6 +15,10 @@ namespace Styly.VisionOs.Plugin
             if (buildTarget == BuildTarget.VisionOS)
             {
                 return EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.VisionOS, BuildTarget.VisionOS);
+            }
+            else if (buildTarget == BuildTarget.Android)
+            {
+                return EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
             }
             return false;
         }

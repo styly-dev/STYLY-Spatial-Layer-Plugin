@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: Move After 3 Sec
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":52.49481,"y":7.24823},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-366.0,"y":-176.0},"guid":"f2b8e74e-e6df-43e9-ad84-728156c888ff","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{"seconds":{"$content":3.0,"$type":"System.Single"},"unscaledTime":{"$content":false,"$type":"System.Boolean"}},"position":{"x":-147.0,"y":-177.0},"guid":"ac237f6a-2e29-4cc5-9b56-18fb3e21a2ae","$version":"A","$type":"Unity.VisualScripting.WaitForSecondsUnit","$id":"11"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"TargetObject","$type":"System.String"},"object":null},"position":{"x":-136.0,"y":91.0},"guid":"57cdc32d-dcee-488c-a102-b27c3d20da56","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"13"},{"member":{"name":"transform","parameterTypes":null,"targetType":"UnityEngine.GameObject","targetTypeName":"UnityEngine.GameObject","$version":"A"},"defaultValues":{"target":null},"position":{"x":90.0,"y":34.0},"guid":"4a11aa8a-6674-482f-a0b7-da816ad32dce","$version":"A","$type":"Unity.VisualScripting.GetMember","$id":"15"},{"chainable":false,"member":{"name":"position","parameterTypes":null,"targetType":"UnityEngine.Transform","targetTypeName":"UnityEngine.Transform","$version":"A"},"defaultValues":{"target":null,"input":{"x":0.0,"y":0.5,"z":0.0,"$type":"UnityEngine.Vector3"}},"position":{"x":289.0,"y":-54.0},"guid":"c64b6cc4-450e-46e1-a17b-503c19de4adc","$version":"A","$type":"Unity.VisualScripting.SetMember","$id":"18"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"39dc92c3-6054-4b0f-820d-ee7f81a00249","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"exit","destinationUnit":{"$ref":"18"},"destinationKey":"assign","guid":"ed97462f-756a-4dc6-bebe-d287ba1deef1","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"value","destinationUnit":{"$ref":"15"},"destinationKey":"target","guid":"b01b2903-33c7-4e68-8fef-ab15052a3a9e","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"value","destinationUnit":{"$ref":"18"},"destinationKey":"target","guid":"aae55f39-1bab-46b4-8466-b96444f9056f","$type":"Unity.VisualScripting.ValueConnection"},{"position":{"xMin":-160.0,"yMin":216.0,"xMax":57.0,"yMax":361.0},"title":"Get
+      the target GameObject","body":"This is an Object parameter. You sholud see
+      this parameter in Inspector when \"Container\" object is selected. This is
+      the object which will be moved after 3 sec.\n","colorTheme":"Classic","guid":"fe79d5ba-c2ce-4bdf-a2d8-22bd005a4e30","$type":"Unity.VisualScripting.StickyNote"}],"$version":"A"}}'
+    _objectReferences: []

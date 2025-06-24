@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9175108139769545740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6186215680755754018}
+  - component: {fileID: 6929779868676480062}
+  - component: {fileID: 3426282832502996786}
+  m_Layer: 0
+  m_Name: StylySystemInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6186215680755754018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175108139769545740}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0015953481, y: -0.086328894, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6929779868676480062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175108139769545740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!114 &3426282832502996786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175108139769545740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fe5546f775c47d2820aa5e8a715f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":258.2493,"y":97.2009},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{},"position":{"x":-163.0,"y":-188.0},"guid":"5a6f0282-eb4b-46c5-9f50-82be4cebc579","$version":"A","$type":"Unity.VisualScripting.Start","$id":"10"},{"chainable":false,"parameterNames":["message"],"member":{"name":"Log","parameterTypes":["System.Object"],"targetType":"UnityEngine.Debug","targetTypeName":"UnityEngine.Debug","$version":"A"},"defaultValues":{},"position":{"x":200.0,"y":-189.0},"guid":"357c056f-923d-4e35-bf6a-3d01f620dacc","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"12"},{"chainable":false,"parameterNames":["key"],"member":{"name":"GetInfo","parameterTypes":["System.String"],"targetType":"Styly.VisionOs.StylySystemInfo","targetTypeName":"Styly.VisionOs.StylySystemInfo","$version":"A"},"defaultValues":{"%key":{"$content":"URL","$type":"System.String"}},"position":{"x":7.0,"y":-189.0},"guid":"2cdc3490-46fb-4124-b2ea-ac3bf3c39c4a","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"16"},{"chainable":false,"parameterNames":["message"],"member":{"name":"Log","parameterTypes":["System.Object"],"targetType":"UnityEngine.Debug","targetTypeName":"UnityEngine.Debug","$version":"A"},"defaultValues":{},"position":{"x":204.0,"y":-38.0},"guid":"e602f46c-1b90-482d-bf43-aa0d90fe881c","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"20"},{"chainable":false,"parameterNames":["key"],"member":{"name":"Get","parameterTypes":["System.String"],"targetType":"Styly.VisionOs.StylyUrlParameter","targetTypeName":"Styly.VisionOs.StylyUrlParameter","$version":"A"},"defaultValues":{"%key":{"$content":"type","$type":"System.String"}},"position":{"x":8.0,"y":-36.0},"guid":"5b0e0f92-c9f1-4df5-a201-d90f07b4c018","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"24"},{"chainable":false,"parameterNames":["message"],"member":{"name":"Log","parameterTypes":["System.Object"],"targetType":"UnityEngine.Debug","targetTypeName":"UnityEngine.Debug","$version":"A"},"defaultValues":{},"position":{"x":207.0,"y":101.0},"guid":"c437d337-0441-4b68-9da1-4b1da1e69010","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"28"},{"chainable":false,"parameterNames":["key"],"member":{"name":"Get","parameterTypes":["System.String"],"targetType":"Styly.VisionOs.StylyUrlParameter","targetTypeName":"Styly.VisionOs.StylyUrlParameter","$version":"A"},"defaultValues":{"%key":{"$content":"param1","$type":"System.String"}},"position":{"x":7.0,"y":101.0},"guid":"5f3b4e16-039b-40c3-b5c1-8180894587fd","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"32"},{"chainable":false,"parameterNames":["message"],"member":{"name":"Log","parameterTypes":["System.Object"],"targetType":"UnityEngine.Debug","targetTypeName":"UnityEngine.Debug","$version":"A"},"defaultValues":{},"position":{"x":205.0,"y":231.0},"guid":"754f5297-35c6-4023-b48f-0b9efd03078a","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"36"},{"chainable":false,"parameterNames":["key"],"member":{"name":"Get","parameterTypes":["System.String"],"targetType":"Styly.VisionOs.StylyUrlParameter","targetTypeName":"Styly.VisionOs.StylyUrlParameter","$version":"A"},"defaultValues":{"%key":{"$content":"param2","$type":"System.String"}},"position":{"x":9.0,"y":231.0},"guid":"ef13acdb-bcd7-4704-afa7-813b9f718a39","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"40"},{"sourceUnit":{"$ref":"12"},"sourceKey":"exit","destinationUnit":{"$ref":"24"},"destinationKey":"enter","guid":"ba630e55-0aab-4961-9dd5-8bc72521db84","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"20"},"sourceKey":"exit","destinationUnit":{"$ref":"32"},"destinationKey":"enter","guid":"b0842da1-aace-4807-bd52-22db1c0d5a98","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"16"},"destinationKey":"enter","guid":"0f90dc7d-d3a5-4e10-b95d-d4966698359e","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"32"},"sourceKey":"exit","destinationUnit":{"$ref":"28"},"destinationKey":"enter","guid":"4a99db0a-bc6e-4e4d-baf4-70f565eb944e","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"28"},"sourceKey":"exit","destinationUnit":{"$ref":"40"},"destinationKey":"enter","guid":"6637b04a-70f4-4ee8-8ff6-4486fd2dffdd","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"24"},"sourceKey":"exit","destinationUnit":{"$ref":"20"},"destinationKey":"enter","guid":"e606c9ff-b8d2-48e9-a7db-12a38a757ab1","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"40"},"sourceKey":"exit","destinationUnit":{"$ref":"36"},"destinationKey":"enter","guid":"3a647e79-9b5d-4a50-9806-94d0ff369fcc","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"16"},"sourceKey":"exit","destinationUnit":{"$ref":"12"},"destinationKey":"enter","guid":"9ac25e62-f923-47ca-9c5f-9208f98b4f42","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"24"},"sourceKey":"result","destinationUnit":{"$ref":"20"},"destinationKey":"%message","guid":"6048ddce-7024-4a77-acbe-d5af8ed5c511","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"16"},"sourceKey":"result","destinationUnit":{"$ref":"12"},"destinationKey":"%message","guid":"fafea01d-af32-4c1d-8362-908922d27169","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"32"},"sourceKey":"result","destinationUnit":{"$ref":"28"},"destinationKey":"%message","guid":"2e5fd00e-1038-48dd-b8ce-515ada107503","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"40"},"sourceKey":"result","destinationUnit":{"$ref":"36"},"destinationKey":"%message","guid":"c83500a2-daef-4665-bbb0-936fde8c8d85","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}}'
+    _objectReferences: []

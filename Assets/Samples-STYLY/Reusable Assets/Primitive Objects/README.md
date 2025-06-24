@@ -1,0 +1,1 @@
+In this samples, STYLY team prepared cool primitive objects. You can use the objects in stead of Unity's primitive objects.

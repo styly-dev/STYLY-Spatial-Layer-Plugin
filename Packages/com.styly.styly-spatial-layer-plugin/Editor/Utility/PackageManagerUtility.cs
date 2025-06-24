@@ -8,10 +8,37 @@ using Styly;
 using Newtonsoft.Json;
 using System.Linq;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class PackageManagerUtility
     {
+        /// <summary>
+        /// Check if the project is managed with Git
+        /// (If .git directory exists at the root of the project or the parent folder of the project directory, return true.)
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsProjectManagedWithGit()
+        {
+            var MyPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(System.Reflection.MethodInfo.GetCurrentMethod().DeclaringType.Assembly);
+
+            // Return false if the package is installed with files in Packages folder
+            if (MyPackageInfo.source != PackageSource.Embedded) { return false; }
+
+            // Get the root directory of the project
+            string MyPackagePath = MyPackageInfo.resolvedPath;
+            var projectRootDirectory = Directory.GetParent(MyPackagePath).Parent;
+
+            // Check .git directory at the root of the project (or the parent folder of the project directory) 
+            if (Directory.Exists(Path.Combine(projectRootDirectory.FullName, ".git")) || Directory.Exists(Path.Combine(projectRootDirectory.Parent.FullName, ".git"))) { return true; }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Get the version of a Unity package by its name.
+        /// </summary>
+        /// <param name="packageName"></param>
+        /// <returns></returns>
         public static string GetPackageVersion(string packageName)
         {
             var request = Client.List(true, true); // This requests the list of packages
@@ -47,12 +74,11 @@ namespace Styly.VisionOs.Plugin
         }
 
         /// <summary>
-        /// Add a Unity package to the project
+        /// Add a Unity package by its name and version.
         /// </summary>
-        /// <param name="packageName">
-        /// Example: com.company.packaganame or com.company.packaganame@0.1.1
-        /// </param>
-        public static void AddUnityPackage(string packageNameWithVersion)
+        /// <param name="packageNameWithVersion"></param>
+        /// <returns></returns>
+        public static bool AddUnityPackage(string packageNameWithVersion)
         {
             // Separate the package name and version
             var packageName = packageNameWithVersion.Split('@')[0];
@@ -67,7 +93,12 @@ namespace Styly.VisionOs.Plugin
             // Add the package
             var request = UnityEditor.PackageManager.Client.Add(packageNameWithVersion);
             while (!request.IsCompleted) { }
-            if (request.Error != null) { Debug.LogError(request.Error.message); }
+            if (request.Error != null)
+            {
+                Debug.LogError(request.Error.message);
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -126,9 +157,5 @@ namespace Styly.VisionOs.Plugin
             public Dictionary<string, string> dependencies = new();
             public List<ScopedRegistry> scopedRegistries = new();
         }
-
-
-
-
     }
 }

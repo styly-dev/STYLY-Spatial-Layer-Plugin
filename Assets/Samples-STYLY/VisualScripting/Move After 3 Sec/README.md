@@ -1,0 +1,1 @@
+You will learn how to move an object with this sample. After 3 seconds, the object will move upwards (Y direction). Please check the graph in this folder. The object which will be moved is given as an Object parameter in the graph.

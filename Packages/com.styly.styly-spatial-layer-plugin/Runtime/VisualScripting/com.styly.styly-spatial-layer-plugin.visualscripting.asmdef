@@ -1,0 +1,19 @@
+{
+    "name": "com.styly.styly-spatial-layer-plugin.visualscripting",
+    "rootNamespace": "",
+    "references": [
+        "GUID:21b0c8d1703a94250bfac916590cea4f",
+        "GUID:315d634a9ac6d460a9515f5a56be6311",
+        "GUID:ea715009a4efd4c6cbc85be3ae097dd3",
+        "GUID:8968ba5ae362c4f2fb60d51d1a25abd2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     /// <summary>
     /// Set Preload Audio Data for all AudioClips in the project

@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class AboutPopupWindow : EditorWindow
     {
@@ -32,7 +32,7 @@ namespace Styly.VisionOs.Plugin
             versionLabel.text = packageVersion;
 
             var unityVersionLabel = root.Q<Label>("UnityVersionLabel");
-            unityVersionLabel.text = UnityEngine.Application.unityVersion;
+            unityVersionLabel.text = Application.unityVersion;
         }
     }
 }

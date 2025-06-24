@@ -1,0 +1,1 @@
+This folder has sampel scenes for helping you to create VisualScripting graphs to realize logics.

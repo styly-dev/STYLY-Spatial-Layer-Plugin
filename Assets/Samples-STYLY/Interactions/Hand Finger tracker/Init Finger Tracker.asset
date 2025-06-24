@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: Init Finger Tracker
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[{"key":"Input","label":null,"summary":null,"hideLabel":false}],"controlOutputDefinitions":[{"key":"output","label":null,"summary":null,"hideLabel":false}],"valueInputDefinitions":[],"valueOutputDefinitions":[{"_type":"Unity.VisualScripting.AotDictionary","key":"Left
+      Hand Fingers","label":null,"summary":null,"hideLabel":false},{"_type":"Unity.VisualScripting.AotDictionary","key":"Right
+      Hand Fingers","label":null,"summary":null,"hideLabel":false}],"title":null,"summary":null,"pan":{"x":-590.501,"y":556.4998},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{},"position":{"x":-1064.0,"y":395.0},"guid":"4bedc45e-2851-414e-95fd-57d0d2ba5e27","$version":"A","$type":"Unity.VisualScripting.Start","$id":"13"},{"kind":"Object","defaultValues":{"name":{"$content":"Left
+      Hand Fingers","$type":"System.String"},"object":null},"position":{"x":-411.0,"y":362.0},"guid":"f8d47bf1-901d-4b23-a9bf-8fd82f28affa","$version":"A","$type":"Unity.VisualScripting.SetVariable","$id":"15"},{"kind":"Object","defaultValues":{"name":{"$content":"Right
+      Hand Fingers","$type":"System.String"},"object":null},"position":{"x":-176.0,"y":386.0},"guid":"9ee70567-8a7c-48e2-965c-8ff4ba6e07e0","$version":"A","$type":"Unity.VisualScripting.SetVariable","$id":"17"},{"nest":{"source":"Macro","macro":0,"embed":null},"defaultValues":{},"position":{"x":-756.0,"y":382.0},"guid":"4358a392-f736-4f8f-ad44-1b14df2f9aee","$version":"A","$type":"Unity.VisualScripting.SubgraphUnit","$id":"19"},{"sourceUnit":{"$ref":"15"},"sourceKey":"assigned","destinationUnit":{"$ref":"17"},"destinationKey":"assign","guid":"2191cd23-d01f-4b2e-9541-cfa5bbf3bb6d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"trigger","destinationUnit":{"$ref":"19"},"destinationKey":"Input","guid":"466e512f-1b65-4fbd-88ca-6b50cd3bf3a4","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"output","destinationUnit":{"$ref":"15"},"destinationKey":"assign","guid":"abad3369-f637-4520-9fac-5d76682b1ea8","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Left
+      Hand Fingers","destinationUnit":{"$ref":"15"},"destinationKey":"input","guid":"c47a8718-029d-4142-8c71-02f234545567","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Right
+      Hand Fingers","destinationUnit":{"$ref":"17"},"destinationKey":"input","guid":"328032f0-fd62-4572-9c03-eaee13956518","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: db114366cd418498f804a0110f027c10, type: 2}

@@ -1,15 +1,14 @@
 {
   "name": "com.styly.styly-spatial-layer-plugin",
-  "version": "0.3.2",
+  "version": "0.6.3",
   "displayName": "STYLY Spatial Layer Plugin",
-  "unity": "2022.3",
+  "unity": "6000.0",
   "description": "STYLY Spatial Layer Plugin for Vision Pro",
   "dependencies": {
-    "com.unity.visualscripting": "1.9.4",
+    "com.unity.visualscripting": "1.9.6",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
-    "com.unity.xr.arfoundation": "5.1.4",
-    "com.unity.textmeshpro": "3.0.7",
-    "com.unity.xr.management": "4.4.1"
+    "com.unity.xr.arfoundation": "6.0.5",
+    "com.unity.xr.management": "4.5.0"
   },
   "author": {
     "name": "STYLY, Inc.",

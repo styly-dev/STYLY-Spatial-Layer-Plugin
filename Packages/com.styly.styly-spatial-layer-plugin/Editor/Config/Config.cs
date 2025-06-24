@@ -1,4 +1,4 @@
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     public class Config
     {

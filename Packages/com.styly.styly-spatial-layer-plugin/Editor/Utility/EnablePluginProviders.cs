@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.XR.Management;
 using UnityEngine.XR.Management;
 
-namespace Styly.VisionOs.Plugin
+namespace Styly.SpatialLayer.Plugin
 {
     /// <summary>
     /// Enable XR Plugin Providers for a specific build target group.
