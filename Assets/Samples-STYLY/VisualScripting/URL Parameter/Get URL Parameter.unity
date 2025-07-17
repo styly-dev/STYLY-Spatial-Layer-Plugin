@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 40816839}
   - component: {fileID: 40816838}
   m_Layer: 0
-  m_Name: Get URL Parameter
+  m_Name: Get URL Parameter (Upload as Prefab)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
