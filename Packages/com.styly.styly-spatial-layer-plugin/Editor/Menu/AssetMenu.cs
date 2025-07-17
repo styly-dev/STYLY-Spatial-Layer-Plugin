@@ -22,34 +22,41 @@ namespace Styly.SpatialLayer.Plugin
         [MenuItem(@"Assets/STYLY/Build Prefab")]
         private static void BuildVisionOsContent()
         {
-            BuildContent(new[]{BuildTarget.VisionOS});
+            BuildSelectedContent(new[]{BuildTarget.VisionOS});
         }
 #endif
 #if STYLY_EXPERIMENTAL
         [MenuItem(@"Assets/STYLY/Build Prefab for visionOS", false, 100)]
         private static void BuildVisionOsContent()
         {
-            BuildContent(new[]{BuildTarget.VisionOS});
+            BuildSelectedContent(new[]{BuildTarget.VisionOS});
         }
         
         [MenuItem(@"Assets/STYLY/Build Prefab for Android", false, 101)]
         private static void BuildAndroidContent()
         {
-            BuildContent(new[] { BuildTarget.Android });
+            BuildSelectedContent(new[] { BuildTarget.Android });
         }
         
         [MenuItem(@"Assets/STYLY/Build Prefab for visionOS and Android", false, 102)]
         private static void BuildVisionOSandAndroidContent()
         {
-            BuildContent(new[] { BuildTarget.VisionOS, BuildTarget.Android });
+            BuildSelectedContent(new[] { BuildTarget.VisionOS, BuildTarget.Android });
         }
 #endif
-        
-        private static void BuildContent(BuildTarget[] buildTargets)
+        private static void BuildSelectedContent(BuildTarget[] buildTargets)
+        {
+            var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
+            BuildContent(assetPath, buildTargets);
+            
+            var uri = new Uri(Config.UploadPage);
+            Application.OpenURL(uri.AbsoluteUri);
+        }
+
+        public static void BuildContent(string assetPath, BuildTarget[] buildTargets)
         {
             isProcessing = true;
 
-            var assetPath = AssetDatabase.GetAssetPath(Selection.objects[0]);
             var assetFileNameWithoutExtension = Path.GetFileNameWithoutExtension(assetPath);
             Debug.Log($"Selected asset:{assetPath}");
 
@@ -87,9 +94,6 @@ namespace Styly.SpatialLayer.Plugin
             EditorUtility.RevealInFinder(Config.OutputPath);
 
             Directory.Delete(outputPath, true);
-
-            var uri = new Uri(Config.UploadPage);
-            Application.OpenURL(uri.AbsoluteUri);
 
             isProcessing = false;
         }
