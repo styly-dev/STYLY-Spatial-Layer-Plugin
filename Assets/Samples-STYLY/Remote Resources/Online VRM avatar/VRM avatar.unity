@@ -310,7 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 955416845}
   m_Layer: 0
-  m_Name: VRM avatar (Upload as prefab)
+  m_Name: VRM avatar (Upload as Prefab)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
