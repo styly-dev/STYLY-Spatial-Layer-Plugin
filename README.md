@@ -16,7 +16,7 @@
 #### Requirements
 
 * Unity
-  * Unity 6000.0.48 or later (Use 6000.0.XX)
+  * Unity 6000.0.59f2 or later (Use 6000.0.XX)
   * Modules:
     * visionOS Build Support
   * Render pipelines: URP
@@ -59,7 +59,7 @@ You are moe than welcome to recommend new custom Visual Scripting nodes to suppo
 #### How to setup
 
 ##### Unity
-* Install Unity 6000.0.48 or later (Use 6000.0.XX) via [Unity Hub](https://unity.com/unity-hub) with modules:
+* Install Unity 6000.0.59f2 or later (Use 6000.0.XX) via [Unity Hub](https://unity.com/unity-hub) with modules:
   * visionOS Build Support
 
 ##### Setup Unity project
